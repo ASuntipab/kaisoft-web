@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - KAI SOFT</title>
+    <title class="lang-th">นโยบายความเป็นส่วนตัว (Privacy Policy) - KAI SOFT</title>
+    <title class="lang-en">Privacy Policy - KAI SOFT</title>
     
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     
@@ -12,7 +13,45 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
+        
+        /* Language toggling */
+        html[lang="en"] .lang-th { display: none !important; }
+        html[lang="th"] .lang-en { display: none !important; }
     </style>
+
+    <script>
+        // Language Toggle Logic
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('preferred-language', lang);
+            
+            // Update button styles
+            const enBtns = document.querySelectorAll('.lang-btn-en');
+            const thBtns = document.querySelectorAll('.lang-btn-th');
+            if (lang === 'en') {
+                enBtns.forEach(btn => btn.classList.add('text-blue-600', 'font-bold'));
+                enBtns.forEach(btn => btn.classList.remove('text-gray-500'));
+                thBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
+                thBtns.forEach(btn => btn.classList.add('text-gray-500'));
+            } else {
+                thBtns.forEach(btn => btn.classList.add('text-blue-600', 'font-bold'));
+                thBtns.forEach(btn => btn.classList.remove('text-gray-500'));
+                enBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
+                enBtns.forEach(btn => btn.classList.add('text-gray-500'));
+            }
+        }
+
+        // Initialize language before body renders to avoid flash of content
+        (function() {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            document.documentElement.setAttribute('lang', savedLang);
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            setLanguage(savedLang);
+        });
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -25,18 +64,42 @@
                     </div>
                     <span class="font-bold text-xl text-gray-800 tracking-wide">KAI SOFT</span>
                 </a>
-                <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
-                    <a href="../index.html" class="hover:text-blue-600 transition">Home</a>
-                    <a href="../index.html#services" class="hover:text-blue-600 transition">Services</a>
-                    <a href="../index.html#pipeline" class="hover:text-blue-600 transition">Pipeline</a>
-                    <a href="../index.html#about" class="hover:text-blue-600 transition">About</a>
-                    <a href="../index.html#contact" class="hover:text-blue-600 transition">Contact</a>
+                
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
+                        <a href="../index.html" class="hover:text-blue-600 transition lang-th">หน้าแรก</a>
+                        <a href="../index.html" class="hover:text-blue-600 transition lang-en">Home</a>
+                        
+                        <a href="../index.html#services" class="hover:text-blue-600 transition lang-th">บริการของเรา</a>
+                        <a href="../index.html#services" class="hover:text-blue-600 transition lang-en">Services</a>
+                        
+                        <a href="../index.html#pipeline" class="hover:text-blue-600 transition lang-th">โปรเจกต์พัฒนา</a>
+                        <a href="../index.html#pipeline" class="hover:text-blue-600 transition lang-en">Pipeline</a>
+                        
+                        <a href="../index.html#about" class="hover:text-blue-600 transition lang-th">เกี่ยวกับเรา</a>
+                        <a href="../index.html#about" class="hover:text-blue-600 transition lang-en">About</a>
+                        
+                        <a href="../index.html#contact" class="hover:text-blue-600 transition lang-th">ติดต่อเรา</a>
+                        <a href="../index.html#contact" class="hover:text-blue-600 transition lang-en">Contact</a>
+                    </div>
+
+                    <!-- Language Switcher (Visible on both Mobile and Desktop) -->
+                    <div class="flex items-center space-x-1 border-l pl-4 border-gray-200 text-sm font-semibold text-gray-600">
+                        <button onclick="setLanguage('th')" class="lang-btn-th transition px-1.5 py-0.5 rounded hover:bg-gray-100 text-xs">TH</button>
+                        <span class="text-gray-300 text-xs">/</span>
+                        <button onclick="setLanguage('en')" class="lang-btn-en transition px-1.5 py-0.5 rounded hover:bg-gray-100 text-xs">EN</button>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
     <div class="max-w-4xl mx-auto px-4 pt-32 pb-24">
+        <!-- Thai legal binding notice (standard for Thai sites using English legal text) -->
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-sm text-amber-800 lang-th">
+            💡 นโยบายความเป็นส่วนตัวฉบับนี้จัดทำขึ้นเป็นภาษาอังกฤษเพื่อผลบังคับใช้ทางกฎหมายสูงสุด
+        </div>
+        
         <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 prose prose-blue max-w-none">
             <h1>Privacy Policy - Kai Soft</h1>
 
@@ -190,10 +253,19 @@ please contact us at:</p>
 
     <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center md:justify-between gap-4">
-            <p class="text-sm">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</p>
+            <p class="text-sm">
+                <span class="lang-th">&copy; 2026 บริษัท ไค ซอฟต์ จำกัด สงวนลิขสิทธิ์ทั้งหมด</span>
+                <span class="lang-en">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</span>
+            </p>
             <div class="flex space-x-6 text-sm">
-                <a href="index.html" class="hover:text-white transition">Privacy Policy</a>
-                <a href="../terms/index.html" class="hover:text-white transition">Terms of Service</a>
+                <a href="index.html" class="hover:text-white transition">
+                    <span class="lang-th">นโยบายความเป็นส่วนตัว</span>
+                    <span class="lang-en">Privacy Policy</span>
+                </a>
+                <a href="../terms/index.html" class="hover:text-white transition">
+                    <span class="lang-th">เงื่อนไขการใช้งาน</span>
+                    <span class="lang-en">Terms of Service</span>
+                </a>
             </div>
         </div>
     </footer>

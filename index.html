@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="th" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KAI SOFT COMPANY LIMITED | IT Outsourcing & Software Development</title>
+    <title class="lang-th">KAI SOFT COMPANY LIMITED | บริการจัดหาบุคลากรไอที & พัฒนาซอฟต์แวร์</title>
+    <title class="lang-en">KAI SOFT COMPANY LIMITED | IT Outsourcing & Software Development</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -22,7 +23,45 @@
         .service-card:hover {
             transform: translateY(-5px);
         }
+        
+        /* Language toggling */
+        html[lang="en"] .lang-th { display: none !important; }
+        html[lang="th"] .lang-en { display: none !important; }
     </style>
+
+    <script>
+        // Language Toggle Logic
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('preferred-language', lang);
+            
+            // Update button styles
+            const enBtns = document.querySelectorAll('.lang-btn-en');
+            const thBtns = document.querySelectorAll('.lang-btn-th');
+            if (lang === 'en') {
+                enBtns.forEach(btn => btn.classList.add('text-blue-600', 'font-bold'));
+                enBtns.forEach(btn => btn.classList.remove('text-gray-500'));
+                thBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
+                thBtns.forEach(btn => btn.classList.add('text-gray-500'));
+            } else {
+                thBtns.forEach(btn => btn.classList.add('text-blue-600', 'font-bold'));
+                thBtns.forEach(btn => btn.classList.remove('text-gray-500'));
+                enBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
+                enBtns.forEach(btn => btn.classList.add('text-gray-500'));
+            }
+        }
+
+        // Initialize language before body renders to avoid flash of content
+        (function() {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            document.documentElement.setAttribute('lang', savedLang);
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            setLanguage(savedLang);
+        });
+    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -35,12 +74,31 @@
                     </div>
                     <span class="font-bold text-xl text-gray-800 tracking-wide">KAI SOFT</span>
                 </a>
-                <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
-                    <a href="#home" class="hover:text-blue-600 transition">Home</a>
-                    <a href="#services" class="hover:text-blue-600 transition">Services</a>
-                    <a href="#pipeline" class="hover:text-blue-600 transition">Pipeline</a>
-                    <a href="#about" class="hover:text-blue-600 transition">About</a>
-                    <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+                
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
+                        <a href="#home" class="hover:text-blue-600 transition lang-th">หน้าแรก</a>
+                        <a href="#home" class="hover:text-blue-600 transition lang-en">Home</a>
+                        
+                        <a href="#services" class="hover:text-blue-600 transition lang-th">บริการของเรา</a>
+                        <a href="#services" class="hover:text-blue-600 transition lang-en">Services</a>
+                        
+                        <a href="#pipeline" class="hover:text-blue-600 transition lang-th">โปรเจกต์พัฒนา</a>
+                        <a href="#pipeline" class="hover:text-blue-600 transition lang-en">Pipeline</a>
+                        
+                        <a href="#about" class="hover:text-blue-600 transition lang-th">เกี่ยวกับเรา</a>
+                        <a href="#about" class="hover:text-blue-600 transition lang-en">About</a>
+                        
+                        <a href="#contact" class="hover:text-blue-600 transition lang-th">ติดต่อเรา</a>
+                        <a href="#contact" class="hover:text-blue-600 transition lang-en">Contact</a>
+                    </div>
+
+                    <!-- Language Switcher (Visible on both Mobile and Desktop) -->
+                    <div class="flex items-center space-x-1 border-l pl-4 border-gray-200 text-sm font-semibold text-gray-600">
+                        <button onclick="setLanguage('th')" class="lang-btn-th transition px-1.5 py-0.5 rounded hover:bg-gray-100 text-xs">TH</button>
+                        <span class="text-gray-300 text-xs">/</span>
+                        <button onclick="setLanguage('en')" class="lang-btn-en transition px-1.5 py-0.5 rounded hover:bg-gray-100 text-xs">EN</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,21 +107,25 @@
     <section id="home" class="gradient-bg text-white pt-32 pb-24 px-4">
         <div class="max-w-5xl mx-auto text-center">
             <span class="bg-blue-600/30 text-blue-200 py-1 px-3 rounded-full text-sm font-medium mb-6 inline-block border border-blue-500/50">
-                Premium Software Solutions
+                <span class="lang-th">โซลูชันซอฟต์แวร์ระดับพรีเมียม</span>
+                <span class="lang-en">Premium Software Solutions</span>
             </span>
             <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Empowering Business with <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Top-Tier Tech Talent</span>
+                <span class="lang-th">ขับเคลื่อนธุรกิจของคุณด้วย<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">บุคลากรเทคโนโลยีชั้นนำ</span></span>
+                <span class="lang-en">Empowering Business with <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Top-Tier Tech Talent</span></span>
             </h1>
             <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                KAI SOFT provides expert IT outsourcing services to leading enterprises and delivers high-performance Web, Mobile, and Game development solutions.
+                <span class="lang-th">KAI SOFT ให้บริการจัดหาบุคลากรไอที (IT Outsourcing) แก่องค์กรชั้นนำ และพัฒนาซอฟต์แวร์ เว็บแอปพลิเคชัน โมบายแอปพลิเคชัน และเกมประสิทธิภาพสูง</span>
+                <span class="lang-en">KAI SOFT provides expert IT outsourcing services to leading enterprises and delivers high-performance Web, Mobile, and Game development solutions.</span>
             </p>
             <div class="flex justify-center gap-4">
                 <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition shadow-lg">
-                    Our Expertise
+                    <span class="lang-th">ความเชี่ยวชาญของเรา</span>
+                    <span class="lang-en">Our Expertise</span>
                 </a>
                 <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-full transition border border-white/30">
-                    Contact Us
+                    <span class="lang-th">ติดต่อเรา</span>
+                    <span class="lang-en">Contact Us</span>
                 </a>
             </div>
         </div>
@@ -72,52 +134,79 @@
     <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">Comprehensive Services</h2>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">From enterprise staffing to creative game development, we cover the entire digital spectrum.</p>
+                <h2 class="text-3xl font-bold text-gray-900">
+                    <span class="lang-th">บริการที่ครอบคลุม</span>
+                    <span class="lang-en">Comprehensive Services</span>
+                </h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    <span class="lang-th">ตั้งแต่การจัดหาบุคลากรระดับองค์กรไปจนถึงการพัฒนาเกมที่สร้างสรรค์ เราครอบคลุมทุกมิติทางเทคโนโลยี</span>
+                    <span class="lang-en">From enterprise staffing to creative game development, we cover the entire digital spectrum.</span>
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
+                <!-- Card 1 -->
                 <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-blue-200">
                     <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600">
                         <i class="fa-solid fa-users-gear text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">IT Outsourcing</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                        <span class="lang-th">จัดหาบุคลากรไอที (IT Outsourcing)</span>
+                        <span class="lang-en">IT Outsourcing</span>
+                    </h3>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        We deploy highly skilled developers, specialists, and project managers to work with large-scale organizations. 
+                        <span class="lang-th">เราจัดส่งนักพัฒนา ผู้เชี่ยวชาญ และผู้จัดการโครงการที่มีทักษะสูงเพื่อร่วมงานและผลักดันโปรเจกต์ไอทีขนาดใหญ่ร่วมกับองค์กรชั้นนำ</span>
+                        <span class="lang-en">We deploy highly skilled developers, specialists, and project managers to work with large-scale organizations.</span>
                     </p>
                     <p class="text-sm text-gray-500 font-medium border-l-4 border-blue-500 pl-3">
-                        Trusted by leading companies such as <strong>PTT Digital</strong>.
+                        <span class="lang-th">ได้รับความไว้วางใจจากบริษัทชั้นนำอย่าง <strong>PTT Digital</strong></span>
+                        <span class="lang-en">Trusted by leading companies such as <strong>PTT Digital</strong>.</span>
                     </p>
                 </div>
 
+                <!-- Card 2 -->
                 <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-indigo-200">
                     <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6 text-indigo-600">
                         <i class="fa-solid fa-laptop-code text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">Web Application Development</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                        <span class="lang-th">พัฒนาเว็บแอปพลิเคชัน (Web Application)</span>
+                        <span class="lang-en">Web Application Development</span>
+                    </h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Building scalable, enterprise-grade web platforms. We specialize in modern frameworks to create responsive, secure, and efficient cloud-based solutions for your business operations.
+                        <span class="lang-th">สร้างแพลตฟอร์มเว็บระดับองค์กรที่ขยายขนาดได้ เราเชี่ยวชาญการใช้เฟรมเวิร์กสมัยใหม่เพื่อพัฒนาโซลูชันบนระบบคลาวด์ที่มีความปลอดภัย รวดเร็ว และตอบโจทย์ธุรกิจคุณ</span>
+                        <span class="lang-en">Building scalable, enterprise-grade web platforms. We specialize in modern frameworks to create responsive, secure, and efficient cloud-based solutions for your business operations.</span>
                     </p>
                 </div>
 
+                <!-- Card 3 -->
                 <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-cyan-200">
                     <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-6 text-cyan-600">
                         <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">Mobile Application</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                        <span class="lang-th">พัฒนาโมบายแอปพลิเคชัน (Mobile Application)</span>
+                        <span class="lang-en">Mobile Application</span>
+                    </h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Cross-platform and native mobile development (iOS & Android). We deliver seamless user experiences using technologies like Flutter, ensuring high performance on all devices.
+                        <span class="lang-th">พัฒนาโมบายแอปพลิเคชันแบบ Native และ Cross-platform (iOS & Android) ส่งมอบประสบการณ์ใช้งานที่ราบรื่น ประสิทธิภาพสูง ด้วยเทคโนโลยีชั้นนำอย่าง Flutter</span>
+                        <span class="lang-en">Cross-platform and native mobile development (iOS & Android). We deliver seamless user experiences using technologies like Flutter, ensuring high performance on all devices.</span>
                     </p>
                 </div>
 
+                <!-- Card 4 -->
                 <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-purple-200">
                     <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 text-purple-600">
                         <i class="fa-solid fa-gamepad text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">Game Development</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                        <span class="lang-th">พัฒนาเกม (Game Development)</span>
+                        <span class="lang-en">Game Development</span>
+                    </h3>
                     <p class="text-gray-600 leading-relaxed">
-                        Creating immersive interactive entertainment. Our team develops engaging games with stunning graphics and smooth mechanics using Unity and other modern engines.
+                        <span class="lang-th">สร้างสรรค์เกมและความบันเทิงแบบอินเทอร์แอกทีฟที่น่าตื่นตาตื่นใจ ทีมงานของเราพัฒนาเกมที่มีกราฟิกสวยงามและกลไกการเล่นที่ลื่นไหลโดยใช้ Unity และเอนจิ้นชั้นนำ</span>
+                        <span class="lang-en">Creating immersive interactive entertainment. Our team develops engaging games with stunning graphics and smooth mechanics using Unity and other modern engines.</span>
                     </p>
                 </div>
 
@@ -129,11 +218,16 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
                 <span class="bg-blue-100 text-blue-800 py-1 px-3 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 inline-block">
-                    Product Pipeline
+                    <span class="lang-th">แผนพัฒนาผลิตภัณฑ์</span>
+                    <span class="lang-en">Product Pipeline</span>
                 </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Upcoming Projects</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+                    <span class="lang-th">โปรเจกต์ที่กำลังจะเปิดตัว</span>
+                    <span class="lang-en">Upcoming Projects</span>
+                </h2>
                 <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
-                    เปิดเผยโปรเจกต์เกมและแอปพลิเคชันล้ำสมัยที่กำลังพัฒนาใน KAI SOFT เรามุ่งมั่นสร้างนวัตกรรมระดับพรีเมียมสู่สายตาชาวโลก
+                    <span class="lang-th">เปิดเผยโปรเจกต์เกมและแอปพลิเคชันล้ำสมัยที่กำลังพัฒนาใน KAI SOFT เรามุ่งมั่นสร้างนวัตกรรมระดับพรีเมียมสู่สายตาชาวโลก</span>
+                    <span class="lang-en">Take a sneak peek at the innovative applications and engaging games currently cooking in the KAI SOFT laboratories. We are building the future of interactive experiences.</span>
                 </p>
             </div>
 
@@ -142,7 +236,6 @@
                 
                 <!-- Visual Mockup Showcase (Overlapping 3D Cards) -->
                 <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-blue-50/50 via-slate-50 to-indigo-50/30 overflow-hidden">
-                    <!-- Background glows -->
                     <div class="absolute w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -top-10 -left-10"></div>
                     <div class="absolute w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10"></div>
 
@@ -158,7 +251,8 @@
                     <div class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-white transform translate-x-8 translate-y-6 rotate-6 hover:rotate-0 hover:scale-105 transition-all duration-500 z-20">
                         <img src="images/main_menu.jpg" alt="Line Logic Main Menu" class="w-full h-full object-cover">
                         <div class="absolute top-3 left-3 bg-blue-600 text-white text-[9px] font-bold py-0.5 px-2 rounded-full shadow-lg">
-                            หน้าเมนูเกม
+                            <span class="lang-th">หน้าเมนูเกม</span>
+                            <span class="lang-en">Main Menu</span>
                         </div>
                     </div>
 
@@ -166,7 +260,8 @@
                     <div class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 transform -translate-x-6 -translate-y-2 -rotate-3 hover:rotate-0 hover:scale-105 transition-all duration-500 z-30">
                         <img src="images/gameplay.jpg" alt="Line Logic Gameplay" class="w-full h-full object-cover">
                         <div class="absolute top-3 left-3 bg-red-600 text-white text-[9px] font-bold py-0.5 px-2.5 rounded-full shadow-lg animate-pulse">
-                            ด่าน 34 (Extreme)
+                            <span class="lang-th">ด่าน 34 (Extreme)</span>
+                            <span class="lang-en">Level 34 (Extreme)</span>
                         </div>
                     </div>
                 </div>
@@ -176,10 +271,12 @@
                     <div>
                         <div class="flex items-center space-x-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-bold py-1 px-3 rounded-full uppercase tracking-wider">
-                                Flagship Game
+                                <span class="lang-th">เกมเด่นเรือธง</span>
+                                <span class="lang-en">Featured Flagship Game</span>
                             </span>
                             <span class="bg-amber-100 text-amber-800 text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider animate-pulse">
-                                Coming Soon
+                                <span class="lang-th">เร็ว ๆ นี้</span>
+                                <span class="lang-en">Coming Soon</span>
                             </span>
                         </div>
                         <h3 class="text-3xl md:text-4xl font-extrabold mt-4 text-gray-900 leading-tight">
@@ -188,22 +285,32 @@
                         </h3>
                         
                         <p class="text-gray-600 mt-4 leading-relaxed text-sm">
-                            สุดยอดเกมปริศนาแนวพัซเซิลลากเส้นเชื่อมจุดสีเดียวกันให้ครบทุกสี โดย<strong>ต้องเดินเส้นทางผ่านทุกช่องของตาราง 100% (ลากให้ครบทุกช่อง)</strong> สนุกสนานไปกับสุนทรียภาพท้องฟ้านุ่มนวลและการแก้โจทย์ปริศนาสุดหินระดับแชมป์เปี้ยน
+                            <span class="lang-th">สุดยอดเกมปริศนาแนวพัซเซิลลากเส้นเชื่อมจุดสีเดียวกันให้ครบทุกสี โดย<strong>ต้องเดินเส้นทางผ่านทุกช่องของตาราง 100% (ลากให้ครบทุกช่อง)</strong> สนุกสนานไปกับสุนทรียภาพท้องฟ้านุ่มนวลและการแก้โจทย์ปริศนาสุดหินระดับแชมป์เปี้ยน</span>
+                            <span class="lang-en">An immersive, dreamy 3D-like connection puzzle game powered by procedural scaling algorithms and AI. Connect dots of the same color and <strong>fill 100% of the grid cells</strong>. Simple to learn, highly challenging to master.</span>
                         </p>
 
                         <!-- Level Design Stats Grid -->
                         <div class="grid grid-cols-3 gap-4 my-6 bg-blue-50/50 p-4 rounded-2xl border border-blue-100/50 text-center">
                             <div>
                                 <p class="text-2xl font-extrabold text-blue-600">18,000</p>
-                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">ด่านทั้งหมด</p>
+                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">
+                                    <span class="lang-th">ด่านทั้งหมด</span>
+                                    <span class="lang-en">Total Levels</span>
+                                </p>
                             </div>
                             <div>
                                 <p class="text-2xl font-extrabold text-indigo-600">9</p>
-                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">โหมดการเล่น</p>
+                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">
+                                    <span class="lang-th">โหมดการเล่น</span>
+                                    <span class="lang-en">Submodes</span>
+                                </p>
                             </div>
                             <div>
                                 <p class="text-2xl font-extrabold text-cyan-600">2,000</p>
-                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">ด่านต่อโหมด</p>
+                                <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">
+                                    <span class="lang-th">ด่านต่อโหมด</span>
+                                    <span class="lang-en">Levels per Mode</span>
+                                </p>
                             </div>
                         </div>
 
@@ -214,8 +321,14 @@
                                     <i class="fa-solid fa-square-check"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-900 text-xs">3 โหมดหลัก ท้าทายขีดจำกัด</h4>
-                                    <p class="text-gray-500 text-xs mt-0.5"><strong>Normal:</strong> ลากโหมดปกติ | <strong>TimeAttack:</strong> จับเวลาสุดตื่นเต้น | <strong>Extreme:</strong> โหมดมืดสุดโหดท้าทายจอมวางแผน</p>
+                                    <h4 class="font-bold text-gray-900 text-xs">
+                                        <span class="lang-th">3 โหมดหลัก ท้าทายขีดจำกัด</span>
+                                        <span class="lang-en">3 Core Game Modes</span>
+                                    </h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">
+                                        <span class="lang-th"><strong>Normal:</strong> ลากโหมดปกติ | <strong>TimeAttack:</strong> จับเวลาสุดตื่นเต้น | <strong>Extreme:</strong> โหมดมืดสุดโหดท้าทายจอมวางแผน</span>
+                                        <span class="lang-en"><strong>Normal:</strong> standard puzzle | <strong>TimeAttack:</strong> race against time | <strong>Extreme:</strong> dark UI hidden hints</span>
+                                    </p>
                                 </div>
                             </div>
 
@@ -224,10 +337,14 @@
                                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                                 </div>
                                 <div>
-                                    <div class="flex items-center space-x-2">
-                                        <h4 class="font-bold text-gray-900 text-xs">3 รูปแบบการเล่นไอเท็ม (Submodes)</h4>
-                                    </div>
-                                    <p class="text-gray-500 text-xs mt-0.5"><strong>Classic:</strong> พัซเซิลดั้งเดิม | <strong>ItemRush:</strong> มีไอเท็มระเบิด, สลับสี, ประตูกุญแจ | <strong>Hardcore:</strong> สุ่มไอเท็มผสมคลาสสิก (80/20)</p>
+                                    <h4 class="font-bold text-gray-900 text-xs">
+                                        <span class="lang-th">3 รูปแบบไอเท็ม (Submodes)</span>
+                                        <span class="lang-en">3 Gameplay Submodes</span>
+                                    </h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">
+                                        <span class="lang-th"><strong>Classic:</strong> พัซเซิลดั้งเดิม | <strong>ItemRush:</strong> มีระเบิด สลับสี ประตูกุญแจ | <strong>Hardcore:</strong> สุ่มไอเท็มผสมคลาสสิก (80/20)</span>
+                                        <span class="lang-en"><strong>Classic:</strong> pure layouts | <strong>ItemRush:</strong> bombs, switchers, keys/doors | <strong>Hardcore:</strong> random 80/20 mix</span>
+                                    </p>
                                 </div>
                             </div>
 
@@ -236,8 +353,14 @@
                                     <i class="fa-solid fa-circle-nodes"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-900 text-xs">โหมดมิติซ้อน (Multi-Floor 3D) & UI Masking</h4>
-                                    <p class="text-gray-500 text-xs mt-0.5">ปีนป่ายมิติตารางซ้อนชั้นสูงถึง 5-7 ชั้น เชื่อมโยงผ่านประตูพอร์ทัล และฟีเจอร์พรางไอเท็ม/ระเบิดเป็นสีเทาลึกลับในโหมด Extreme เพิ่มระดับความซับซ้อน</p>
+                                    <h4 class="font-bold text-gray-900 text-xs">
+                                        <span class="lang-th">โหมดมิติซ้อน (Multi-Floor 3D) & UI Masking</span>
+                                        <span class="lang-en">Multi-Floor 3D & UI Masking</span>
+                                    </h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">
+                                        <span class="lang-th">ปีนป่ายตารางซ้อนชั้นสูงถึง 5-7 ชั้น เชื่อมผ่านประตูพอร์ทัล และฟีเจอร์พรางไอเท็ม/ระเบิดเป็นสีเทาลึกลับในโหมด Extreme เพิ่มความลุ่มลึก</span>
+                                        <span class="lang-en">Navigate 3D vertical portals between 5-7 stacked floors with bridges and hidden grey element overlays in Extreme mode.</span>
+                                    </p>
                                 </div>
                             </div>
 
@@ -246,8 +369,14 @@
                                     <i class="fa-solid fa-calculator"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-gray-900 text-xs">พิสูจน์แล้วผ่านคณิตศาสตร์ขั้นสูง (CP-SAT Solver)</h4>
-                                    <p class="text-gray-500 text-xs mt-0.5">ทุก ๆ ด่านจากทั้งหมด 18,000 ด่าน ได้ผ่านการประมวลผลและตรวจสอบโดยระบบ Google OR-Tools CP-SAT เพื่อรับประกันว่า<strong>ด่านไม่มีข้อผิดพลาด มีคำตอบเดียวที่ถูกต้อง และลากผ่านได้จริง</strong></p>
+                                    <h4 class="font-bold text-gray-900 text-xs">
+                                        <span class="lang-th">พิสูจน์แล้วด้วยคณิตศาสตร์ขั้นสูง (CP-SAT Solver)</span>
+                                        <span class="lang-en">CP-SAT AI-Verified Solvability</span>
+                                    </h4>
+                                    <p class="text-gray-500 text-xs mt-0.5">
+                                        <span class="lang-th">ทุกด่านผ่านการตรวจสอบโดย Google OR-Tools CP-SAT เพื่อรับประกันว่าด่านไม่มีข้อผิดพลาด มีคำตอบเดียว และลากผ่านได้จริง</span>
+                                        <span class="lang-en">Every level layout is verified by Google OR-Tools CP-SAT to guarantee 100% mathematical solvability, logical integrity, and a single solution.</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +388,8 @@
                             <i class="fa-brands fa-flutter text-blue-400 mr-1.5 text-xs"></i> Developed with Flutter & Dart Engine
                         </span>
                         <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-md flex items-center group shrink-0">
-                            สนใจร่วมเป็นกลุ่มทดสอบ Close Beta
+                            <span class="lang-th">สนใจร่วมเป็นกลุ่มทดสอบ Close Beta</span>
+                            <span class="lang-en">Join Close Beta Test Group</span>
                             <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -269,8 +399,14 @@
             <!-- Other 3 Apps in Pipeline -->
             <div>
                 <div class="text-center mb-10">
-                    <h3 class="text-2xl font-bold text-gray-900">โปรเจกต์แอปพลิเคชันอื่น ๆ ในระบบ</h3>
-                    <p class="text-gray-500 text-sm mt-2">แอปพลิเคชันตอบโจทย์ภาคธุรกิจและการจัดการอัจฉริยะที่กำลังพัฒนาควบคู่กัน</p>
+                    <h3 class="text-2xl font-bold text-gray-900">
+                        <span class="lang-th">โปรเจกต์แอปพลิเคชันอื่น ๆ ในระบบ</span>
+                        <span class="lang-en">Other Pipeline Applications</span>
+                    </h3>
+                    <p class="text-gray-500 text-sm mt-2">
+                        <span class="lang-th">แอปพลิเคชันตอบโจทย์ภาคธุรกิจและการจัดการอัจฉริยะที่กำลังพัฒนาควบคู่กัน</span>
+                        <span class="lang-en">Innovative business automation and productivity platforms currently under construction.</span>
+                    </p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -283,11 +419,13 @@
                             <div class="flex items-center justify-between">
                                 <h4 class="font-bold text-gray-900">KaiBot AI Platform</h4>
                                 <span class="bg-purple-100 text-purple-800 text-[9px] font-bold py-0.5 px-2 rounded-full uppercase tracking-wider">
-                                    กำลังพัฒนา
+                                    <span class="lang-th">กำลังพัฒนา</span>
+                                    <span class="lang-en">In Dev</span>
                                 </span>
                             </div>
                             <p class="text-gray-600 text-xs mt-2 leading-relaxed">
-                                แพลตฟอร์มบอทตอบลูกค้าอัจฉริยะประมวลผลด้วยภาษาธรรมชาติ (NLP) เชื่อมต่อง่ายกับ LINE และระบบเว็บไซต์สำหรับธุรกิจไทย
+                                <span class="lang-th">แพลตฟอร์มบอทตอบลูกค้าอัจฉริยะประมวลผลด้วยภาษาธรรมชาติ (NLP) เชื่อมต่อง่ายกับ LINE และระบบเว็บไซต์สำหรับธุรกิจไทย</span>
+                                <span class="lang-en">Next-gen customer automation platform driven by NLP and deep learning. Seamlessly integrates with LINE, Messenger, and web chat.</span>
                             </p>
                         </div>
                     </div>
@@ -301,11 +439,13 @@
                             <div class="flex items-center justify-between">
                                 <h4 class="font-bold text-gray-900">FinFlow Expense</h4>
                                 <span class="bg-purple-100 text-purple-800 text-[9px] font-bold py-0.5 px-2 rounded-full uppercase tracking-wider">
-                                    กำลังพัฒนา
+                                    <span class="lang-th">กำลังพัฒนา</span>
+                                    <span class="lang-en">In Dev</span>
                                 </span>
                             </div>
                             <p class="text-gray-600 text-xs mt-2 leading-relaxed">
-                                เครื่องมือสแกนใบเสร็จจัดการรายจ่ายอัจฉริยะด้วย AI วิเคราะห์สุขภาพทางการเงินขององค์กรและบันทึกบัญชีอัตโนมัติ
+                                <span class="lang-th">เครื่องมือสแกนใบเสร็จจัดการรายจ่ายอัจฉริยะด้วย AI วิเคราะห์สุขภาพทางการเงินขององค์กรและบันทึกบัญชีอัตโนมัติ</span>
+                                <span class="lang-en">AI-powered invoice and receipt processing platform. Scans expenses instantly, auto-categorizes, and links with enterprise accounting.</span>
                             </p>
                         </div>
                     </div>
@@ -319,11 +459,13 @@
                             <div class="flex items-center justify-between">
                                 <h4 class="font-bold text-gray-900">HR Shift Planner</h4>
                                 <span class="bg-purple-100 text-purple-800 text-[9px] font-bold py-0.5 px-2 rounded-full uppercase tracking-wider">
-                                    กำลังพัฒนา
+                                    <span class="lang-th">กำลังพัฒนา</span>
+                                    <span class="lang-en">In Dev</span>
                                 </span>
                             </div>
                             <p class="text-gray-600 text-xs mt-2 leading-relaxed">
-                                แอปพลิเคชันจัดตารางงานและเวรพนักงานระดับองค์กร รองรับการสลับกะแบบเรลไทม์ และระบบคำนวณชั่วโมงการทำงาน
+                                <span class="lang-th">แอปพลิเคชันจัดตารางงานและเวรพนักงานระดับองค์กร รองรับการสลับกะแบบเรลไทม์ และระบบคำนวณชั่วโมงการทำงาน</span>
+                                <span class="lang-en">Collaborative employee shift scheduling application. Includes shift swaps, auto-rota generation, geo-fenced check-in, and timesheet reports.</span>
                             </p>
                         </div>
                     </div>
@@ -342,26 +484,40 @@
                     </div>
                 </div>
                 <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6">About KAI SOFT</h2>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                        <span class="lang-th">เกี่ยวกับ KAI SOFT</span>
+                        <span class="lang-en">About KAI SOFT</span>
+                    </h2>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                        <strong>KAI SOFT COMPANY LIMITED</strong> is a technology partner you can trust. Established in Thailand, we have grown to become a key player in the software industry, bridging the gap between complex technology and business success.
+                        <span class="lang-th"><strong>บริษัท ไค ซอฟต์ จำกัด (KAI SOFT COMPANY LIMITED)</strong> คือพันธมิตรด้านเทคโนโลยีที่คุณไว้วางใจได้ เราก่อตั้งขึ้นในประเทศไทยและเติบโตเพื่อเป็นผู้เล่นหลักในอุตสาหกรรมซอฟต์แวร์ เชื่อมช่องว่างระหว่างเทคโนโลยีระดับสูงและความสำเร็จขององค์กรธุรกิจ</span>
+                        <span class="lang-en"><strong>KAI SOFT COMPANY LIMITED</strong> is a technology partner you can trust. Established in Thailand, we have grown to become a key player in the software industry, bridging the gap between complex technology and business success.</span>
                     </p>
                     <p class="text-gray-600 mb-8 leading-relaxed">
-                        We pride ourselves on our versatility. Whether it is supplying top-tier developers to work alongside corporate teams at <strong>PTT Digital</strong>, or building a custom game from scratch, we deliver excellence in every line of code.
+                        <span class="lang-th">เราภูมิใจในการให้บริการที่หลากหลายและยืดหยุ่น ไม่ว่าจะเป็นการจัดส่งบุคลากรนักพัฒนาร่วมงานกับทีมองค์กรขนาดใหญ่อย่าง <strong>PTT Digital</strong> หรือสร้างสรรค์เกมและความบันเทิงจากศูนย์ เราส่งมอบความยอดเยี่ยมในทุกบรรทัดของโค้ด</span>
+                        <span class="lang-en">We pride ourselves on our versatility. Whether it is supplying top-tier developers to work alongside corporate teams at <strong>PTT Digital</strong>, or building a custom game from scratch, we deliver excellence in every line of code.</span>
                     </p>
                     
                     <ul class="space-y-4">
                         <li class="flex items-center space-x-3">
                             <i class="fa-solid fa-circle-check text-blue-600"></i>
-                            <span class="text-gray-700">Registered Thai Company (Verified)</span>
+                            <span class="text-gray-700">
+                                <span class="lang-th">จดทะเบียนบริษัทในประเทศไทยอย่างถูกต้อง (Verified)</span>
+                                <span class="lang-en">Registered Thai Company (Verified)</span>
+                            </span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <i class="fa-solid fa-circle-check text-blue-600"></i>
-                            <span class="text-gray-700">Enterprise-Grade Standards</span>
+                            <span class="text-gray-700">
+                                <span class="lang-th">มาตรฐานการทำงานระดับสากล (Enterprise Standard)</span>
+                                <span class="lang-en">Enterprise-Grade Standards</span>
+                            </span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <i class="fa-solid fa-circle-check text-blue-600"></i>
-                            <span class="text-gray-700">Full-Stack Capabilities</span>
+                            <span class="text-gray-700">
+                                <span class="lang-th">มีทีมงานเชี่ยวชาญแบบ Full-Stack เต็มระบบ</span>
+                                <span class="lang-en">Full-Stack Capabilities</span>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -372,25 +528,35 @@
     <section id="contact" class="py-20 bg-gray-50">
         <div class="max-w-3xl mx-auto px-4">
             <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border-t-8 border-blue-600 text-center">
-                <h2 class="text-3xl font-bold mb-8 text-gray-900">Get in Touch</h2>
+                <h2 class="text-3xl font-bold mb-8 text-gray-900">
+                    <span class="lang-th">ติดต่อเรา</span>
+                    <span class="lang-en">Get in Touch</span>
+                </h2>
                 
                 <p class="text-gray-600 mb-8">
-                    Ready to start a project or need developer resources? Contact us today.
+                    <span class="lang-th">พร้อมที่จะเริ่มโครงการใหม่ หรือต้องการพูดคุยเรื่องการจัดหาบุคลากรไอทีแล้วหรือยัง? ติดต่อเราได้ทันที</span>
+                    <span class="lang-en">Ready to start a project or need developer resources? Contact us today.</span>
                 </p>
 
                 <div class="space-y-6">
                     <div class="p-4 bg-blue-50 rounded-lg inline-block w-full">
-                        <p class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">Company</p>
+                        <p class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1">
+                            <span class="lang-th">ชื่อบริษัท</span>
+                            <span class="lang-en">Company</span>
+                        </p>
                         <p class="text-xl font-bold text-gray-900">KAI SOFT COMPANY LIMITED</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                        <div class="flex items-start space-x-4 p-4 border border-gray-100 rounded-lg">
+                        <div class="flex items-start space-x-4 p-4 border border-gray-100 rounded-lg bg-gray-50/50">
                             <div class="bg-blue-100 p-2 rounded-full text-blue-600 mt-1">
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
-                                <p class="font-bold text-gray-900">Head Office</p>
+                                <p class="font-bold text-gray-900">
+                                    <span class="lang-th">สำนักงานใหญ่</span>
+                                    <span class="lang-en">Head Office</span>
+                                </p>
                                 <p class="text-gray-600 text-sm mt-1">
                                     40 Moo 2, Ban Thi<br>
                                     Ban Thi District, Lamphun 51180<br>
@@ -405,7 +571,10 @@
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-gray-900">Email Us</p>
+                                    <p class="font-bold text-gray-900">
+                                        <span class="lang-th">ส่งเมลหาเรา</span>
+                                        <span class="lang-en">Email Us</span>
+                                    </p>
                                     <p class="text-blue-600 text-sm mt-1">admin@kaisoft.net</p>
                                 </div>
                             </a>
@@ -415,7 +584,10 @@
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-gray-900">Call Us</p>
+                                    <p class="font-bold text-gray-900">
+                                        <span class="lang-th">โทรหาเรา</span>
+                                        <span class="lang-en">Call Us</span>
+                                    </p>
                                     <p class="text-blue-600 text-sm mt-1">+66 88-436-4469</p>
                                 </div>
                             </a>
@@ -428,10 +600,19 @@
 
     <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div class="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center md:justify-between gap-4">
-            <p class="text-sm">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</p>
+            <p class="text-sm">
+                <span class="lang-th">&copy; 2026 บริษัท ไค ซอฟต์ จำกัด สงวนลิขสิทธิ์ทั้งหมด</span>
+                <span class="lang-en">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</span>
+            </p>
             <div class="flex space-x-6 text-sm">
-                <a href="privacy/index.html" class="hover:text-white transition">Privacy Policy</a>
-                <a href="terms/index.html" class="hover:text-white transition">Terms of Service</a>
+                <a href="privacy/index.html" class="hover:text-white transition">
+                    <span class="lang-th">นโยบายความเป็นส่วนตัว</span>
+                    <span class="lang-en">Privacy Policy</span>
+                </a>
+                <a href="terms/index.html" class="hover:text-white transition">
+                    <span class="lang-th">เงื่อนไขการใช้งาน</span>
+                    <span class="lang-en">Terms of Service</span>
+                </a>
             </div>
         </div>
     </footer>
