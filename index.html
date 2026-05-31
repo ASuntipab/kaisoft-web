@@ -3,210 +3,453 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title class="lang-th">KAI SOFT COMPANY LIMITED | บริการจัดหาบุคลากรไอที & พัฒนาซอฟต์แวร์</title>
-    <title class="lang-en">KAI SOFT COMPANY LIMITED | IT Outsourcing & Software Development</title>
-    
+    <title>KAI SOFT — AI-Powered Software Solutions</title>
+    <meta name="description" content="KAI SOFT delivers AI-powered software development, enterprise IT outsourcing, and innovative game creation. Building the future with intelligent assistants and cutting-edge puzzle games.">
+    <meta property="og:title" content="KAI SOFT — AI-Powered Software Solutions">
+    <meta property="og:description" content="Premium AI-driven software house from Thailand. Creators of Line Logic AI Puzzle and the AI Memory Buddy Series.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kaisoftthailand.com">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .gradient-bg {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-        }
-        .service-card {
-            transition: all 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-        
+        h1, h2, h3, .font-heading { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+
         /* Language toggling */
         html[lang="en"] .lang-th { display: none !important; }
         html[lang="th"] .lang-en { display: none !important; }
 
-        /* 3D Stack States for Game Screenshots */
+        /* ===== HERO ===== */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #0c1a3a 65%, #020617 100%);
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 25% 40%, rgba(59,130,246,0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 60%, rgba(6,182,212,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(99,102,241,0.06) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        #hero-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        /* Typing cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #38bdf8;
+            font-weight: 300;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ===== NAVBAR ===== */
+        nav { transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease; }
+        .nav-scrolled {
+            background: rgba(255,255,255,0.82) !important;
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ===== SERVICE CARDS ===== */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.12);
+        }
+        .card-blue::before    { background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+        .card-indigo::before  { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+        .card-cyan::before    { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+        .card-purple::before  { background: linear-gradient(90deg, #8b5cf6, #ec4899); }
+        .glass-icon {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-container { overflow: hidden; position: relative; }
+        .marquee-container::before,
+        .marquee-container::after {
+            content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+        }
+        .marquee-container::before { left: 0; background: linear-gradient(90deg, white, transparent); }
+        .marquee-container::after  { right: 0; background: linear-gradient(90deg, transparent, white); }
+        .marquee-track {
+            display: flex;
+            animation: marquee 35s linear infinite;
+            width: max-content;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+        @keyframes marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== 3D GAME CARDS ===== */
         .card-active {
             z-index: 30;
             transform: translate(-1.5rem, -0.5rem) rotate(-3deg) scale(1) !important;
             opacity: 1;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
         }
         .card-right {
             z-index: 20;
             transform: translate(2rem, 1.5rem) rotate(6deg) scale(0.95) !important;
             opacity: 0.9;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
         }
         .card-left {
             z-index: 10;
             transform: translate(-4rem, -2rem) rotate(-12deg) scale(0.9) !important;
             opacity: 0.8;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
         @media (max-width: 640px) {
-            .card-left {
-                display: none !important;
+            .card-left { display: none !important; }
+        }
+
+        /* ===== FLOATING ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-12px); }
+        }
+        .float { animation: float 4s ease-in-out infinite; }
+        .float-delay { animation: float 4s ease-in-out infinite 2s; }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50%      { opacity: 0.35; transform: scale(1.08); }
+        }
+
+        /* ===== HAMBURGER ===== */
+        .hamburger-line {
+            width: 22px; height: 2px; background: currentColor;
+            transition: all 0.3s ease; display: block; border-radius: 2px;
+        }
+        .hamburger.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .mobile-menu {
+            position: fixed; inset: 0; top: 72px;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            z-index: 45;
+            transform: translateY(-110%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
+        }
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 50; opacity: 0; transform: translateY(16px);
+            transition: all 0.3s ease; cursor: pointer;
+            box-shadow: 0 4px 20px rgba(59,130,246,0.35);
+            border: none;
+        }
+        .back-to-top.visible { opacity: 1; transform: translateY(0); }
+        .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59,130,246,0.5); }
+
+        /* ===== ABOUT TECH VIZ ===== */
+        .about-viz {
+            position: relative; overflow: hidden; border-radius: 1rem;
+            background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #0c1a3a 100%);
+        }
+        .about-viz .grid-overlay {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ===== AI BADGE ===== */
+        .ai-badge {
+            background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(6,182,212,0.1));
+            border: 1px solid rgba(59,130,246,0.2);
+        }
+
+        /* ===== REDUCED MOTION ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
+            .reveal { opacity: 1; transform: none; }
+            .marquee-track { animation: none; }
+            #hero-canvas { display: none; }
         }
     </style>
 
     <script>
-        // Language Toggle Logic
-        function setLanguage(lang) {
-            document.documentElement.setAttribute('lang', lang);
-            localStorage.setItem('preferred-language', lang);
-            
-            // Update button styles
-            const enBtns = document.querySelectorAll('.lang-btn-en');
-            const thBtns = document.querySelectorAll('.lang-btn-th');
-            if (lang === 'en') {
-                enBtns.forEach(btn => btn.classList.add('text-blue-600', 'font-bold'));
-                enBtns.forEach(btn => btn.classList.remove('text-gray-500'));
-                thBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
-                thBtns.forEach(btn => btn.classList.add('text-gray-500'));
-            } else {
-                thBtns.forEach(btn => btn.classList.add('text-blue-600', 'font-bold'));
-                thBtns.forEach(btn => btn.classList.remove('text-gray-500'));
-                enBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
-                enBtns.forEach(btn => btn.classList.add('text-gray-500'));
-            }
-        }
-
-        // 3D Card Swapping Animation for Game Showcase
-        function bringToFront(cardId) {
-            const cardConcept = document.getElementById('card-concept');
-            const cardMenu = document.getElementById('card-menu');
-            const cardGameplay = document.getElementById('card-gameplay');
-
-            // Reset all positional classes
-            cardConcept.classList.remove('card-active', 'card-right', 'card-left');
-            cardMenu.classList.remove('card-active', 'card-right', 'card-left');
-            cardGameplay.classList.remove('card-active', 'card-right', 'card-left');
-
-            if (cardId === 'concept') {
-                cardConcept.classList.add('card-active');
-                cardMenu.classList.add('card-right');
-                cardGameplay.classList.add('card-left');
-            } else if (cardId === 'menu') {
-                cardMenu.classList.add('card-active');
-                cardGameplay.classList.add('card-right');
-                cardConcept.classList.add('card-left');
-            } else if (cardId === 'gameplay') {
-                cardGameplay.classList.add('card-active');
-                cardConcept.classList.add('card-right');
-                cardMenu.classList.add('card-left');
-            }
-        }
-
-        // Initialize language before body renders to avoid flash of content
+        // Language init (before body)
         (function() {
             const savedLang = localStorage.getItem('preferred-language') || 'th';
             document.documentElement.setAttribute('lang', savedLang);
         })();
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-language') || 'th';
-            setLanguage(savedLang);
-        });
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <nav class="bg-white shadow-md fixed w-full z-20 top-0">
-        <div class="max-w-7xl mx-auto px-4">
+    <!-- ===== NAVBAR ===== -->
+    <nav id="main-nav" class="bg-white shadow-sm fixed w-full z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex justify-between items-center py-4">
-                <a href="#" class="flex items-center space-x-2">
-                    <div class="bg-blue-600 text-white p-2 rounded-lg">
-                        <i class="fa-solid fa-layer-group fa-lg"></i>
+                <a href="#" class="flex items-center space-x-2.5 group">
+                    <div class="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-2 rounded-xl shadow-md shadow-blue-500/20 group-hover:shadow-blue-500/40 transition">
+                        <i class="fa-solid fa-microchip fa-lg"></i>
                     </div>
-                    <span class="font-bold text-xl text-gray-800 tracking-wide">KAI SOFT</span>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-gray-900 tracking-wide font-heading leading-none">KAI SOFT</span>
+                        <span class="text-[9px] text-gray-400 font-medium tracking-widest uppercase leading-none mt-0.5">AI-Powered Software</span>
+                    </div>
                 </a>
-                
-                <div class="flex items-center space-x-6">
-                    <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
-                        <a href="#home" class="hover:text-blue-600 transition lang-th">หน้าแรก</a>
-                        <a href="#home" class="hover:text-blue-600 transition lang-en">Home</a>
-                        
-                        <a href="#services" class="hover:text-blue-600 transition lang-th">บริการของเรา</a>
-                        <a href="#services" class="hover:text-blue-600 transition lang-en">Services</a>
-                        
-                        <a href="#pipeline" class="hover:text-blue-600 transition lang-th">โปรเจกต์พัฒนา</a>
-                        <a href="#pipeline" class="hover:text-blue-600 transition lang-en">Pipeline</a>
-                        
-                        <a href="#about" class="hover:text-blue-600 transition lang-th">เกี่ยวกับเรา</a>
-                        <a href="#about" class="hover:text-blue-600 transition lang-en">About</a>
-                        
-                        <a href="#contact" class="hover:text-blue-600 transition lang-th">ติดต่อเรา</a>
-                        <a href="#contact" class="hover:text-blue-600 transition lang-en">Contact</a>
-                    </div>
 
-                    <!-- Language Switcher (Visible on both Mobile and Desktop) -->
-                    <div class="flex items-center space-x-1 border-l pl-4 border-gray-200 text-sm font-semibold text-gray-600">
-                        <button onclick="setLanguage('th')" class="lang-btn-th transition px-1.5 py-0.5 rounded hover:bg-gray-100 text-xs">TH</button>
-                        <span class="text-gray-300 text-xs">/</span>
-                        <button onclick="setLanguage('en')" class="lang-btn-en transition px-1.5 py-0.5 rounded hover:bg-gray-100 text-xs">EN</button>
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <div class="flex space-x-7 text-sm font-semibold text-gray-600">
+                        <a href="#home" class="hover:text-blue-600 transition">
+                            <span class="lang-th">หน้าแรก</span><span class="lang-en">Home</span>
+                        </a>
+                        <a href="#services" class="hover:text-blue-600 transition">
+                            <span class="lang-th">บริการ</span><span class="lang-en">Services</span>
+                        </a>
+                        <a href="#pipeline" class="hover:text-blue-600 transition">
+                            <span class="lang-th">โปรเจกต์</span><span class="lang-en">Pipeline</span>
+                        </a>
+                        <a href="#about" class="hover:text-blue-600 transition">
+                            <span class="lang-th">เกี่ยวกับเรา</span><span class="lang-en">About</span>
+                        </a>
+                        <a href="#contact" class="hover:text-blue-600 transition">
+                            <span class="lang-th">ติดต่อ</span><span class="lang-en">Contact</span>
+                        </a>
                     </div>
+                    <div class="flex items-center space-x-1 border-l pl-5 border-gray-200 text-xs font-bold text-gray-500">
+                        <button onclick="setLanguage('th')" class="lang-btn-th transition px-2 py-1 rounded-md hover:bg-gray-100">TH</button>
+                        <span class="text-gray-300">/</span>
+                        <button onclick="setLanguage('en')" class="lang-btn-en transition px-2 py-1 rounded-md hover:bg-gray-100">EN</button>
+                    </div>
+                </div>
+
+                <!-- Mobile: Lang + Hamburger -->
+                <div class="flex items-center space-x-3 md:hidden">
+                    <div class="flex items-center space-x-1 text-xs font-bold text-gray-500">
+                        <button onclick="setLanguage('th')" class="lang-btn-th px-1.5 py-0.5 rounded">TH</button>
+                        <span class="text-gray-300">/</span>
+                        <button onclick="setLanguage('en')" class="lang-btn-en px-1.5 py-0.5 rounded">EN</button>
+                    </div>
+                    <button id="hamburger" class="hamburger flex flex-col space-y-1.5 p-2 text-gray-700" aria-label="Menu">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="gradient-bg text-white pt-32 pb-24 px-4">
-        <div class="max-w-5xl mx-auto text-center">
-            <span class="bg-blue-600/30 text-blue-200 py-1 px-3 rounded-full text-sm font-medium mb-6 inline-block border border-blue-500/50">
-                <span class="lang-th">โซลูชันซอฟต์แวร์ระดับพรีเมียม</span>
-                <span class="lang-en">Premium Software Solutions</span>
-            </span>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                <span class="lang-th">ขับเคลื่อนธุรกิจของคุณด้วย<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">บุคลากรเทคโนโลยีชั้นนำ</span></span>
-                <span class="lang-en">Empowering Business with <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Top-Tier Tech Talent</span></span>
+    <!-- ===== MOBILE MENU OVERLAY ===== -->
+    <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="flex flex-col items-center justify-center space-y-6 pt-16 text-lg font-semibold text-gray-700">
+            <a href="#home" class="hover:text-blue-600 transition">
+                <span class="lang-th">หน้าแรก</span><span class="lang-en">Home</span>
+            </a>
+            <a href="#services" class="hover:text-blue-600 transition">
+                <span class="lang-th">บริการของเรา</span><span class="lang-en">Services</span>
+            </a>
+            <a href="#pipeline" class="hover:text-blue-600 transition">
+                <span class="lang-th">โปรเจกต์พัฒนา</span><span class="lang-en">Pipeline</span>
+            </a>
+            <a href="#about" class="hover:text-blue-600 transition">
+                <span class="lang-th">เกี่ยวกับเรา</span><span class="lang-en">About</span>
+            </a>
+            <a href="#contact" class="hover:text-blue-600 transition">
+                <span class="lang-th">ติดต่อเรา</span><span class="lang-en">Contact</span>
+            </a>
+            <div class="pt-4 border-t border-gray-200 w-32 text-center">
+                <a href="privacy/index.html" class="block text-sm text-gray-500 hover:text-blue-600 py-2">
+                    <span class="lang-th">ความเป็นส่วนตัว</span><span class="lang-en">Privacy</span>
+                </a>
+                <a href="terms/index.html" class="block text-sm text-gray-500 hover:text-blue-600 py-2">
+                    <span class="lang-th">เงื่อนไข</span><span class="lang-en">Terms</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="home" class="hero-section text-white pt-32 pb-28 px-4 min-h-[90vh] flex items-center">
+        <canvas id="hero-canvas"></canvas>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center space-x-2 bg-white/[0.06] border border-white/[0.1] rounded-full py-1.5 px-4 mb-8 backdrop-blur-sm">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+                </span>
+                <span class="text-sm font-medium text-blue-200">
+                    <span class="lang-th">นวัตกรรมขับเคลื่อนด้วย AI</span>
+                    <span class="lang-en">AI-Powered Innovation</span>
+                </span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-heading">
+                <span class="lang-th">
+                    สร้างสรรค์ซอฟต์แวร์แห่งอนาคต<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">ด้วยพลังของ AI</span>
+                </span>
+                <span class="lang-en">
+                    Crafting Tomorrow's Software<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">with the Power of AI</span>
+                </span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
-                <span class="lang-th">KAI SOFT ให้บริการจัดหาบุคลากรไอที (IT Outsourcing) แก่องค์กรชั้นนำ และพัฒนาซอฟต์แวร์ เว็บแอปพลิเคชัน โมบายแอปพลิเคชัน และเกมประสิทธิภาพสูง</span>
-                <span class="lang-en">KAI SOFT provides expert IT outsourcing services to leading enterprises and delivers high-performance Web, Mobile, and Game development solutions.</span>
+
+            <p class="text-lg md:text-xl text-gray-400 mb-4 max-w-3xl mx-auto leading-relaxed">
+                <span class="lang-th">KAI SOFT ให้บริการพัฒนาซอฟต์แวร์ขับเคลื่อนด้วย AI จัดหาบุคลากรไอทีระดับองค์กร และสร้างสรรค์เกมอัจฉริยะ</span>
+                <span class="lang-en">KAI SOFT delivers AI-powered software development, enterprise IT outsourcing, and innovative game creation.</span>
             </p>
-            <div class="flex justify-center gap-4">
-                <a href="#services" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition shadow-lg">
+
+            <!-- Typing effect line -->
+            <div class="text-sm md:text-base text-cyan-300/70 mb-10 h-7 flex items-center justify-center font-medium font-heading">
+                <i class="fa-solid fa-terminal mr-2 text-xs text-cyan-500/50"></i>
+                <span id="typing-text" class="typing-cursor"></span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#services" class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-semibold py-3.5 px-8 rounded-full transition shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 flex items-center justify-center group">
                     <span class="lang-th">ความเชี่ยวชาญของเรา</span>
                     <span class="lang-en">Our Expertise</span>
+                    <i class="fa-solid fa-arrow-right ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <a href="#contact" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-3 px-8 rounded-full transition border border-white/30">
-                    <span class="lang-th">ติดต่อเรา</span>
-                    <span class="lang-en">Contact Us</span>
+                <a href="#pipeline" class="bg-white/[0.07] hover:bg-white/[0.12] text-white font-semibold py-3.5 px-8 rounded-full transition border border-white/[0.15] backdrop-blur-sm flex items-center justify-center">
+                    <i class="fa-solid fa-rocket mr-2 text-sm text-cyan-400"></i>
+                    <span class="lang-th">ดูโปรเจกต์ล่าสุด</span>
+                    <span class="lang-en">View Projects</span>
                 </a>
+            </div>
+        </div>
+
+        <!-- Floating decorative icons -->
+        <div class="absolute top-1/4 left-[8%] hidden lg:block float opacity-20">
+            <i class="fa-solid fa-brain text-4xl text-blue-400"></i>
+        </div>
+        <div class="absolute top-1/3 right-[10%] hidden lg:block float-delay opacity-15">
+            <i class="fa-solid fa-microchip text-3xl text-cyan-400"></i>
+        </div>
+        <div class="absolute bottom-1/4 left-[15%] hidden lg:block float opacity-10">
+            <i class="fa-solid fa-code text-2xl text-indigo-400"></i>
+        </div>
+    </section>
+
+    <!-- ===== TECH STACK MARQUEE ===== -->
+    <section class="py-5 bg-white border-b border-gray-100">
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="flex items-center space-x-10 px-5">
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-wand-magic-sparkles text-blue-500"></i><span>Google Gemini AI</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-mobile-screen text-cyan-500"></i><span>Flutter & Dart</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-fire text-orange-500"></i><span>Firebase</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-cloud text-sky-500"></i><span>Google Cloud</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-gamepad text-purple-500"></i><span>Unity Engine</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-500"></i><span>Python</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-brands fa-js text-yellow-400"></i><span>TypeScript</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-brain text-pink-500"></i><span>Machine Learning</span></span>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="flex items-center space-x-10 px-5">
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-wand-magic-sparkles text-blue-500"></i><span>Google Gemini AI</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-mobile-screen text-cyan-500"></i><span>Flutter & Dart</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-fire text-orange-500"></i><span>Firebase</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-cloud text-sky-500"></i><span>Google Cloud</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-gamepad text-purple-500"></i><span>Unity Engine</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-500"></i><span>Python</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-brands fa-js text-yellow-400"></i><span>TypeScript</span></span>
+                    <span class="flex items-center space-x-2 text-gray-400 text-sm font-semibold whitespace-nowrap"><i class="fa-solid fa-brain text-pink-500"></i><span>Machine Learning</span></span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">
-                    <span class="lang-th">บริการที่ครอบคลุม</span>
-                    <span class="lang-en">Comprehensive Services</span>
+    <!-- ===== SERVICES ===== -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block ai-badge text-blue-700 py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                    <span class="lang-th">บริการของเรา</span>
+                    <span class="lang-en">Our Services</span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 font-heading">
+                    <span class="lang-th">ขับเคลื่อนด้วยเทคโนโลยี <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">AI ระดับสูง</span></span>
+                    <span class="lang-en">Powered by <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Advanced AI</span></span>
                 </h2>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
                     <span class="lang-th">ตั้งแต่การจัดหาบุคลากรระดับองค์กรไปจนถึงการพัฒนาเกมที่สร้างสรรค์ เราครอบคลุมทุกมิติทางเทคโนโลยี</span>
                     <span class="lang-en">From enterprise staffing to creative game development, we cover the entire digital spectrum.</span>
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Card 1 -->
-                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-blue-200">
-                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 text-blue-600">
+                <!-- Card 1: IT Outsourcing -->
+                <div class="service-card card-blue bg-white p-8 rounded-2xl border border-gray-100 hover:border-blue-100 reveal reveal-delay-1">
+                    <div class="w-14 h-14 glass-icon rounded-xl flex items-center justify-center mb-6 text-blue-600">
                         <i class="fa-solid fa-users-gear text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 font-heading">
                         <span class="lang-th">จัดหาบุคลากรไอที (IT Outsourcing)</span>
                         <span class="lang-en">IT Outsourcing</span>
                     </h3>
-                    <p class="text-gray-600 leading-relaxed mb-4">
+                    <p class="text-gray-600 leading-relaxed mb-4 text-sm">
                         <span class="lang-th">เราจัดส่งนักพัฒนา ผู้เชี่ยวชาญ และผู้จัดการโครงการที่มีทักษะสูงเพื่อร่วมงานและผลักดันโปรเจกต์ไอทีขนาดใหญ่ร่วมกับองค์กรชั้นนำ</span>
                         <span class="lang-en">We deploy highly skilled developers, specialists, and project managers to work with large-scale organizations.</span>
                     </p>
@@ -216,159 +459,153 @@
                     </p>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-indigo-200">
-                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6 text-indigo-600">
-                        <i class="fa-solid fa-laptop-code text-2xl"></i>
+                <!-- Card 2: Web Development -->
+                <div class="service-card card-indigo bg-white p-8 rounded-2xl border border-gray-100 hover:border-indigo-100 reveal reveal-delay-2">
+                    <div class="flex items-start justify-between">
+                        <div class="w-14 h-14 glass-icon rounded-xl flex items-center justify-center mb-6 text-indigo-600">
+                            <i class="fa-solid fa-laptop-code text-2xl"></i>
+                        </div>
+                        <span class="ai-badge text-blue-600 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider">
+                            <i class="fa-solid fa-sparkles mr-1"></i>AI-Enhanced
+                        </span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
-                        <span class="lang-th">พัฒนาเว็บแอปพลิเคชัน (Web Application)</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 font-heading">
+                        <span class="lang-th">พัฒนาเว็บแอปพลิเคชัน</span>
                         <span class="lang-en">Web Application Development</span>
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed text-sm">
                         <span class="lang-th">สร้างแพลตฟอร์มเว็บระดับองค์กรที่ขยายขนาดได้ เราเชี่ยวชาญการใช้เฟรมเวิร์กสมัยใหม่เพื่อพัฒนาโซลูชันบนระบบคลาวด์ที่มีความปลอดภัย รวดเร็ว และตอบโจทย์ธุรกิจคุณ</span>
                         <span class="lang-en">Building scalable, enterprise-grade web platforms. We specialize in modern frameworks to create responsive, secure, and efficient cloud-based solutions for your business operations.</span>
                     </p>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-cyan-200">
-                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-6 text-cyan-600">
-                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                <!-- Card 3: Mobile App -->
+                <div class="service-card card-cyan bg-white p-8 rounded-2xl border border-gray-100 hover:border-cyan-100 reveal reveal-delay-3">
+                    <div class="flex items-start justify-between">
+                        <div class="w-14 h-14 glass-icon rounded-xl flex items-center justify-center mb-6 text-cyan-600">
+                            <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
+                        </div>
+                        <span class="ai-badge text-blue-600 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider">
+                            <i class="fa-solid fa-sparkles mr-1"></i>AI-Enhanced
+                        </span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
-                        <span class="lang-th">พัฒนาโมบายแอปพลิเคชัน (Mobile Application)</span>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 font-heading">
+                        <span class="lang-th">พัฒนาโมบายแอปพลิเคชัน</span>
                         <span class="lang-en">Mobile Application</span>
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed text-sm">
                         <span class="lang-th">พัฒนาโมบายแอปพลิเคชันแบบ Native และ Cross-platform (iOS & Android) ส่งมอบประสบการณ์ใช้งานที่ราบรื่น ประสิทธิภาพสูง ด้วยเทคโนโลยีชั้นนำอย่าง Flutter</span>
                         <span class="lang-en">Cross-platform and native mobile development (iOS & Android). We deliver seamless user experiences using technologies like Flutter, ensuring high performance on all devices.</span>
                     </p>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="service-card bg-gray-50 p-8 rounded-2xl border border-gray-100 hover:shadow-xl hover:border-purple-200">
-                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 text-purple-600">
+                <!-- Card 4: Game Dev -->
+                <div class="service-card card-purple bg-white p-8 rounded-2xl border border-gray-100 hover:border-purple-100 reveal reveal-delay-4">
+                    <div class="w-14 h-14 glass-icon rounded-xl flex items-center justify-center mb-6 text-purple-600">
                         <i class="fa-solid fa-gamepad text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-900">
+                    <h3 class="text-xl font-bold mb-3 text-gray-900 font-heading">
                         <span class="lang-th">พัฒนาเกม (Game Development)</span>
                         <span class="lang-en">Game Development</span>
                     </h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <p class="text-gray-600 leading-relaxed text-sm">
                         <span class="lang-th">สร้างสรรค์เกมและความบันเทิงแบบอินเทอร์แอกทีฟที่น่าตื่นตาตื่นใจ ทีมงานของเราพัฒนาเกมที่มีกราฟิกสวยงามและกลไกการเล่นที่ลื่นไหลโดยใช้ Unity และเอนจิ้นชั้นนำ</span>
                         <span class="lang-en">Creating immersive interactive entertainment. Our team develops engaging games with stunning graphics and smooth mechanics using Unity and other modern engines.</span>
                     </p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section id="pipeline" class="py-20 bg-gray-50 border-t border-gray-100 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <span class="bg-blue-100 text-blue-800 py-1 px-3 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 inline-block">
+    <!-- ===== PIPELINE ===== -->
+    <section id="pipeline" class="py-24 bg-gray-50 border-t border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block ai-badge text-blue-700 py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
                     <span class="lang-th">แผนพัฒนาผลิตภัณฑ์</span>
                     <span class="lang-en">Product Pipeline</span>
                 </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
-                    <span class="lang-th">โปรเจกต์ที่กำลังจะเปิดตัว</span>
-                    <span class="lang-en">Upcoming Projects</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 font-heading">
+                    <span class="lang-th">โปรเจกต์ที่กำลังจะ<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">เปิดตัว</span></span>
+                    <span class="lang-en">Upcoming <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Projects</span></span>
                 </h2>
-                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
                     <span class="lang-th">เปิดเผยโปรเจกต์เกมและแอปพลิเคชันล้ำสมัยที่กำลังพัฒนาใน KAI SOFT เรามุ่งมั่นสร้างนวัตกรรมระดับพรีเมียมสู่สายตาชาวโลก</span>
                     <span class="lang-en">Take a sneak peek at the innovative applications and engaging games currently cooking in the KAI SOFT laboratories. We are building the future of interactive experiences.</span>
                 </p>
             </div>
 
             <!-- Featured Flagship Game: Line Logic AI Puzzle -->
-            <div class="bg-white rounded-3xl border border-gray-100 shadow-xl flex flex-col lg:flex-row hover:shadow-2xl transition duration-300 mb-16 overflow-hidden">
-                
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-xl flex flex-col lg:flex-row hover:shadow-2xl transition duration-300 mb-16 overflow-hidden reveal">
+
                 <!-- Visual Mockup Showcase (Overlapping 3D Cards) -->
                 <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-blue-50/50 via-slate-50 to-indigo-50/30 overflow-hidden select-none">
-                    <!-- Background glows -->
                     <div class="absolute w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -top-10 -left-10"></div>
                     <div class="absolute w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10"></div>
 
-                    <!-- 3D Pastel Cloud Cover Art -->
                     <div id="card-concept" onclick="bringToFront('concept')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-active">
                         <img src="images/line_logic_puzzle.png" alt="Line Logic Cloud Cover" class="w-full h-full object-cover pointer-events-none">
-                        <div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-[8px] text-white font-bold py-0.5 px-2 rounded-full">
-                            Concept Art
-                        </div>
+                        <div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-[8px] text-white font-bold py-0.5 px-2 rounded-full">Concept Art</div>
                     </div>
-
-                    <!-- Main Menu Screenshot -->
                     <div id="card-menu" onclick="bringToFront('menu')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-right">
                         <img src="images/main_menu.jpg" alt="Line Logic Main Menu" class="w-full h-full object-cover pointer-events-none">
                         <div class="absolute top-3 left-3 bg-blue-600 text-white text-[9px] font-bold py-0.5 px-2 rounded-full shadow-lg">
-                            <span class="lang-th">หน้าเมนูเกม</span>
-                            <span class="lang-en">Main Menu</span>
+                            <span class="lang-th">หน้าเมนูเกม</span><span class="lang-en">Main Menu</span>
                         </div>
                     </div>
-
-                    <!-- Active Gameplay Screenshot -->
                     <div id="card-gameplay" onclick="bringToFront('gameplay')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-slate-900 transition-all duration-500 cursor-pointer card-left">
                         <img src="images/gameplay.jpg" alt="Line Logic Gameplay" class="w-full h-full object-cover pointer-events-none">
                         <div class="absolute top-3 left-3 bg-red-600 text-white text-[9px] font-bold py-0.5 px-2.5 rounded-full shadow-lg animate-pulse">
-                            <span class="lang-th">ด่าน 34 (Extreme)</span>
-                            <span class="lang-en">Level 34 (Extreme)</span>
+                            <span class="lang-th">ด่าน 34 (Extreme)</span><span class="lang-en">Level 34 (Extreme)</span>
                         </div>
                     </div>
 
-                    <!-- Click to Swap Hint -->
-                    <div class="absolute bottom-4 bg-black/75 backdrop-blur-md text-white/95 text-[10px] font-semibold py-2 px-4 rounded-full flex items-center space-x-2 z-40 shadow-lg pointer-events-none hover:scale-105 transition duration-300">
+                    <div class="absolute bottom-4 bg-black/75 backdrop-blur-md text-white/95 text-[10px] font-semibold py-2 px-4 rounded-full flex items-center space-x-2 z-40 shadow-lg pointer-events-none">
                         <i class="fa-solid fa-hand-pointer text-xs text-blue-400 animate-bounce"></i>
                         <span class="lang-th">คลิกที่รูปภาพเพื่อเปลี่ยนมุมมอง</span>
                         <span class="lang-en">Click on any screen to swap view</span>
                     </div>
                 </div>
 
-                <!-- Game Details & Deep Level Design Specs -->
+                <!-- Game Details -->
                 <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-100">
                     <div>
                         <div class="flex items-center space-x-2">
                             <span class="bg-blue-100 text-blue-800 text-xs font-bold py-1 px-3 rounded-full uppercase tracking-wider">
-                                <span class="lang-th">เกมเด่นเรือธง</span>
-                                <span class="lang-en">Featured Flagship Game</span>
+                                <span class="lang-th">เกมเด่นเรือธง</span><span class="lang-en">Featured Flagship Game</span>
                             </span>
                             <span class="bg-amber-100 text-amber-800 text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider animate-pulse">
-                                <span class="lang-th">เร็ว ๆ นี้</span>
-                                <span class="lang-en">Coming Soon</span>
+                                <span class="lang-th">เร็ว ๆ นี้</span><span class="lang-en">Coming Soon</span>
                             </span>
                         </div>
-                        <h3 class="text-3xl md:text-4xl font-extrabold mt-4 text-gray-900 leading-tight">
+                        <h3 class="text-3xl md:text-4xl font-extrabold mt-4 text-gray-900 leading-tight font-heading">
                             Line Logic AI Puzzle <br>
                             <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 text-2xl font-bold">ปริศนาลากเส้น AI</span>
                         </h3>
-                        
+
                         <p class="text-gray-600 mt-4 leading-relaxed text-sm">
                             <span class="lang-th">สุดยอดเกมปริศนาแนวพัซเซิลลากเส้นเชื่อมจุดสีเดียวกันให้ครบทุกสี โดย<strong>ต้องเดินเส้นทางผ่านทุกช่องของตาราง 100% (ลากให้ครบทุกช่อง)</strong> สนุกสนานไปกับสุนทรียภาพท้องฟ้านุ่มนวลและการแก้โจทย์ปริศนาสุดหินระดับแชมป์เปี้ยน</span>
                             <span class="lang-en">An immersive, dreamy 3D-like connection puzzle game powered by procedural scaling algorithms and AI. Connect dots of the same color and <strong>fill 100% of the grid cells</strong>. Simple to learn, highly challenging to master.</span>
                         </p>
 
                         <!-- Level Design Stats Grid -->
-                        <div class="grid grid-cols-3 gap-4 my-6 bg-blue-50/50 p-4 rounded-2xl border border-blue-100/50 text-center">
+                        <div class="grid grid-cols-3 gap-4 my-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/50 p-5 rounded-2xl border border-blue-100/50 text-center">
                             <div>
-                                <p class="text-2xl font-extrabold text-blue-600">18,000</p>
+                                <p class="text-2xl font-extrabold text-blue-600 font-heading counter" data-target="18000">0</p>
                                 <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">
-                                    <span class="lang-th">ด่านทั้งหมด</span>
-                                    <span class="lang-en">Total Levels</span>
+                                    <span class="lang-th">ด่านทั้งหมด</span><span class="lang-en">Total Levels</span>
                                 </p>
                             </div>
                             <div>
-                                <p class="text-2xl font-extrabold text-indigo-600">9</p>
+                                <p class="text-2xl font-extrabold text-indigo-600 font-heading counter" data-target="9">0</p>
                                 <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">
-                                    <span class="lang-th">โหมดการเล่น</span>
-                                    <span class="lang-en">Submodes</span>
+                                    <span class="lang-th">โหมดการเล่น</span><span class="lang-en">Submodes</span>
                                 </p>
                             </div>
                             <div>
-                                <p class="text-2xl font-extrabold text-cyan-600">2,000</p>
+                                <p class="text-2xl font-extrabold text-cyan-600 font-heading counter" data-target="2000">0</p>
                                 <p class="text-[9px] text-gray-500 font-bold uppercase mt-1">
-                                    <span class="lang-th">ด่านต่อโหมด</span>
-                                    <span class="lang-en">Levels per Mode</span>
+                                    <span class="lang-th">ด่านต่อโหมด</span><span class="lang-en">Levels per Mode</span>
                                 </p>
                             </div>
                         </div>
@@ -376,13 +613,10 @@
                         <!-- Specifications List -->
                         <div class="space-y-4 text-sm">
                             <div class="flex items-start space-x-3">
-                                <div class="bg-emerald-100 p-1.5 rounded-lg text-emerald-600 mt-0.5 shrink-0">
-                                    <i class="fa-solid fa-square-check"></i>
-                                </div>
+                                <div class="bg-emerald-100 p-1.5 rounded-lg text-emerald-600 mt-0.5 shrink-0"><i class="fa-solid fa-square-check"></i></div>
                                 <div>
                                     <h4 class="font-bold text-gray-900 text-xs">
-                                        <span class="lang-th">3 โหมดหลัก ท้าทายขีดจำกัด</span>
-                                        <span class="lang-en">3 Core Game Modes</span>
+                                        <span class="lang-th">3 โหมดหลัก ท้าทายขีดจำกัด</span><span class="lang-en">3 Core Game Modes</span>
                                     </h4>
                                     <p class="text-gray-500 text-xs mt-0.5">
                                         <span class="lang-th"><strong>Normal:</strong> ลากโหมดปกติ | <strong>TimeAttack:</strong> จับเวลาสุดตื่นเต้น | <strong>Extreme:</strong> โหมดมืดสุดโหดท้าทายจอมวางแผน</span>
@@ -390,15 +624,11 @@
                                     </p>
                                 </div>
                             </div>
-
                             <div class="flex items-start space-x-3">
-                                <div class="bg-indigo-100 p-1.5 rounded-lg text-indigo-600 mt-0.5 shrink-0">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                </div>
+                                <div class="bg-indigo-100 p-1.5 rounded-lg text-indigo-600 mt-0.5 shrink-0"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                                 <div>
                                     <h4 class="font-bold text-gray-900 text-xs">
-                                        <span class="lang-th">3 รูปแบบไอเท็ม (Submodes)</span>
-                                        <span class="lang-en">3 Gameplay Submodes</span>
+                                        <span class="lang-th">3 รูปแบบไอเท็ม (Submodes)</span><span class="lang-en">3 Gameplay Submodes</span>
                                     </h4>
                                     <p class="text-gray-500 text-xs mt-0.5">
                                         <span class="lang-th"><strong>Classic:</strong> พัซเซิลดั้งเดิม | <strong>ItemRush:</strong> มีระเบิด สลับสี ประตูกุญแจ | <strong>Hardcore:</strong> สุ่มไอเท็มผสมคลาสสิก (80/20)</span>
@@ -406,15 +636,11 @@
                                     </p>
                                 </div>
                             </div>
-
                             <div class="flex items-start space-x-3">
-                                <div class="bg-red-100 p-1.5 rounded-lg text-red-600 mt-0.5 shrink-0">
-                                    <i class="fa-solid fa-circle-nodes"></i>
-                                </div>
+                                <div class="bg-red-100 p-1.5 rounded-lg text-red-600 mt-0.5 shrink-0"><i class="fa-solid fa-circle-nodes"></i></div>
                                 <div>
                                     <h4 class="font-bold text-gray-900 text-xs">
-                                        <span class="lang-th">โหมดมิติซ้อน (Multi-Floor 3D) & UI Masking</span>
-                                        <span class="lang-en">Multi-Floor 3D & UI Masking</span>
+                                        <span class="lang-th">โหมดมิติซ้อน (Multi-Floor 3D) & UI Masking</span><span class="lang-en">Multi-Floor 3D & UI Masking</span>
                                     </h4>
                                     <p class="text-gray-500 text-xs mt-0.5">
                                         <span class="lang-th">ปีนป่ายตารางซ้อนชั้นสูงถึง 5-7 ชั้น เชื่อมผ่านประตูพอร์ทัล และฟีเจอร์พรางไอเท็ม/ระเบิดเป็นสีเทาลึกลับในโหมด Extreme เพิ่มความลุ่มลึก</span>
@@ -422,15 +648,11 @@
                                     </p>
                                 </div>
                             </div>
-
                             <div class="flex items-start space-x-3">
-                                <div class="bg-purple-100 p-1.5 rounded-lg text-purple-600 mt-0.5 shrink-0">
-                                    <i class="fa-solid fa-calculator"></i>
-                                </div>
+                                <div class="bg-purple-100 p-1.5 rounded-lg text-purple-600 mt-0.5 shrink-0"><i class="fa-solid fa-calculator"></i></div>
                                 <div>
                                     <h4 class="font-bold text-gray-900 text-xs">
-                                        <span class="lang-th">พิสูจน์แล้วด้วยคณิตศาสตร์ขั้นสูง (CP-SAT Solver)</span>
-                                        <span class="lang-en">CP-SAT AI-Verified Solvability</span>
+                                        <span class="lang-th">พิสูจน์แล้วด้วยคณิตศาสตร์ขั้นสูง (CP-SAT Solver)</span><span class="lang-en">CP-SAT AI-Verified Solvability</span>
                                     </h4>
                                     <p class="text-gray-500 text-xs mt-0.5">
                                         <span class="lang-th">ทุกด่านผ่านการตรวจสอบโดย Google OR-Tools CP-SAT เพื่อรับประกันว่าด่านไม่มีข้อผิดพลาด มีคำตอบเดียว และลากผ่านได้จริง</span>
@@ -444,9 +666,9 @@
                     <!-- Pre-register CTA -->
                     <div class="mt-8 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <span class="text-[11px] text-gray-400 font-medium flex items-center">
-                            <i class="fa-brands fa-flutter text-blue-400 mr-1.5 text-xs"></i> Developed with Flutter & Dart Engine
+                            <i class="fa-solid fa-mobile-screen text-blue-400 mr-1.5 text-xs"></i> Developed with Flutter & Dart Engine
                         </span>
-                        <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-md flex items-center group shrink-0">
+                        <a href="#contact" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-md shadow-blue-600/20 flex items-center group shrink-0">
                             <span class="lang-th">สนใจร่วมเป็นกลุ่มทดสอบ Close Beta</span>
                             <span class="lang-en">Join Close Beta Test Group</span>
                             <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
@@ -455,36 +677,35 @@
                 </div>
             </div>
 
-            <!-- Other 3 Apps in Pipeline: AI Memory Buddy Series -->
-            <div class="mt-12">
+            <!-- AI Memory Buddy Series -->
+            <div class="mt-12 reveal">
                 <div class="text-center mb-12">
-                    <span class="bg-indigo-100 text-indigo-800 py-1 px-3 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3 inline-block">
+                    <span class="inline-block bg-indigo-50 text-indigo-700 py-1 px-4 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 border border-indigo-100">
                         <span class="lang-th">ซีรีส์ผู้ช่วยอัจฉริยะ</span>
                         <span class="lang-en">The AI Memory Buddy Series</span>
                     </span>
-                    <h3 class="text-3xl font-extrabold text-gray-900">
-                        <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะระดับ Next-Gen</span>
-                        <span class="lang-en">Next-Gen Intelligent Assistants</span>
+                    <h3 class="text-3xl font-extrabold text-gray-900 font-heading">
+                        <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะระดับ <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Next-Gen</span></span>
+                        <span class="lang-en">Next-Gen <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Intelligent Assistants</span></span>
                     </h3>
                     <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">
                         <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะ 3 สไตล์ที่จะทำหน้าที่เป็นเสมือน "สมองส่วนเสริม" และ "เลขาส่วนตัว" ที่เข้าใจคุณผ่านภาษาธรรมชาติและการมองเห็นอย่างลึกซึ้ง</span>
                         <span class="lang-en">A suite of 3 intelligent companion apps that serve as your "external brain," understanding you through natural language and vision without friction.</span>
                     </p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- App 1: Buddy Home -->
-                    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group">
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-1">
                         <div class="h-48 overflow-hidden relative bg-slate-50">
                             <img src="images/buddy_home_preview.png" alt="Buddy Home Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
-                                <span class="lang-th">กำลังพัฒนา</span>
-                                <span class="lang-en">In Dev</span>
+                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
                             </span>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="text-xl font-bold text-gray-900">Buddy Home</h4>
+                                <h4 class="text-xl font-bold text-gray-900 font-heading">🏡 Buddy Home</h4>
                                 <p class="text-blue-600 text-xs font-semibold mt-1">
                                     <span class="lang-th">"โยนใบเสร็จให้ AI จัดบ้านให้"</span>
                                     <span class="lang-en">"Toss receipts at AI — it sorts your home."</span>
@@ -498,17 +719,16 @@
                     </div>
 
                     <!-- App 2: Buddy Brain -->
-                    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group">
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-2">
                         <div class="h-48 overflow-hidden relative bg-slate-50">
                             <img src="images/buddy_brain_preview.png" alt="Buddy Brain Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
-                                <span class="lang-th">กำลังพัฒนา</span>
-                                <span class="lang-en">In Dev</span>
+                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
                             </span>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="text-xl font-bold text-gray-900">Buddy Brain</h4>
+                                <h4 class="text-xl font-bold text-gray-900 font-heading">🧠 Buddy Brain</h4>
                                 <p class="text-indigo-600 text-xs font-semibold mt-1">
                                     <span class="lang-th">"พูดบ่นยาวๆ ให้ AI สรุปและจำให้"</span>
                                     <span class="lang-en">"Ramble out loud — AI summarizes & remembers."</span>
@@ -522,17 +742,16 @@
                     </div>
 
                     <!-- App 3: Buddy Money -->
-                    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group">
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-3">
                         <div class="h-48 overflow-hidden relative bg-slate-50">
                             <img src="images/moni_ai_preview.png" alt="Buddy Money Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                             <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
-                                <span class="lang-th">กำลังพัฒนา</span>
-                                <span class="lang-en">In Dev</span>
+                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
                             </span>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="text-xl font-bold text-gray-900">Buddy Money</h4>
+                                <h4 class="text-xl font-bold text-gray-900 font-heading">💵 Buddy Money</h4>
                                 <p class="text-cyan-600 text-xs font-semibold mt-1">
                                     <span class="lang-th">"บ่นว่าใช้อะไรไป AI ลงบัญชีให้"</span>
                                     <span class="lang-en">"Talk your spend — AI books it for you."</span>
@@ -549,47 +768,101 @@
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-white border-t border-gray-100">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center gap-16">
-                <div class="md:w-1/2">
-                    <div class="relative">
-                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-2xl opacity-20 blur-lg"></div>
-                        <img src="https://img1.wsimg.com/isteam/getty/1488105257/:/rs=w:767,m" alt="KAI SOFT Team" class="relative rounded-2xl shadow-2xl w-full">
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row items-center gap-16 reveal">
+                <!-- Abstract Tech Visualization (replaces stock photo) -->
+                <div class="md:w-1/2 w-full">
+                    <div class="about-viz h-[420px] shadow-2xl">
+                        <div class="grid-overlay"></div>
+                        <!-- Floating orbs -->
+                        <div class="absolute w-44 h-44 bg-blue-500/20 rounded-full blur-3xl top-8 left-8" style="animation: float 6s ease-in-out infinite"></div>
+                        <div class="absolute w-36 h-36 bg-cyan-500/15 rounded-full blur-3xl bottom-16 right-8" style="animation: float 6s ease-in-out infinite 2s"></div>
+                        <div class="absolute w-52 h-52 bg-indigo-500/15 rounded-full blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="animation: float 6s ease-in-out infinite 4s"></div>
+                        <!-- Center branding -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mb-4 shadow-xl shadow-blue-500/30">
+                                    <i class="fa-solid fa-microchip text-3xl text-white"></i>
+                                </div>
+                                <p class="text-white/80 font-bold text-xl font-heading tracking-wide">KAI SOFT</p>
+                                <p class="text-blue-300/60 text-sm font-medium mt-1">Innovating with AI since 2021</p>
+                            </div>
+                        </div>
+                        <!-- Floating code snippets -->
+                        <div class="absolute top-6 right-6 bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-lg px-3 py-2 font-mono text-[10px] text-green-400/60 float">
+                            &lt;AI model="gemini" /&gt;
+                        </div>
+                        <div class="absolute bottom-6 left-6 bg-white/[0.04] backdrop-blur-sm border border-white/[0.06] rounded-lg px-3 py-2 font-mono text-[10px] text-cyan-400/60 float-delay">
+                            flutter build --release ✓
+                        </div>
                     </div>
                 </div>
+
                 <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                        <span class="lang-th">เกี่ยวกับ KAI SOFT</span>
-                        <span class="lang-en">About KAI SOFT</span>
+                    <span class="inline-block ai-badge text-blue-700 py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                        <span class="lang-th">เกี่ยวกับเรา</span><span class="lang-en">About Us</span>
+                    </span>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 font-heading">
+                        <span class="lang-th">เกี่ยวกับ <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">KAI SOFT</span></span>
+                        <span class="lang-en">About <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">KAI SOFT</span></span>
                     </h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
+                    <p class="text-gray-600 mb-5 leading-relaxed text-sm">
                         <span class="lang-th"><strong>บริษัท ไค ซอฟต์ จำกัด (KAI SOFT COMPANY LIMITED)</strong> คือพันธมิตรด้านเทคโนโลยีที่คุณไว้วางใจได้ เราก่อตั้งขึ้นในประเทศไทยและเติบโตเพื่อเป็นผู้เล่นหลักในอุตสาหกรรมซอฟต์แวร์ เชื่อมช่องว่างระหว่างเทคโนโลยีระดับสูงและความสำเร็จขององค์กรธุรกิจ</span>
                         <span class="lang-en"><strong>KAI SOFT COMPANY LIMITED</strong> is a technology partner you can trust. Established in Thailand, we have grown to become a key player in the software industry, bridging the gap between complex technology and business success.</span>
                     </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
+                    <p class="text-gray-600 mb-8 leading-relaxed text-sm">
                         <span class="lang-th">เราภูมิใจในการให้บริการที่หลากหลายและยืดหยุ่น ไม่ว่าจะเป็นการจัดส่งบุคลากรนักพัฒนาร่วมงานกับทีมองค์กรขนาดใหญ่อย่าง <strong>PTT Digital</strong> หรือสร้างสรรค์เกมและความบันเทิงจากศูนย์ เราส่งมอบความยอดเยี่ยมในทุกบรรทัดของโค้ด</span>
                         <span class="lang-en">We pride ourselves on our versatility. Whether it is supplying top-tier developers to work alongside corporate teams at <strong>PTT Digital</strong>, or building a custom game from scratch, we deliver excellence in every line of code.</span>
                     </p>
-                    
-                    <ul class="space-y-4">
+
+                    <!-- Company Stats Row -->
+                    <div class="grid grid-cols-3 gap-4 mb-8 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                        <div class="text-center">
+                            <p class="text-2xl font-extrabold text-blue-600 font-heading counter" data-target="5">0</p>
+                            <p class="text-[10px] text-gray-500 font-semibold uppercase">
+                                <span class="lang-th">ปีประสบการณ์</span><span class="lang-en">Years Exp.</span>
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-extrabold text-indigo-600 font-heading counter" data-target="4">0</p>
+                            <p class="text-[10px] text-gray-500 font-semibold uppercase">
+                                <span class="lang-th">แอป AI</span><span class="lang-en">AI Apps</span>
+                            </p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-2xl font-extrabold text-cyan-600 font-heading counter" data-target="18000">0</p>
+                            <p class="text-[10px] text-gray-500 font-semibold uppercase">
+                                <span class="lang-th">ด่านเกม</span><span class="lang-en">Game Levels</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <ul class="space-y-3">
                         <li class="flex items-center space-x-3">
-                            <i class="fa-solid fa-circle-check text-blue-600"></i>
-                            <span class="text-gray-700">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-white text-[10px]"></i>
+                            </div>
+                            <span class="text-gray-700 text-sm">
                                 <span class="lang-th">จดทะเบียนบริษัทในประเทศไทยอย่างถูกต้อง (Verified)</span>
                                 <span class="lang-en">Registered Thai Company (Verified)</span>
                             </span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <i class="fa-solid fa-circle-check text-blue-600"></i>
-                            <span class="text-gray-700">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-white text-[10px]"></i>
+                            </div>
+                            <span class="text-gray-700 text-sm">
                                 <span class="lang-th">มาตรฐานการทำงานระดับสากล (Enterprise Standard)</span>
                                 <span class="lang-en">Enterprise-Grade Standards</span>
                             </span>
                         </li>
                         <li class="flex items-center space-x-3">
-                            <i class="fa-solid fa-circle-check text-blue-600"></i>
-                            <span class="text-gray-700">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-check text-white text-[10px]"></i>
+                            </div>
+                            <span class="text-gray-700 text-sm">
                                 <span class="lang-th">มีทีมงานเชี่ยวชาญแบบ Full-Stack เต็มระบบ</span>
                                 <span class="lang-en">Full-Stack Capabilities</span>
                             </span>
@@ -600,39 +873,47 @@
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-gray-50">
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border-t-8 border-blue-600 text-center">
-                <h2 class="text-3xl font-bold mb-8 text-gray-900">
-                    <span class="lang-th">ติดต่อเรา</span>
-                    <span class="lang-en">Get in Touch</span>
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="py-24 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100 text-center reveal overflow-hidden relative">
+                <!-- Subtle gradient accent -->
+                <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600"></div>
+
+                <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 rounded-full py-1 px-3 mb-6">
+                    <i class="fa-solid fa-paper-plane text-blue-500 text-xs"></i>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-wider">
+                        <span class="lang-th">ติดต่อเรา</span><span class="lang-en">Get in Touch</span>
+                    </span>
+                </div>
+
+                <h2 class="text-3xl font-bold mb-4 text-gray-900 font-heading">
+                    <span class="lang-th">พร้อมเริ่มต้นโครงการใหม่?</span>
+                    <span class="lang-en">Ready to Start a Project?</span>
                 </h2>
-                
-                <p class="text-gray-600 mb-8">
+                <p class="text-gray-500 mb-10 text-sm">
                     <span class="lang-th">พร้อมที่จะเริ่มโครงการใหม่ หรือต้องการพูดคุยเรื่องการจัดหาบุคลากรไอทีแล้วหรือยัง? ติดต่อเราได้ทันที</span>
                     <span class="lang-en">Ready to start a project or need developer resources? Contact us today.</span>
                 </p>
 
                 <div class="space-y-6">
-                    <div class="p-4 bg-blue-50 rounded-lg inline-block w-full">
-                        <p class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1">
-                            <span class="lang-th">ชื่อบริษัท</span>
-                            <span class="lang-en">Company</span>
+                    <div class="p-5 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl inline-block w-full border border-blue-100/50">
+                        <p class="text-xs text-blue-600 font-bold uppercase tracking-wider mb-1.5">
+                            <span class="lang-th">ชื่อบริษัท</span><span class="lang-en">Company</span>
                         </p>
-                        <p class="text-xl font-bold text-gray-900">KAI SOFT COMPANY LIMITED</p>
+                        <p class="text-xl font-bold text-gray-900 font-heading">KAI SOFT COMPANY LIMITED</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-                        <div class="flex items-start space-x-4 p-4 border border-gray-100 rounded-lg bg-gray-50/50">
-                            <div class="bg-blue-100 p-2 rounded-full text-blue-600 mt-1">
+                        <div class="flex items-start space-x-4 p-5 border border-gray-100 rounded-xl bg-gray-50/50 hover:bg-white hover:shadow-md transition">
+                            <div class="bg-gradient-to-br from-blue-500 to-cyan-400 p-2.5 rounded-xl text-white mt-0.5 shadow-md shadow-blue-500/20">
                                 <i class="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
-                                <p class="font-bold text-gray-900">
-                                    <span class="lang-th">สำนักงานใหญ่</span>
-                                    <span class="lang-en">Head Office</span>
+                                <p class="font-bold text-gray-900 text-sm">
+                                    <span class="lang-th">สำนักงานใหญ่</span><span class="lang-en">Head Office</span>
                                 </p>
-                                <p class="text-gray-600 text-sm mt-1">
+                                <p class="text-gray-500 text-sm mt-1.5 leading-relaxed">
                                     40 Moo 2, Ban Thi<br>
                                     Ban Thi District, Lamphun 51180<br>
                                     Thailand
@@ -641,27 +922,25 @@
                         </div>
 
                         <div class="flex flex-col space-y-4">
-                            <a href="mailto:admin@kaisoft.net" class="flex items-center space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-blue-50 transition group">
-                                <div class="bg-blue-100 p-2 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
+                            <a href="mailto:admin@kaisoft.net" class="flex items-center space-x-4 p-5 border border-gray-100 rounded-xl hover:bg-blue-50 hover:border-blue-100 transition group">
+                                <div class="bg-gradient-to-br from-blue-500 to-cyan-400 p-2.5 rounded-xl text-white shadow-md shadow-blue-500/20 group-hover:shadow-blue-500/40 transition">
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-gray-900">
-                                        <span class="lang-th">ส่งเมลหาเรา</span>
-                                        <span class="lang-en">Email Us</span>
+                                    <p class="font-bold text-gray-900 text-sm">
+                                        <span class="lang-th">ส่งเมลหาเรา</span><span class="lang-en">Email Us</span>
                                     </p>
                                     <p class="text-blue-600 text-sm mt-1">admin@kaisoft.net</p>
                                 </div>
                             </a>
 
-                            <a href="tel:+66884364469" class="flex items-center space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-blue-50 transition group">
-                                <div class="bg-blue-100 p-2 rounded-full text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition">
+                            <a href="tel:+66884364469" class="flex items-center space-x-4 p-5 border border-gray-100 rounded-xl hover:bg-blue-50 hover:border-blue-100 transition group">
+                                <div class="bg-gradient-to-br from-blue-500 to-cyan-400 p-2.5 rounded-xl text-white shadow-md shadow-blue-500/20 group-hover:shadow-blue-500/40 transition">
                                     <i class="fa-solid fa-phone"></i>
                                 </div>
                                 <div>
-                                    <p class="font-bold text-gray-900">
-                                        <span class="lang-th">โทรหาเรา</span>
-                                        <span class="lang-en">Call Us</span>
+                                    <p class="font-bold text-gray-900 text-sm">
+                                        <span class="lang-th">โทรหาเรา</span><span class="lang-en">Call Us</span>
                                     </p>
                                     <p class="text-blue-600 text-sm mt-1">+66 88-436-4469</p>
                                 </div>
@@ -673,24 +952,324 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center md:justify-between gap-4">
-            <p class="text-sm">
-                <span class="lang-th">&copy; 2026 บริษัท ไค ซอฟต์ จำกัด สงวนลิขสิทธิ์ทั้งหมด</span>
-                <span class="lang-en">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</span>
-            </p>
-            <div class="flex space-x-6 text-sm">
-                <a href="privacy/index.html" class="hover:text-white transition">
-                    <span class="lang-th">นโยบายความเป็นส่วนตัว</span>
-                    <span class="lang-en">Privacy Policy</span>
-                </a>
-                <a href="terms/index.html" class="hover:text-white transition">
-                    <span class="lang-th">เงื่อนไขการใช้งาน</span>
-                    <span class="lang-en">Terms of Service</span>
-                </a>
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-slate-900 text-gray-400 pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-2.5 mb-4">
+                        <div class="bg-gradient-to-br from-blue-500 to-cyan-400 text-white p-2 rounded-xl shadow-md">
+                            <i class="fa-solid fa-microchip fa-lg"></i>
+                        </div>
+                        <span class="font-bold text-lg text-white tracking-wide font-heading">KAI SOFT</span>
+                    </div>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        <span class="lang-th">บริษัทพัฒนาซอฟต์แวร์ขับเคลื่อนด้วย AI จากประเทศไทย สร้างสรรค์แอปพลิเคชันอัจฉริยะ เกม และโซลูชันระดับองค์กร</span>
+                        <span class="lang-en">AI-powered software house from Thailand. Building intelligent apps, games, and enterprise solutions.</span>
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm font-heading uppercase tracking-wider">
+                        <span class="lang-th">ลิงก์ด่วน</span><span class="lang-en">Quick Links</span>
+                    </h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#home" class="hover:text-cyan-400 transition">
+                            <span class="lang-th">หน้าแรก</span><span class="lang-en">Home</span>
+                        </a></li>
+                        <li><a href="#services" class="hover:text-cyan-400 transition">
+                            <span class="lang-th">บริการ</span><span class="lang-en">Services</span>
+                        </a></li>
+                        <li><a href="#pipeline" class="hover:text-cyan-400 transition">
+                            <span class="lang-th">โปรเจกต์</span><span class="lang-en">Pipeline</span>
+                        </a></li>
+                        <li><a href="#contact" class="hover:text-cyan-400 transition">
+                            <span class="lang-th">ติดต่อ</span><span class="lang-en">Contact</span>
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal + AI Buddy Mini -->
+                <div>
+                    <h4 class="text-white font-semibold mb-4 text-sm font-heading uppercase tracking-wider">
+                        <span class="lang-th">ข้อมูลเพิ่มเติม</span><span class="lang-en">Legal & More</span>
+                    </h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="privacy/index.html" class="hover:text-cyan-400 transition">
+                            <span class="lang-th">นโยบายความเป็นส่วนตัว</span><span class="lang-en">Privacy Policy</span>
+                        </a></li>
+                        <li><a href="terms/index.html" class="hover:text-cyan-400 transition">
+                            <span class="lang-th">เงื่อนไขการใช้งาน</span><span class="lang-en">Terms of Service</span>
+                        </a></li>
+                    </ul>
+                    <div class="mt-6 p-3 bg-white/[0.04] border border-white/[0.06] rounded-xl">
+                        <p class="text-[10px] text-gray-500 font-semibold uppercase tracking-wider mb-2">AI Buddy Series</p>
+                        <div class="flex space-x-2 text-lg">
+                            <span title="Buddy Home">🏡</span>
+                            <span title="Buddy Brain">🧠</span>
+                            <span title="Buddy Money">💵</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-gray-500">
+                    <span class="lang-th">&copy; 2026 บริษัท ไค ซอฟต์ จำกัด สงวนลิขสิทธิ์ทั้งหมด</span>
+                    <span class="lang-en">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</span>
+                </p>
+                <div class="flex items-center space-x-2 text-xs text-gray-600">
+                    <i class="fa-solid fa-bolt text-cyan-500"></i>
+                    <span>Powered by AI & Human Ingenuity</span>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up text-sm"></i>
+    </button>
+
+    <!-- ===== ALL SCRIPTS ===== -->
+    <script>
+    (function() {
+        // ===== LANGUAGE TOGGLE =====
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('preferred-language', lang);
+            document.title = lang === 'th'
+                ? 'KAI SOFT — โซลูชันซอฟต์แวร์ขับเคลื่อนด้วย AI'
+                : 'KAI SOFT — AI-Powered Software Solutions';
+
+            document.querySelectorAll('.lang-btn-en').forEach(btn => {
+                btn.classList.toggle('text-blue-600', lang === 'en');
+                btn.classList.toggle('font-bold', lang === 'en');
+                btn.classList.toggle('text-gray-500', lang !== 'en');
+            });
+            document.querySelectorAll('.lang-btn-th').forEach(btn => {
+                btn.classList.toggle('text-blue-600', lang === 'th');
+                btn.classList.toggle('font-bold', lang === 'th');
+                btn.classList.toggle('text-gray-500', lang !== 'th');
+            });
+        }
+        window.setLanguage = setLanguage;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            setLanguage(savedLang);
+
+            // ===== 3D CARD SWAPPING =====
+            window.bringToFront = function(cardId) {
+                const cards = {
+                    concept: document.getElementById('card-concept'),
+                    menu: document.getElementById('card-menu'),
+                    gameplay: document.getElementById('card-gameplay')
+                };
+                Object.values(cards).forEach(c => c.classList.remove('card-active','card-right','card-left'));
+                if (cardId === 'concept') {
+                    cards.concept.classList.add('card-active');
+                    cards.menu.classList.add('card-right');
+                    cards.gameplay.classList.add('card-left');
+                } else if (cardId === 'menu') {
+                    cards.menu.classList.add('card-active');
+                    cards.gameplay.classList.add('card-right');
+                    cards.concept.classList.add('card-left');
+                } else {
+                    cards.gameplay.classList.add('card-active');
+                    cards.concept.classList.add('card-right');
+                    cards.menu.classList.add('card-left');
+                }
+            };
+
+            // ===== HAMBURGER MENU =====
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (hamburger && mobileMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    mobileMenu.classList.toggle('active');
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // ===== NAVBAR GLASS ON SCROLL =====
+            const nav = document.getElementById('main-nav');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+            }, { passive: true });
+
+            // ===== BACK TO TOP =====
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', function() {
+                backToTop.classList.toggle('visible', window.scrollY > 500);
+            }, { passive: true });
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ===== SCROLL REVEAL (IntersectionObserver) =====
+            const revealElements = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window) {
+                const revealObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+                revealElements.forEach(function(el) { revealObserver.observe(el); });
+            } else {
+                revealElements.forEach(function(el) { el.classList.add('revealed'); });
+            }
+
+            // ===== COUNTER ANIMATION =====
+            const counters = document.querySelectorAll('.counter');
+            const counterObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.dataset.target);
+                        const duration = target > 100 ? 2000 : 1000;
+                        const steps = 60;
+                        const stepTime = duration / steps;
+                        let current = 0;
+                        const increment = target / steps;
+                        const timer = setInterval(function() {
+                            current += increment;
+                            if (current >= target) {
+                                el.textContent = target.toLocaleString();
+                                clearInterval(timer);
+                            } else {
+                                el.textContent = Math.floor(current).toLocaleString();
+                            }
+                        }, stepTime);
+                        counterObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(function(el) { counterObserver.observe(el); });
+
+            // ===== TYPING EFFECT =====
+            const typingEl = document.getElementById('typing-text');
+            if (typingEl) {
+                const lang = document.documentElement.getAttribute('lang');
+                const wordsEN = ['AI-Powered Apps', 'Puzzle Games', 'Smart Assistants', 'Enterprise Solutions'];
+                const wordsTH = ['แอป AI อัจฉริยะ', 'เกมพัซเซิล', 'ผู้ช่วยอัจฉริยะ', 'โซลูชันองค์กร'];
+                let words = lang === 'en' ? wordsEN : wordsTH;
+                let wordIndex = 0, charIndex = 0, isDeleting = false;
+
+                function typeEffect() {
+                    // Update words array based on current language
+                    const curLang = document.documentElement.getAttribute('lang');
+                    words = curLang === 'en' ? wordsEN : wordsTH;
+
+                    const currentWord = words[wordIndex];
+                    if (isDeleting) {
+                        charIndex--;
+                        typingEl.textContent = currentWord.substring(0, charIndex);
+                    } else {
+                        charIndex++;
+                        typingEl.textContent = currentWord.substring(0, charIndex);
+                    }
+
+                    let delay = isDeleting ? 40 : 80;
+                    if (!isDeleting && charIndex === currentWord.length) {
+                        delay = 2200;
+                        isDeleting = true;
+                    } else if (isDeleting && charIndex === 0) {
+                        isDeleting = false;
+                        wordIndex = (wordIndex + 1) % words.length;
+                        delay = 400;
+                    }
+                    setTimeout(typeEffect, delay);
+                }
+                setTimeout(typeEffect, 800);
+            }
+
+            // ===== PARTICLE NETWORK CANVAS =====
+            const canvas = document.getElementById('hero-canvas');
+            if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                const isMobile = window.innerWidth < 768;
+                const PARTICLE_COUNT = isMobile ? 35 : 70;
+                const CONNECT_DIST = isMobile ? 100 : 140;
+
+                function resizeCanvas() {
+                    const parent = canvas.parentElement;
+                    canvas.width = parent.offsetWidth;
+                    canvas.height = parent.offsetHeight;
+                }
+
+                function createParticles() {
+                    particles = [];
+                    for (let i = 0; i < PARTICLE_COUNT; i++) {
+                        particles.push({
+                            x: Math.random() * canvas.width,
+                            y: Math.random() * canvas.height,
+                            vx: (Math.random() - 0.5) * 0.4,
+                            vy: (Math.random() - 0.5) * 0.4,
+                            r: Math.random() * 2 + 0.8
+                        });
+                    }
+                }
+
+                function animateParticles() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (let i = 0; i < particles.length; i++) {
+                        const p = particles[i];
+                        p.x += p.vx; p.y += p.vy;
+                        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(96,165,250,0.5)';
+                        ctx.fill();
+
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const q = particles[j];
+                            const dx = p.x - q.x, dy = p.y - q.y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            if (dist < CONNECT_DIST) {
+                                ctx.beginPath();
+                                ctx.moveTo(p.x, p.y);
+                                ctx.lineTo(q.x, q.y);
+                                ctx.strokeStyle = 'rgba(96,165,250,' + (0.15 * (1 - dist/CONNECT_DIST)) + ')';
+                                ctx.lineWidth = 0.6;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animateParticles);
+                }
+
+                resizeCanvas();
+                createParticles();
+                animateParticles();
+
+                let resizeTimeout;
+                window.addEventListener('resize', function() {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(function() {
+                        resizeCanvas();
+                        createParticles();
+                    }, 200);
+                });
+            }
+        });
+    })();
+    </script>
 
 </body>
 </html>
