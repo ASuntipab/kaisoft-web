@@ -38,6 +38,7 @@
                 <div class="hidden md:flex space-x-8 text-sm font-semibold text-gray-600">
                     <a href="#home" class="hover:text-blue-600 transition">Home</a>
                     <a href="#services" class="hover:text-blue-600 transition">Services</a>
+                    <a href="#pipeline" class="hover:text-blue-600 transition">Pipeline</a>
                     <a href="#about" class="hover:text-blue-600 transition">About</a>
                     <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
                 </div>
@@ -120,6 +121,114 @@
                     </p>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section id="pipeline" class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="bg-blue-100 text-blue-800 py-1 px-3 rounded-full text-xs font-semibold uppercase tracking-wider mb-3 inline-block">
+                    Product Pipeline
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Upcoming Projects</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Take a sneak peek at the innovative applications and engaging games currently cooking in the KAI SOFT laboratories. We are building the future of interactive experiences.
+                </p>
+            </div>
+
+            <!-- Pipeline Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Featured Game Card (Spans 2 columns on large screens) -->
+                <div class="lg:col-span-2 bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-xl flex flex-col md:flex-row hover:shadow-2xl transition duration-300 group">
+                    <div class="md:w-1/2 relative overflow-hidden">
+                        <img src="images/line_logic_puzzle.png" alt="Line Logic AI Puzzle" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 min-h-[300px]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-white opacity-40"></div>
+                        <span class="absolute top-4 left-4 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold py-1.5 px-4 rounded-full text-xs shadow-lg uppercase tracking-wider animate-pulse">
+                            Coming Soon!
+                        </span>
+                    </div>
+                    <div class="md:w-1/2 p-8 flex flex-col justify-between">
+                        <div>
+                            <span class="text-blue-600 text-sm font-semibold tracking-wide uppercase">Featured Game</span>
+                            <h3 class="text-2xl md:text-3xl font-bold mt-2 text-gray-900">Line Logic AI Puzzle</h3>
+                            <p class="text-gray-500 text-sm font-medium mt-1">ปริศนาลากเส้น AI</p>
+                            <p class="text-gray-600 mt-4 leading-relaxed text-sm">
+                                An immersive, dreamy 3D-like connection puzzle game powered by procedural scaling algorithms and AI. Challenge your logic with standard, kids, and extreme modes, or compete against players globally.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mt-6">
+                                <span class="bg-gray-100 text-gray-700 py-1 px-3 rounded-full text-xs font-medium">Procedural Generation</span>
+                                <span class="bg-gray-100 text-gray-700 py-1 px-3 rounded-full text-xs font-medium">3D Graphics</span>
+                                <span class="bg-gray-100 text-gray-700 py-1 px-3 rounded-full text-xs font-medium">PVP & Co-Op</span>
+                            </div>
+                        </div>
+                        <div class="mt-8 border-t border-gray-100 pt-4 flex items-center justify-between">
+                            <span class="text-xs text-gray-400">Launch Target: Q3 2026</span>
+                            <span class="text-blue-600 text-sm font-semibold flex items-center group-hover:translate-x-1 transition-transform">
+                                Pre-register soon <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column for Other 3 Apps -->
+                <div class="space-y-6">
+                    
+                    <!-- App 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition duration-300 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 shrink-0">
+                            <i class="fa-solid fa-comments-dollar text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-gray-900">KaiBot AI Platform</h4>
+                                <span class="bg-purple-100 text-purple-800 text-[10px] font-bold py-0.5 px-2.5 rounded-full uppercase tracking-wider">
+                                    In Dev
+                                </span>
+                            </div>
+                            <p class="text-gray-600 text-xs mt-2 leading-relaxed">
+                                Next-gen automated customer support platform powered by NLP. Integrates natively with Line, Messenger, and web interfaces.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- App 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition duration-300 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center text-cyan-600 shrink-0">
+                            <i class="fa-solid fa-receipt text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-gray-900">FinFlow Expense</h4>
+                                <span class="bg-purple-100 text-purple-800 text-[10px] font-bold py-0.5 px-2.5 rounded-full uppercase tracking-wider">
+                                    In Dev
+                                </span>
+                            </div>
+                            <p class="text-gray-600 text-xs mt-2 leading-relaxed">
+                                AI-driven personal finance and receipt scanner. Auto-categorizes expenses and generates smart financial health recommendations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- App 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition duration-300 flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 shrink-0">
+                            <i class="fa-solid fa-calendar-check text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between">
+                                <h4 class="font-bold text-gray-900">HR Shift Planner</h4>
+                                <span class="bg-purple-100 text-purple-800 text-[10px] font-bold py-0.5 px-2.5 rounded-full uppercase tracking-wider">
+                                    In Dev
+                                </span>
+                            </div>
+                            <p class="text-gray-600 text-xs mt-2 leading-relaxed">
+                                Cloud shifts manager for retail businesses. Features instant shift swapping, automatic rota generation, and check-in integrations.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </section>
