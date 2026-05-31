@@ -27,6 +27,31 @@
         /* Language toggling */
         html[lang="en"] .lang-th { display: none !important; }
         html[lang="th"] .lang-en { display: none !important; }
+
+        /* 3D Stack States for Game Screenshots */
+        .card-active {
+            z-index: 30;
+            transform: translate(-1.5rem, -0.5rem) rotate(-3deg) scale(1) !important;
+            opacity: 1;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+        .card-right {
+            z-index: 20;
+            transform: translate(2rem, 1.5rem) rotate(6deg) scale(0.95) !important;
+            opacity: 0.9;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .card-left {
+            z-index: 10;
+            transform: translate(-4rem, -2rem) rotate(-12deg) scale(0.9) !important;
+            opacity: 0.8;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 640px) {
+            .card-left {
+                display: none !important;
+            }
+        }
     </style>
 
     <script>
@@ -48,6 +73,32 @@
                 thBtns.forEach(btn => btn.classList.remove('text-gray-500'));
                 enBtns.forEach(btn => btn.classList.remove('text-blue-600', 'font-bold'));
                 enBtns.forEach(btn => btn.classList.add('text-gray-500'));
+            }
+        }
+
+        // 3D Card Swapping Animation for Game Showcase
+        function bringToFront(cardId) {
+            const cardConcept = document.getElementById('card-concept');
+            const cardMenu = document.getElementById('card-menu');
+            const cardGameplay = document.getElementById('card-gameplay');
+
+            // Reset all positional classes
+            cardConcept.classList.remove('card-active', 'card-right', 'card-left');
+            cardMenu.classList.remove('card-active', 'card-right', 'card-left');
+            cardGameplay.classList.remove('card-active', 'card-right', 'card-left');
+
+            if (cardId === 'concept') {
+                cardConcept.classList.add('card-active');
+                cardMenu.classList.add('card-right');
+                cardGameplay.classList.add('card-left');
+            } else if (cardId === 'menu') {
+                cardMenu.classList.add('card-active');
+                cardGameplay.classList.add('card-right');
+                cardConcept.classList.add('card-left');
+            } else if (cardId === 'gameplay') {
+                cardGameplay.classList.add('card-active');
+                cardConcept.classList.add('card-right');
+                cardMenu.classList.add('card-left');
             }
         }
 
@@ -235,13 +286,14 @@
             <div class="bg-white rounded-3xl border border-gray-100 shadow-xl flex flex-col lg:flex-row hover:shadow-2xl transition duration-300 mb-16 overflow-hidden">
                 
                 <!-- Visual Mockup Showcase (Overlapping 3D Cards) -->
-                <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-blue-50/50 via-slate-50 to-indigo-50/30 overflow-hidden">
+                <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-blue-50/50 via-slate-50 to-indigo-50/30 overflow-hidden select-none">
+                    <!-- Background glows -->
                     <div class="absolute w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -top-10 -left-10"></div>
                     <div class="absolute w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10"></div>
 
                     <!-- 3D Pastel Cloud Cover Art -->
-                    <div class="absolute w-[180px] sm:w-[210px] aspect-[9/19] rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-white transform -translate-x-16 -translate-y-8 -rotate-12 hover:rotate-0 hover:scale-105 transition-all duration-500 z-10 hidden sm:block">
-                        <img src="images/line_logic_puzzle.png" alt="Line Logic Cloud Cover" class="w-full h-full object-cover">
+                    <div id="card-concept" onclick="bringToFront('concept')" class="absolute w-[180px] sm:w-[210px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-left">
+                        <img src="images/line_logic_puzzle.png" alt="Line Logic Cloud Cover" class="w-full h-full object-cover pointer-events-none">
                         <div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-[8px] text-white font-bold py-0.5 px-2 rounded-full">
                             Concept Art
                         </div>
