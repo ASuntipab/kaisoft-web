@@ -83,6 +83,29 @@
             background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
         }
 
+                /* ===== 3D GAME CARDS ===== */
+        .card-active {
+            z-index: 30;
+            transform: translate(-1.5rem, -0.5rem) rotate(-3deg) scale(1) !important;
+            opacity: 1;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+        }
+        .card-right {
+            z-index: 20;
+            transform: translate(2rem, 1.5rem) rotate(6deg) scale(0.95) !important;
+            opacity: 0.9;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+        }
+        .card-left {
+            z-index: 10;
+            transform: translate(-4rem, -2rem) rotate(-12deg) scale(0.9) !important;
+            opacity: 0.8;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 640px) {
+            .card-left { display: none !important; }
+        }
+
         /* ===== MARQUEE ===== */
         .marquee-container { overflow: hidden; position: relative; }
         .marquee-container::before,
@@ -433,6 +456,258 @@
         </div>
     </section>
 
+    <!-- ===== PIPELINE ===== -->
+    <section id="pipeline" class="py-24 bg-white border-t border-slate-200 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="inline-block ai-badge text-blue-700 py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                    <span class="lang-th">แผนพัฒนาผลิตภัณฑ์</span>
+                    <span class="lang-en">Product Pipeline</span>
+                </span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 font-heading">
+                    <span class="lang-th">โปรเจกต์ที่กำลังจะ<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">เปิดตัว</span></span>
+                    <span class="lang-en">Upcoming <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Projects</span></span>
+                </h2>
+                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+                    <span class="lang-th">เปิดเผยโปรเจกต์เกมและแอปพลิเคชันล้ำสมัยที่กำลังพัฒนาใน KAI SOFT เรามุ่งมั่นสร้างนวัตกรรมระดับพรีเมียมสู่สายตาชาวโลก</span>
+                    <span class="lang-en">Take a sneak peek at the innovative applications and engaging games currently cooking in the KAI SOFT laboratories. We are building the future of interactive experiences.</span>
+                </p>
+            </div>
+
+            <!-- Featured Flagship Game: Line Logic AI Puzzle -->
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-xl flex flex-col lg:flex-row hover:shadow-2xl transition duration-300 mb-16 overflow-hidden reveal">
+
+                <!-- Visual Mockup Showcase (Overlapping 3D Cards) -->
+                <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-blue-50/50 via-slate-50 to-indigo-50/30 overflow-hidden select-none">
+                    <div class="absolute w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -top-10 -left-10"></div>
+                    <div class="absolute w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10"></div>
+
+                    <div id="card-concept" onclick="bringToFront('concept')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-active">
+                        <img src="images/line_logic_puzzle.png" alt="Line Logic Cloud Cover" class="w-full h-full object-cover pointer-events-none">
+                        <div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-[8px] text-white font-bold py-0.5 px-2 rounded-full">Concept Art</div>
+                    </div>
+                    <div id="card-menu" onclick="bringToFront('menu')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-right">
+                        <img src="images/main_menu.jpg" alt="Line Logic Main Menu" class="w-full h-full object-cover pointer-events-none">
+                        <div class="absolute top-3 left-3 bg-blue-600 text-white text-[9px] font-bold py-0.5 px-2 rounded-full shadow-lg">
+                            <span class="lang-th">หน้าเมนูเกม</span><span class="lang-en">Main Menu</span>
+                        </div>
+                    </div>
+                    <div id="card-gameplay" onclick="bringToFront('gameplay')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-slate-900 transition-all duration-500 cursor-pointer card-left">
+                        <img src="images/gameplay.jpg" alt="Line Logic Gameplay" class="w-full h-full object-cover pointer-events-none">
+                        <div class="absolute top-3 left-3 bg-red-600 text-white text-[9px] font-bold py-0.5 px-2.5 rounded-full shadow-lg animate-pulse">
+                            <span class="lang-th">ด่าน 34 (Extreme)</span><span class="lang-en">Level 34 (Extreme)</span>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-4 bg-black/75 backdrop-blur-md text-white/95 text-[10px] font-semibold py-2 px-4 rounded-full flex items-center space-x-2 z-40 shadow-lg pointer-events-none">
+                        <i class="fa-solid fa-hand-pointer text-xs text-blue-400 animate-bounce"></i>
+                        <span class="lang-th">คลิกที่รูปภาพเพื่อเปลี่ยนมุมมอง</span>
+                        <span class="lang-en">Click on any screen to swap view</span>
+                    </div>
+                </div>
+
+                <!-- Game Details -->
+                <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200">
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-bold py-1 px-3 rounded-full uppercase tracking-wider">
+                                <span class="lang-th">เกมเด่นเรือธง</span><span class="lang-en">Featured Flagship Game</span>
+                            </span>
+                            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider animate-pulse">
+                                <span class="lang-th">เร็ว ๆ นี้</span><span class="lang-en">Coming Soon</span>
+                            </span>
+                        </div>
+                        <h3 class="text-3xl md:text-4xl font-extrabold mt-4 text-slate-900 leading-tight font-heading">
+                            Line Logic AI Puzzle <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 text-2xl font-bold">ปริศนาลากเส้น AI</span>
+                        </h3>
+
+                        <p class="text-slate-600 mt-4 leading-relaxed text-sm">
+                            <span class="lang-th">สุดยอดเกมปริศนาแนวพัซเซิลลากเส้นเชื่อมจุดสีเดียวกันให้ครบทุกสี โดย<strong>ต้องเดินเส้นทางผ่านทุกช่องของตาราง 100% (ลากให้ครบทุกช่อง)</strong> สนุกสนานไปกับสุนทรียภาพท้องฟ้านุ่มนวลและการแก้โจทย์ปริศนาสุดหินระดับแชมป์เปี้ยน</span>
+                            <span class="lang-en">An immersive, dreamy 3D-like connection puzzle game powered by procedural scaling algorithms and AI. Connect dots of the same color and <strong>fill 100% of the grid cells</strong>. Simple to learn, highly challenging to master.</span>
+                        </p>
+
+                        <!-- Level Design Stats Grid -->
+                        <div class="grid grid-cols-3 gap-4 my-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/50 p-5 rounded-2xl border border-blue-100/50 text-center">
+                            <div>
+                                <p class="text-2xl font-extrabold text-blue-600 font-heading counter" data-target="18000">0</p>
+                                <p class="text-[9px] text-slate-500 font-bold uppercase mt-1">
+                                    <span class="lang-th">ด่านทั้งหมด</span><span class="lang-en">Total Levels</span>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-extrabold text-indigo-600 font-heading counter" data-target="9">0</p>
+                                <p class="text-[9px] text-slate-500 font-bold uppercase mt-1">
+                                    <span class="lang-th">โหมดการเล่น</span><span class="lang-en">Submodes</span>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-extrabold text-cyan-600 font-heading counter" data-target="2000">0</p>
+                                <p class="text-[9px] text-slate-500 font-bold uppercase mt-1">
+                                    <span class="lang-th">ด่านต่อโหมด</span><span class="lang-en">Levels per Mode</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Specifications List -->
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-emerald-100 p-1.5 rounded-lg text-emerald-600 mt-0.5 shrink-0"><i class="fa-solid fa-square-check"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">
+                                        <span class="lang-th">3 โหมดหลัก ท้าทายขีดจำกัด</span><span class="lang-en">3 Core Game Modes</span>
+                                    </h4>
+                                    <p class="text-slate-500 text-xs mt-0.5">
+                                        <span class="lang-th"><strong>Normal:</strong> ลากโหมดปกติ | <strong>TimeAttack:</strong> จับเวลาสุดตื่นเต้น | <strong>Extreme:</strong> โหมดมืดสุดโหดท้าทายจอมวางแผน</span>
+                                        <span class="lang-en"><strong>Normal:</strong> standard puzzle | <strong>TimeAttack:</strong> race against time | <strong>Extreme:</strong> dark UI hidden hints</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-indigo-100 p-1.5 rounded-lg text-indigo-600 mt-0.5 shrink-0"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">
+                                        <span class="lang-th">3 รูปแบบไอเท็ม (Submodes)</span><span class="lang-en">3 Gameplay Submodes</span>
+                                    </h4>
+                                    <p class="text-slate-500 text-xs mt-0.5">
+                                        <span class="lang-th"><strong>Classic:</strong> พัซเซิลดั้งเดิม | <strong>ItemRush:</strong> มีระเบิด สลับสี ประตูกุญแจ | <strong>Hardcore:</strong> สุ่มไอเท็มผสมคลาสสิก (80/20)</span>
+                                        <span class="lang-en"><strong>Classic:</strong> pure layouts | <strong>ItemRush:</strong> bombs, switchers, keys/doors | <strong>Hardcore:</strong> random 80/20 mix</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-red-100 p-1.5 rounded-lg text-red-600 mt-0.5 shrink-0"><i class="fa-solid fa-circle-nodes"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">
+                                        <span class="lang-th">โหมดมิติซ้อน (Multi-Floor 3D) & UI Masking</span><span class="lang-en">Multi-Floor 3D & UI Masking</span>
+                                    </h4>
+                                    <p class="text-slate-500 text-xs mt-0.5">
+                                        <span class="lang-th">ปีนป่ายตารางซ้อนชั้นสูงถึง 5-7 ชั้น เชื่อมผ่านประตูพอร์ทัล และฟีเจอร์พรางไอเท็ม/ระเบิดเป็นสีเทาลึกลับในโหมด Extreme เพิ่มความลุ่มลึก</span>
+                                        <span class="lang-en">Navigate 3D vertical portals between 5-7 stacked floors with bridges and hidden grey element overlays in Extreme mode.</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="bg-purple-100 p-1.5 rounded-lg text-purple-600 mt-0.5 shrink-0"><i class="fa-solid fa-calculator"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-xs">
+                                        <span class="lang-th">พิสูจน์แล้วด้วยคณิตศาสตร์ขั้นสูง (CP-SAT Solver)</span><span class="lang-en">CP-SAT AI-Verified Solvability</span>
+                                    </h4>
+                                    <p class="text-slate-500 text-xs mt-0.5">
+                                        <span class="lang-th">ทุกด่านผ่านการตรวจสอบโดย Google OR-Tools CP-SAT เพื่อรับประกันว่าด่านไม่มีข้อผิดพลาด มีคำตอบเดียว และลากผ่านได้จริง</span>
+                                        <span class="lang-en">Every level layout is verified by Google OR-Tools CP-SAT to guarantee 100% mathematical solvability, logical integrity, and a single solution.</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pre-register CTA -->
+                    <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <span class="text-[11px] text-slate-400 font-medium flex items-center">
+                            <i class="fa-solid fa-mobile-screen text-blue-400 mr-1.5 text-xs"></i> Developed with Flutter & Dart Engine
+                        </span>
+                        <a href="#contact" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-md shadow-blue-600/20 flex items-center group shrink-0">
+                            <span class="lang-th">สนใจร่วมเป็นกลุ่มทดสอบ Close Beta</span>
+                            <span class="lang-en">Join Close Beta Test Group</span>
+                            <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Memory Buddy Series -->
+            <div class="mt-12 reveal">
+                <div class="text-center mb-12">
+                    <span class="inline-block bg-indigo-50 text-indigo-700 py-1 px-4 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 border border-indigo-100">
+                        <span class="lang-th">ซีรีส์ผู้ช่วยอัจฉริยะ</span>
+                        <span class="lang-en">The AI Memory Buddy Series</span>
+                    </span>
+                    <h3 class="text-3xl font-extrabold text-slate-900 font-heading">
+                        <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะระดับ <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Next-Gen</span></span>
+                        <span class="lang-en">Next-Gen <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Intelligent Assistants</span></span>
+                    </h3>
+                    <p class="text-slate-500 text-sm mt-3 max-w-2xl mx-auto">
+                        <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะ 3 สไตล์ที่จะทำหน้าที่เป็นเสมือน "สมองส่วนเสริม" และ "เลขาส่วนตัว" ที่เข้าใจคุณผ่านภาษาธรรมชาติและการมองเห็นอย่างลึกซึ้ง</span>
+                        <span class="lang-en">A suite of 3 intelligent companion apps that serve as your "external brain," understanding you through natural language and vision without friction.</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- App 1: Buddy Home -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-1">
+                        <div class="h-48 overflow-hidden relative bg-slate-50">
+                            <img src="images/buddy_home_preview.png" alt="Buddy Home Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
+                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                            </span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 font-heading">🏡 Buddy Home</h4>
+                                <p class="text-blue-600 text-xs font-semibold mt-1">
+                                    <span class="lang-th">"โยนใบเสร็จให้ AI จัดบ้านให้"</span>
+                                    <span class="lang-en">"Toss receipts at AI — it sorts your home."</span>
+                                </p>
+                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                                    <span class="lang-th">ระบบวิเคราะห์สิ่งของและคาดการณ์อุปโภคบริโภคอัตโนมัติจากการแชร์รูปสินค้า ถ่ายรูปตู้เย็น/ชั้นวาง หรือใบเสร็จซูเปอร์มาร์เก็ตยาวเหยียด พร้อมทั้งช่วยจำตารางแจ้งเตือนประกันและอายุบำรุงรักษาอุปกรณ์ในบ้านล่วงหน้าอย่างแม่นยำ</span>
+                                    <span class="lang-en">Cozy home management. Just upload photos of your fridge, pantry, or scan supermarket receipts; AI estimates consumption rates, predicts when items will run out, organizes shopping lists, and logs appliance warranties.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App 2: Buddy Brain -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-2">
+                        <div class="h-48 overflow-hidden relative bg-slate-50">
+                            <img src="images/buddy_brain_preview.png" alt="Buddy Brain Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
+                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                            </span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 font-heading">🧠 Buddy Brain</h4>
+                                <p class="text-indigo-600 text-xs font-semibold mt-1">
+                                    <span class="lang-th">"พูดบ่นยาวๆ ให้ AI สรุปและจำให้"</span>
+                                    <span class="lang-en">"Ramble out loud — AI summarizes & remembers."</span>
+                                </p>
+                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                                    <span class="lang-th">สมองกลส่วนเสริมดักจับทุกความคิดที่กระจัดกระจาย เพียงอัดเสียงพูดระบายไอเดียยาวๆ AI จะถอดความ สรุปย่อ ดึงงานสำคัญเข้าปฏิทิน และบันทึกข้อเท็จจริงสำคัญ (เช่น รหัสผ่าน ขนาดเสื้อผ้า) เพื่อเรียกคืนด้วยภาษาธรรมชาติอย่างปลอดภัย</span>
+                                    <span class="lang-en">Instant personal repository. Record your random thoughts, rants or narratives; AI decodes and summarizes them into structured action items. Store critical details like Wi-Fi passwords or clothing sizes, and query them naturally.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App 3: Buddy Money -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-3">
+                        <div class="h-48 overflow-hidden relative bg-slate-50">
+                            <img src="images/moni_ai_preview.png" alt="Buddy Money Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
+                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                            </span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-xl font-bold text-slate-900 font-heading">💵 Buddy Money</h4>
+                                <p class="text-cyan-600 text-xs font-semibold mt-1">
+                                    <span class="lang-th">"บ่นว่าใช้อะไรไป AI ลงบัญชีให้"</span>
+                                    <span class="lang-en">"Talk your spend — AI books it for you."</span>
+                                </p>
+                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                                    <span class="lang-th">เปลี่ยนการจดบัญชีอันน่าเบื่อด้วย Zero-friction เพียงส่งรูปสลิปโอนเงิน หรือพิมพ์/พูดสั้นๆ AI จะคัดแยกสกุลเงินและหมวดหมู่ทันที พร้อมบุคลิกโต้ตอบหลากหลายแบบมีชีวิตชีวา (รวมถึงโหมด Roast บ่นประชดขำๆ ยามช้อปฟุ่มเฟือย!)</span>
+                                    <span class="lang-en">Zero-friction financial logging. Drop a screenshot of your bank transfer slip or simply say what you spent; AI automatically reads the amount, converts currency, and books it. Choose customizable personas, including a hilarious 'Roast Mode'!</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
     <!-- ===== PRODUCTIZED SERVICES ===== -->
     <section id="services" class="py-24 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -734,7 +1009,29 @@
         }
         window.setLanguage = setLanguage;
 
-        document.addEventListener('DOMContentLoaded', function() {
+                    window.bringToFront = function(cardId) {
+                const cards = {
+                    concept: document.getElementById('card-concept'),
+                    menu: document.getElementById('card-menu'),
+                    gameplay: document.getElementById('card-gameplay')
+                };
+                Object.values(cards).forEach(c => c.classList.remove('card-active','card-right','card-left'));
+                if (cardId === 'concept') {
+                    cards.concept.classList.add('card-active');
+                    cards.menu.classList.add('card-right');
+                    cards.gameplay.classList.add('card-left');
+                } else if (cardId === 'menu') {
+                    cards.menu.classList.add('card-active');
+                    cards.gameplay.classList.add('card-right');
+                    cards.concept.classList.add('card-left');
+                } else {
+                    cards.gameplay.classList.add('card-active');
+                    cards.concept.classList.add('card-right');
+                    cards.menu.classList.add('card-left');
+                }
+            };
+
+            document.addEventListener('DOMContentLoaded', function() {
             const savedLang = localStorage.getItem('preferred-language') || 'th';
             setLanguage(savedLang);
 
