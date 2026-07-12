@@ -1082,6 +1082,47 @@
                 revealElements.forEach(function(el) { el.classList.add('revealed'); });
             }
 
+            // ===== COUNTER ANIMATION =====
+            const counters = document.querySelectorAll('.counter');
+            if (counters.length > 0) {
+                if ('IntersectionObserver' in window) {
+                    const countObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const counter = entry.target;
+                                const target = parseInt(counter.getAttribute('data-target'));
+                                const duration = 1500;
+                                const startTime = performance.now();
+
+                                function updateCount(currentTime) {
+                                    const elapsed = currentTime - startTime;
+                                    const progress = Math.min(elapsed / duration, 1);
+                                    const ease = progress * (2 - progress);
+                                    const currentVal = Math.floor(ease * target);
+                                    
+                                    counter.innerText = currentVal.toLocaleString();
+
+                                    if (progress < 1) {
+                                        requestAnimationFrame(updateCount);
+                                    } else {
+                                        counter.innerText = target.toLocaleString();
+                                    }
+                                }
+
+                                requestAnimationFrame(updateCount);
+                                countObserver.unobserve(counter);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    counters.forEach(counter => countObserver.observe(counter));
+                } else {
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        counter.innerText = target.toLocaleString();
+                    });
+                }
+            }
+
             // ===== FORM SUBMISSION (MAILTO INTERCEPT) =====
             const form = document.getElementById('project-form');
             if (form) {
