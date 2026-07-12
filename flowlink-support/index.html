@@ -146,7 +146,7 @@
 
                     const mailSubject = `[Flow Link Support] ${subject}`;
                     const mailBody = encodeURIComponent(bodyStr);
-                    const mailtoLink = `mailto:flowlink-support@kaisoft.net?subject=${mailSubject}&body=${mailBody}`;
+                    const mailtoLink = `mailto:flowlink-support@kaisoft.net?cc=admin@kaisoft.net&subject=${mailSubject}&body=${mailBody}`;
                     
                     window.location.href = mailtoLink;
 
