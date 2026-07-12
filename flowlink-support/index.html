@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="lang-th">ฝ่ายบริการช่วยเหลือเกม Flow Link - KAI SOFT</title>
+    <title class="lang-en">Flow Link Support - KAI SOFT</title>
+    
+    <meta name="description" content="Flow Link Game Support. Contact us for bug reports, account issues, billing problems, or game feedback.">
+    <meta property="og:title" content="Flow Link Game Support - KAI SOFT">
+    <meta property="og:description" content="Support services for Flow Link players. Get help with game issues quickly.">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif;
+            background: #090d1a;
+            color: #f1f5f9;
+        }
+        h1, h2, h3, .font-heading { 
+            font-family: 'Space Grotesk', 'Inter', sans-serif; 
+        }
+
+        /* Language toggling */
+        html[lang="en"] .lang-th { display: none !important; }
+        html[lang="th"] .lang-en { display: none !important; }
+
+        /* Custom glow & gradient background matching Flow Link theme (connecting colorful dots) */
+        .bg-flow-grid {
+            position: relative;
+            background-color: #030712;
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(6, 182, 212, 0.12) 0px, transparent 50%);
+        }
+        
+        .bg-flow-grid::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .clay-input {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #f8fafc;
+            transition: all 0.3s ease;
+        }
+        
+        .clay-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        /* Custom buttons styling */
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #06b6d4 100%);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .btn-gradient:hover {
+            background-position: right center;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+
+    <script>
+        // Language Toggle Logic
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('preferred-language', lang);
+            
+            // Update button active styles
+            const enBtns = document.querySelectorAll('.lang-btn-en');
+            const thBtns = document.querySelectorAll('.lang-btn-th');
+            if (lang === 'en') {
+                enBtns.forEach(btn => btn.classList.add('text-indigo-400', 'font-bold', 'border-indigo-400'));
+                enBtns.forEach(btn => btn.classList.remove('text-gray-400', 'border-transparent'));
+                thBtns.forEach(btn => btn.classList.remove('text-indigo-400', 'font-bold', 'border-indigo-400'));
+                thBtns.forEach(btn => btn.classList.add('text-gray-400', 'border-transparent'));
+            } else {
+                thBtns.forEach(btn => btn.classList.add('text-indigo-400', 'font-bold', 'border-indigo-400'));
+                thBtns.forEach(btn => btn.classList.remove('text-gray-400', 'border-transparent'));
+                enBtns.forEach(btn => btn.classList.remove('text-indigo-400', 'font-bold', 'border-indigo-400'));
+                enBtns.forEach(btn => btn.classList.add('text-gray-400', 'border-transparent'));
+            }
+        }
+
+        // Initialize language
+        (function() {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            document.documentElement.setAttribute('lang', savedLang);
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-language') || 'th';
+            setLanguage(savedLang);
+
+            // Handle Contact Form Submission (Mailto Redirection)
+            const form = document.getElementById('support-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('sender-name').value.trim();
+                    const email = document.getElementById('sender-email').value.trim();
+                    const os = document.getElementById('sender-os').value;
+                    const issueType = document.getElementById('issue-type').value;
+                    const subject = document.getElementById('issue-subject').value.trim();
+                    const message = document.getElementById('issue-message').value.trim();
+                    
+                    if (!name || !email || !subject || !message) {
+                        const lang = document.documentElement.getAttribute('lang');
+                        alert(lang === 'th' ? "กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน" : "Please fill out all required fields.");
+                        return;
+                    }
+
+                    // Construct mailto body
+                    let bodyStr = `--- FLOW LINK SUPPORT REQUEST ---\n\n`;
+                    bodyStr += `Reporter Name: ${name}\n`;
+                    bodyStr += `Reporter Email: ${email}\n`;
+                    bodyStr += `Device Platform: ${os}\n`;
+                    bodyStr += `Category: ${issueType}\n\n`;
+                    bodyStr += `Message:\n${message}\n\n`;
+                    bodyStr += `---------------------------------`;
+
+                    const mailSubject = `[Flow Link Support] ${subject}`;
+                    const mailBody = encodeURIComponent(bodyStr);
+                    const mailtoLink = `mailto:flowlink-support@kaisoft.net?subject=${mailSubject}&body=${mailBody}`;
+                    
+                    window.location.href = mailtoLink;
+
+                    // Show Modal or Notification
+                    const lang = document.documentElement.getAttribute('lang');
+                    const modal = document.getElementById('success-modal');
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                    } else {
+                        alert(lang === 'th' ? "กำลังเปิดแอปพลิเคชันอีเมลของคุณเพื่อส่งข้อมูล..." : "Opening your email client to send details...");
+                    }
+                });
+            }
+        });
+
+        function closeModal() {
+            const modal = document.getElementById('success-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.getElementById('support-form').reset();
+            }
+        }
+    </script>
+</head>
+<body class="bg-flow-grid min-h-screen flex flex-col">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="border-b border-gray-800 bg-gray-950/80 backdrop-blur-md fixed w-full z-30 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="../index.html" class="flex items-center space-x-2.5 group">
+                    <div class="bg-gradient-to-tr from-indigo-500 to-purple-600 text-white p-2 rounded-xl shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
+                        <i class="fa-solid fa-layer-group fa-lg"></i>
+                    </div>
+                    <span class="font-bold text-xl text-white tracking-wide font-heading">KAI SOFT</span>
+                </a>
+                
+                <div class="flex items-center space-x-6">
+                    <a href="../index.html" class="hidden md:inline-block text-gray-300 hover:text-white transition font-medium text-sm">
+                        <span class="lang-th">← กลับไปหน้าแรก</span>
+                        <span class="lang-en">← Back to Home</span>
+                    </a>
+
+                    <!-- Language Selector -->
+                    <div class="flex items-center space-x-1 bg-gray-900/60 p-1 rounded-lg border border-gray-800">
+                        <button onclick="setLanguage('th')" class="lang-btn-th text-xs font-semibold px-2.5 py-1 rounded-md border transition">TH</button>
+                        <button onclick="setLanguage('en')" class="lang-btn-en text-xs font-semibold px-2.5 py-1 rounded-md border transition">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow pt-28 pb-20 px-4 max-w-7xl mx-auto w-full">
+        
+        <!-- HERO SECTION -->
+        <div class="text-center mb-12">
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">
+                <i class="fa-solid fa-gamepad"></i>
+                <span class="lang-th">เกมมือถือระดับพรีเมียม</span>
+                <span class="lang-en">Premium Mobile Game</span>
+            </span>
+            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight font-heading bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-300 mb-4">
+                <span class="lang-th">ฝ่ายบริการช่วยเหลือเกม Flow Link</span>
+                <span class="lang-en">Flow Link Game Support</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base">
+                <span class="lang-th">มีคำถาม แจ้งข้อผิดพลาด (Bug) หรือพบปัญหาเกี่ยวกับการใช้งาน? ทีมงาน KAI SOFT พร้อมช่วยเหลือคุณอย่างเต็มที่ โปรดเลือกช่องทางที่คุณสะดวกด้านล่างนี้</span>
+                <span class="lang-en">Have questions, bugs to report, or experiencing technical issues? The KAI SOFT team is here to help. Please select your preferred support method below.</span>
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- LEFT COLUMN: SUPPORT DIRECTORIES / INFO -->
+            <div class="lg:col-span-5 space-y-6">
+                
+                <!-- Card 1: Google Form Link (Online Form) -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-indigo-500/5 transition duration-300 relative overflow-hidden group">
+                    <div class="absolute -right-8 -top-8 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all"></div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-cyan-500/10 text-cyan-400 p-3.5 rounded-xl border border-cyan-500/20">
+                            <i class="fa-solid fa-file-signature text-2xl"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-lg font-bold font-heading text-white">
+                                <span class="lang-th">แจ้งปัญหาผ่าน Google Form</span>
+                                <span class="lang-en">Report via Google Form</span>
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                                <span class="lang-th">กรอกแบบฟอร์มออนไลน์โดยตรงบนระบบ Google สำหรับการบันทึกภาพหน้าจอและข้อเสนอแนะที่รวดเร็ว</span>
+                                <span class="lang-en">Fill out our online form hosted on Google to report issues, attach screenshots, and share your ideas.</span>
+                            </p>
+                            <div class="pt-2">
+                                <a href="https://forms.gle/4w7Hj7RzN9s8E3tA6" target="_blank" class="inline-flex items-center space-x-2 text-cyan-400 hover:text-cyan-300 font-semibold text-sm transition group">
+                                    <span class="lang-th">เปิดฟอร์มช่วยเหลือออนไลน์</span>
+                                    <span class="lang-en">Open Online Support Form</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Direct Email Support -->
+                <div class="glass-card rounded-2xl p-6 hover:shadow-purple-500/5 transition duration-300 relative overflow-hidden group">
+                    <div class="absolute -right-8 -top-8 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition-all"></div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-purple-500/10 text-purple-400 p-3.5 rounded-xl border border-purple-500/20">
+                            <i class="fa-solid fa-envelope text-2xl"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-lg font-bold font-heading text-white">
+                                <span class="lang-th">อีเมลติดต่อฝ่ายสนับสนุน</span>
+                                <span class="lang-en">Support Email Address</span>
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                                <span class="lang-th">ส่งเมลตรงถึงทีมผู้พัฒนา เหมาะสำหรับการส่งข้อมูลเชิงลึก บัญชีผู้เล่น หรือใบเสร็จชำระเงิน</span>
+                                <span class="lang-en">Send a direct message to our support desk. Ideal for account recovery, purchasing issues, or billing.</span>
+                            </p>
+                            <p class="text-indigo-400 font-bold text-sm select-all pt-1">
+                                flowlink-support@kaisoft.net
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                <span class="lang-th">สำรอง: admin@kaisoft.net</span>
+                                <span class="lang-en">Alternative: admin@kaisoft.net</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Help tips -->
+                <div class="glass-card rounded-2xl p-6 border-indigo-500/20 bg-indigo-950/20">
+                    <h3 class="text-sm font-bold tracking-wider text-indigo-400 uppercase mb-3 flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span class="lang-th">ข้อมูลสำคัญสำหรับการแจ้งปัญหา</span>
+                        <span class="lang-en">Important Tips for Reporting</span>
+                    </h3>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-gray-400">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-indigo-400 font-bold">•</span>
+                            <span>
+                                <span class="lang-th"><strong>ระบุระบบที่ใช้งาน:</strong> iOS หรือ Android รวมถึงรุ่นอุปกรณ์ (เช่น iPhone 15, Galaxy S24)</span>
+                                <span class="lang-en"><strong>Specify your OS:</strong> iOS or Android along with your device model (e.g. iPhone 15, Galaxy S24).</span>
+                            </span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-indigo-400 font-bold">•</span>
+                            <span>
+                                <span class="lang-th"><strong>อธิบายขั้นตอน:</strong> อธิบายรายละเอียดว่าทำอย่างไรจึงเจอปัญหาเพื่อให้ทีมงานตรวจสอบได้เร็วขึ้น</span>
+                                <span class="lang-en"><strong>Steps to replicate:</strong> Briefly explain what you were doing when the issue occurred to help us debug.</span>
+                            </span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-indigo-400 font-bold">•</span>
+                            <span>
+                                <span class="lang-th"><strong>ระยะเวลาการตอบกลับ:</strong> ทีมงานจะพยายามตรวจสอบและตอบกลับภายใน 24-48 ชั่วโมงทำการ</span>
+                                <span class="lang-en"><strong>Response Time:</strong> We usually review and respond to inquiries within 24-48 hours.</span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: CONTACT FORM (Interactive Web Box) -->
+            <div class="lg:col-span-7">
+                <div class="glass-card rounded-2xl p-6 sm:p-8">
+                    <h2 class="text-2xl font-bold font-heading text-white mb-2 flex items-center space-x-2.5">
+                        <i class="fa-regular fa-paper-plane text-indigo-400"></i>
+                        <span class="lang-th">กล่องกรอกข้อมูลแจ้งปัญหาออนไลน์</span>
+                        <span class="lang-en">Online Report Form</span>
+                    </h2>
+                    <p class="text-gray-400 text-xs sm:text-sm mb-6">
+                        <span class="lang-th">กรอกข้อมูลลงในฟิลด์ด้านล่างและกดยื่นส่ง ระบบจะเปิดหน้าต่างส่งอีเมลของคุณพร้อมจัดข้อมูลให้อย่างรวดเร็ว</span>
+                        <span class="lang-en">Fill out the fields below. Submitting will pre-format an email which you can send via your email client.</span>
+                    </p>
+
+                    <form id="support-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="sender-name" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+                                    <span class="lang-th">ชื่อของคุณ *</span>
+                                    <span class="lang-en">Your Name *</span>
+                                </label>
+                                <input type="text" id="sender-name" required class="w-full clay-input rounded-xl px-4 py-2.5 text-sm" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label for="sender-email" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+                                    <span class="lang-th">อีเมลติดต่อกลับ *</span>
+                                    <span class="lang-en">Email Address *</span>
+                                </label>
+                                <input type="email" id="sender-email" required class="w-full clay-input rounded-xl px-4 py-2.5 text-sm" placeholder="john@example.com">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="sender-os" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+                                    <span class="lang-th">ระบบปฏิบัติการ</span>
+                                    <span class="lang-en">Platform / OS</span>
+                                </label>
+                                <select id="sender-os" class="w-full clay-input rounded-xl px-4 py-2.5 text-sm bg-gray-950">
+                                    <option value="iOS">iOS (iPhone / iPad)</option>
+                                    <option value="Android">Android</option>
+                                    <option value="Other">Other / PC</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="issue-type" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+                                    <span class="lang-th">ประเภทปัญหา</span>
+                                    <span class="lang-en">Issue Category</span>
+                                </label>
+                                <select id="issue-type" class="w-full clay-input rounded-xl px-4 py-2.5 text-sm bg-gray-950">
+                                    <option value="Gameplay Bug" class="lang-th">พบบั๊กหรือข้อผิดพลาดในเกม</option>
+                                    <option value="Gameplay Bug" class="lang-en">Gameplay Bug / Error</option>
+                                    <option value="In-App Purchase" class="lang-th">ปัญหาการซื้อของในแอป / เติมเงิน</option>
+                                    <option value="In-App Purchase" class="lang-en">In-App Purchase / Billing</option>
+                                    <option value="Account / Save Progress" class="lang-th">บัญชีผู้เล่น / บันทึกข้อมูลเกม</option>
+                                    <option value="Account / Save Progress" class="lang-en">Account / Save Progress</option>
+                                    <option value="Suggestion / Feedback" class="lang-th">ข้อแนะนำและข้อเสนอแนะ</option>
+                                    <option value="Suggestion / Feedback" class="lang-en">Suggestions & Feedback</option>
+                                    <option value="Other" class="lang-th">เรื่องอื่นๆ</option>
+                                    <option value="Other" class="lang-en">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="issue-subject" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+                                <span class="lang-th">หัวข้อปัญหา *</span>
+                                <span class="lang-en">Subject *</span>
+                            </label>
+                            <input type="text" id="issue-subject" required class="w-full clay-input rounded-xl px-4 py-2.5 text-sm" placeholder="e.g. Can't sync levels">
+                        </div>
+
+                        <div>
+                            <label for="issue-message" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">
+                                <span class="lang-th">รายละเอียดปัญหา *</span>
+                                <span class="lang-en">Detailed Description *</span>
+                            </label>
+                            <textarea id="issue-message" rows="5" required class="w-full clay-input rounded-xl px-4 py-2.5 text-sm resize-none" placeholder="Explain the problem here..."></textarea>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full btn-gradient text-white font-bold py-3 rounded-xl shadow-lg transition-transform duration-300 font-heading tracking-wide">
+                                <i class="fa-solid fa-paper-plane mr-2"></i>
+                                <span class="lang-th">ส่งข้อความแจ้งปัญหา</span>
+                                <span class="lang-en">Submit Report</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm justify-center items-center p-4">
+        <div class="glass-card max-w-md w-full rounded-2xl p-6 text-center space-y-4 border border-indigo-500/30">
+            <div class="w-16 h-16 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 class="text-xl font-bold font-heading text-white">
+                    <span class="lang-th">ส่งข้อมูลช่วยเหลือสำเร็จ!</span>
+                    <span class="lang-en">Report Initialized!</span>
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    <span class="lang-th">เรากำลังเปิดโปรแกรมรับส่งอีเมลในอุปกรณ์ของคุณ หากไม่มีสิ่งใดเกิดขึ้น คุณสามารถส่งปัญหาทางอีเมลโดยตรงได้ที่ <strong>flowlink-support@kaisoft.net</strong></span>
+                    <span class="lang-en">We are launching your email client. If nothing opens, you can send details manually to <strong>flowlink-support@kaisoft.net</strong>.</span>
+                </p>
+            </div>
+            <div class="pt-2">
+                <button onclick="closeModal()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-xl transition duration-300">
+                    <span class="lang-th">ตกลง</span>
+                    <span class="lang-en">OK</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 text-gray-500 py-8 border-t border-gray-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs sm:text-sm">
+                <span class="lang-th">&copy; 2026 บริษัท ไค ซอฟต์ จำกัด สงวนลิขสิทธิ์ทั้งหมด</span>
+                <span class="lang-en">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</span>
+            </p>
+            <div class="flex space-x-6 text-xs sm:text-sm">
+                <a href="../privacy/index.html" class="hover:text-white transition">
+                    <span class="lang-th">นโยบายความเป็นส่วนตัว</span>
+                    <span class="lang-en">Privacy Policy</span>
+                </a>
+                <a href="../terms/index.html" class="hover:text-white transition">
+                    <span class="lang-th">เงื่อนไขการใช้งาน</span>
+                    <span class="lang-en">Terms of Service</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
