@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Account Deletion - Flow Link</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 500px; width: 100%; }
+        h1 { color: #d9534f; font-size: 24px; margin-bottom: 20px; }
+        p { line-height: 1.6; font-size: 14px; color: #666; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        input[type="text"], input[type="email"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #d9534f; color: white; border: none; padding: 12px 20px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 10px; }
+        button:hover { background-color: #c9302c; }
+        .note { font-size: 12px; color: #999; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>คำขอลบบัญชีผู้ใช้ (Delete Account Request)</h1>
+        <p>หากท่านต้องการลบบัญชีและข้อมูลทั้งหมดที่เกี่ยวข้องกับเกม <strong>Flow Link</strong> กรุณากรอกรายละเอียดด้านล่างนี้ ทีมงานจะดำเนินการลบข้อมูลของท่านออกจากระบบอย่างถาวรภายใน 7 วันทำการ</p>
+        
+        <form action="mailto:admin@kaisoft.net" method="post" enctype="text/plain">
+            <div class="form-group">
+                <label for="name">ชื่อผู้ใช้ / Username ในเกม:</label>
+                <input type="text" id="name" name="Name" required placeholder="ระบุชื่อในเกมของคุณ">
+            </div>
+            <div class="form-group">
+                <label for="email">อีเมลที่ใช้ลงทะเบียน (Email):</label>
+                <input type="email" id="email" name="Email" required placeholder="example@email.com">
+            </div>
+            <div class="form-group">
+                <label for="reason">เหตุผลที่ต้องการลบข้อมูล (ไม่บังคับ):</label>
+                <textarea id="reason" name="Reason" rows="3" placeholder="ระบุเหตุผลของคุณ"></textarea>
+            </div>
+            <button type="submit">ส่งคำขอลบข้อมูลอย่างถาวร</button>
+        </form>
+        
+        <p class="note">*หมายเหตุ: เมื่อดำเนินการเสร็จสิ้น ประวัติการเล่นเกม, เหรียญทอง, รายการสั่งซื้อ และสิทธิ์ VIP ทั้งหมดของท่านจะถูกลบอย่างถาวรและไม่สามารถกู้คืนได้</p>
+    </div>
+</body>
+</html>
