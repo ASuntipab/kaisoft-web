@@ -3,24 +3,148 @@
  * Powered by Three.js & GSAP
  * 
  * Features:
- * - Entire website is a continuous living 3D Cosmic Universe
- * - All 5 Mascots positioned in 3D space overseeing their respective sections:
+ * - Stunning 3D Planet Marbles with multi-layer depth:
+ *     1. Crystal Physical Glass Shell (Transmission, Refraction, Clearcoat, EnvMap Reflections)
+ *     2. Inner Faceted 3D Relics (Flame Star, Gold Coin with Inlay, Hex Gem, Rune Vault, Wisdom Tome)
+ *     3. Glowing Celestial Atmospheric Rings & Corona Halos
+ *     4. Inner Core Illumination & Sparkling Star Dust
+ * - Full 3D Lighting & Shadows (Directional Key Light + Colored Rim Lights + Realm Point Lights)
+ * - 5 Mascots overseeing their respective website realms:
  *     Section 0 (Hero): Cosmic Nexus Overview
  *     Section 1 (Case Studies): 🔥 Fenik the Phoenix (Brain & Quest Intellect)
- *     Section 2 (Flagship & Pipeline): 🪐 Celestial Bridge & 5 Crystalline Relic Orbs
+ *     Section 2 (Pipeline & Flow Link): 🪐 Celestial Bridge & 5 Crystalline Relic Orbs
  *     Section 3 (Services & ROI): 🐷 Moni the Piggy (Financial AI & Business Scaling)
  *     Section 4 (Architecture & Security): 📦 Stash the Vault & 🐢 Teta the Turtle
  *     Section 5 (Insights & Resources): 🦉 Ollie the Wise Owl (Wisdom & Narrative)
  *     Section 6 (Estimation & Contact): ✨ Grand Cosmic Beacon
- * - Smooth Scroll-Driven 3D Camera Flight Path (Spline Glide)
- * - Mouse & Gyroscope 3D Parallax Tilt
- * - Floating Physical Glass Marbles drifting throughout space
- * - Web Audio Synthetic Crystal Chime FX
- * - Performance optimized for 60 FPS across Mobile (iOS/Android) and Desktop
+ * - Smooth Scroll-Driven 3D Camera Flight Path (Spline Interpolation)
+ * - Mouse & Gyroscope 3D Parallax Depth
+ * - Web Audio Synthetic Crystal Chimes
  */
 
 (function () {
     'use strict';
+
+    // ── Helper: Equirectangular Environment Map for Realistic Crystal Reflections ──
+    function makeOrbEnvMap(renderer, stops) {
+        if (!renderer || !renderer.capabilities) return null;
+        const c = document.createElement('canvas');
+        c.width = 128;
+        c.height = 128;
+        const g = c.getContext('2d');
+        const grad = g.createLinearGradient(0, 0, 0, 128);
+        for (const [offset, color] of stops) grad.addColorStop(offset, color);
+        g.fillStyle = grad;
+        g.fillRect(0, 0, 128, 128);
+
+        // Add soft celestial horizon highlight
+        g.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        g.beginPath();
+        g.ellipse(64, 40, 50, 20, 0, 0, Math.PI * 2);
+        g.fill();
+
+        const tex = new THREE.CanvasTexture(c);
+        tex.mapping = THREE.EquirectangularReflectionMapping;
+        const pmrem = new THREE.PMREMGenerator(renderer);
+        const env = pmrem.fromEquirectangular(tex).texture;
+        pmrem.dispose();
+        tex.dispose();
+        return env;
+    }
+
+    // ── Helper: Soft Circular Glow Sprite Texture ──
+    function makeSoftGlowTexture() {
+        const c = document.createElement('canvas');
+        c.width = 64;
+        c.height = 64;
+        const ctx = c.getContext('2d');
+        const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+        grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+        grad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+        grad.addColorStop(0.5, 'rgba(165, 180, 252, 0.35)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, 64, 64);
+        return new THREE.CanvasTexture(c);
+    }
+
+    // ── Relic Geometry Factories (Faceted Gemstones from App Spec) ──
+    function makeStarSparkGeometry(radius) {
+        const rings = [
+            { y: 1.0, r: 0.0 },
+            { y: 0.0, r: 0.65 },
+            { y: -1.0, r: 0.0 }
+        ];
+        return latheFacetGeometry(rings, 4, radius);
+    }
+
+    function latheFacetGeometry(rings, sides, radius) {
+        const pos = [];
+        const push = (a, b, c) => { pos.push(a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]); };
+        const vert = (ring, i) => {
+            const ang = (i / sides) * Math.PI * 2;
+            return [Math.cos(ang) * ring.r, ring.y, Math.sin(ang) * ring.r];
+        };
+
+        if (rings[0].r > 0) {
+            const center = [0, rings[0].y, 0];
+            for (let i = 0; i < sides; i++) {
+                push(center, vert(rings[0], (i + 1) % sides), vert(rings[0], i));
+            }
+        }
+
+        for (let s = 0; s < rings.length - 1; s++) {
+            for (let i = 0; i < sides; i++) {
+                const j = (i + 1) % sides;
+                const a = vert(rings[s], i), b = vert(rings[s], j);
+                const c = vert(rings[s + 1], i), d = vert(rings[s + 1], j);
+                if (rings[s].r === 0) push(a, d, c);
+                else if (rings[s + 1].r === 0) push(a, b, c);
+                else { push(a, b, c); push(b, d, c); }
+            }
+        }
+
+        const maxR = Math.max(...rings.map(r => Math.hypot(r.r, r.y)));
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+        geo.computeVertexNormals();
+        geo.scale(radius / maxR, radius / maxR, radius / maxR);
+        geo.computeBoundingSphere();
+        return geo;
+    }
+
+    function makeHexGemGeometry(radius) {
+        const s = radius / Math.hypot(0.7, 0.7);
+        const geo = new THREE.CylinderGeometry(0.4 * s, 0.7 * s, 1.4 * s, 6).toNonIndexed();
+        geo.computeVertexNormals();
+        geo.computeBoundingSphere();
+        return geo;
+    }
+
+    function makeCoinGeometry(radius) {
+        const geo = new THREE.CylinderGeometry(radius * 0.95, radius * 0.95, radius * 0.22, 24, 1);
+        geo.rotateX(Math.PI / 2);
+        return geo;
+    }
+
+    function makeCoinFaceRingGeometry(radius) {
+        const front = new THREE.RingGeometry(radius * 0.5, radius * 0.62, 24).toNonIndexed();
+        const back = front.clone();
+        front.translate(0, 0, radius * 0.115);
+        back.translate(0, 0, -radius * 0.115);
+
+        const merged = new THREE.BufferGeometry();
+        for (const name of ['position', 'normal', 'uv']) {
+            const a = front.getAttribute(name), b = back.getAttribute(name);
+            if (!a || !b) continue;
+            const arr = new Float32Array(a.array.length + b.array.length);
+            arr.set(a.array, 0);
+            arr.set(b.array, a.array.length);
+            merged.setAttribute(name, new THREE.BufferAttribute(arr, a.itemSize));
+        }
+        merged.computeBoundingSphere();
+        return merged;
+    }
 
     class CosmicFullPageUniverse {
         constructor() {
@@ -33,25 +157,26 @@
             this.clock = new THREE.Clock();
             this.mascots = {};
             this.floatingMarbles = [];
+            this.pointLights = [];
             this.soundEnabled = true;
             this.audioCtx = null;
 
             // Camera Waypoints along the scroll journey [scrollProgress 0.0 -> 1.0]
             this.cameraWaypoints = [
-                // 0. Hero (Scroll 0.00) - Wide Nexus View
-                { progress: 0.00, cam: new THREE.Vector3(0, 3.5, 18), lookAt: new THREE.Vector3(0, 0.5, 0) },
+                // 0. Hero (Scroll 0.00) - Wide Panoramic Nexus
+                { progress: 0.00, cam: new THREE.Vector3(0, 3.8, 17.5), lookAt: new THREE.Vector3(0, 0.8, 0) },
                 // 1. Case Studies (Scroll 0.18) - Phoenix Realm (Right side focus)
-                { progress: 0.18, cam: new THREE.Vector3(1.5, -6.0, 7.5), lookAt: new THREE.Vector3(3.8, -7.5, -3.5) },
-                // 2. Product Pipeline / Flow Link (Scroll 0.36) - Celestial Bridge & Orbs (Left side focus)
-                { progress: 0.36, cam: new THREE.Vector3(-1.2, -14.5, 8.0), lookAt: new THREE.Vector3(-4.0, -16.0, -3.5) },
+                { progress: 0.18, cam: new THREE.Vector3(1.6, -6.0, 7.2), lookAt: new THREE.Vector3(4.0, -7.5, -3.5) },
+                // 2. Product Pipeline / Flow Link (Scroll 0.36) - Celestial Bridge & 5 Relic Orbs (Left side focus)
+                { progress: 0.36, cam: new THREE.Vector3(-1.4, -14.2, 7.8), lookAt: new THREE.Vector3(-4.2, -15.8, -3.2) },
                 // 3. Services & ROI (Scroll 0.54) - Piggy Bank Realm (Right side focus)
-                { progress: 0.54, cam: new THREE.Vector3(1.6, -23.0, 7.5), lookAt: new THREE.Vector3(4.0, -24.5, -3.5) },
+                { progress: 0.54, cam: new THREE.Vector3(1.8, -22.8, 7.2), lookAt: new THREE.Vector3(4.2, -24.5, -3.5) },
                 // 4. Cloud Architecture & Security (Scroll 0.72) - Stash & Turtle (Left side focus)
-                { progress: 0.72, cam: new THREE.Vector3(-1.5, -31.5, 8.0), lookAt: new THREE.Vector3(-4.2, -33.0, -3.5) },
+                { progress: 0.72, cam: new THREE.Vector3(-1.6, -31.2, 7.8), lookAt: new THREE.Vector3(-4.4, -32.8, -3.5) },
                 // 5. Tech Insights & Resources (Scroll 0.88) - Owl Realm (Right side focus)
-                { progress: 0.88, cam: new THREE.Vector3(1.4, -40.0, 7.8), lookAt: new THREE.Vector3(3.8, -41.5, -3.0) },
+                { progress: 0.88, cam: new THREE.Vector3(1.5, -39.8, 7.5), lookAt: new THREE.Vector3(4.0, -41.5, -3.0) },
                 // 6. Estimation & Contact (Scroll 1.00) - Grand Cosmic Beacon (Center focus)
-                { progress: 1.00, cam: new THREE.Vector3(0, -47.5, 9.0), lookAt: new THREE.Vector3(0, -50.0, -4.5) }
+                { progress: 1.00, cam: new THREE.Vector3(0, -47.0, 8.8), lookAt: new THREE.Vector3(0, -49.8, -4.2) }
             ];
 
             this.currentCamPos = new THREE.Vector3().copy(this.cameraWaypoints[0].cam);
@@ -63,7 +188,7 @@
         init() {
             // 1. Scene, Camera, Renderer
             this.scene = new THREE.Scene();
-            this.scene.fog = new THREE.FogExp2(0x030712, 0.018);
+            this.scene.fog = new THREE.FogExp2(0x030712, 0.015);
 
             const width = window.innerWidth;
             const height = window.innerHeight;
@@ -80,60 +205,86 @@
             this.renderer.setSize(width, height);
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
             this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            this.renderer.toneMappingExposure = 1.2;
+            this.renderer.toneMappingExposure = 1.35;
 
-            // 2. Dynamic Cosmic Lighting
+            // 2. High-End Equirectangular Reflection Map
+            this.envMap = makeOrbEnvMap(this.renderer, [
+                [0.00, '#ffffff'],
+                [0.25, '#c7d2fe'],
+                [0.55, '#38bdf8'],
+                [0.80, '#1e1b4b'],
+                [1.00, '#030712']
+            ]);
+            this.scene.environment = this.envMap;
+
+            // 3. Dynamic Cosmic 3-Point Lighting + Realm Point Lights
             this.initLighting();
 
-            // 3. Starfield & Cosmic Dust Clouds
+            // 4. Starfield & Cosmic Dust Clouds
             this.initCosmicEnvironment();
 
-            // 4. Build Mascots along the spatial path
+            // 5. Build Mascots along the spatial path
             this.buildMascots();
 
-            // 5. Build Floating Physical Crystal Marbles
+            // 6. Build High-Dimensional Floating Physical Crystal Marbles
             this.buildFloatingMarbles();
 
-            // 6. Build Celestial Bridge & Orbit Pathways
+            // 7. Build Celestial Highway & Orbit Pathways
             this.buildCosmicHighways();
 
-            // 7. Bind Scroll & Interaction Events
+            // 8. Bind Scroll & Interaction Events
             this.bindEvents();
 
-            // 8. Animation Loop
+            // 9. Animation Loop
             this.animate = this.animate.bind(this);
             requestAnimationFrame(this.animate);
         }
 
         initLighting() {
-            // Ambient light for soft depth
-            const ambient = new THREE.AmbientLight(0xdbeafe, 1.3);
+            // Ambient soft fill for shadow detail
+            const ambient = new THREE.AmbientLight(0xdbeafe, 1.2);
             this.scene.add(ambient);
 
-            // Primary Sun/Nebula Light
-            const mainLight = new THREE.DirectionalLight(0xffffff, 2.0);
-            mainLight.position.set(15, 25, 20);
-            this.scene.add(mainLight);
+            // Primary Sun/Nebula Directional Light (Crisp Key Light with Specular)
+            const sunLight = new THREE.DirectionalLight(0xffffff, 2.6);
+            sunLight.position.set(20, 32, 25);
+            this.scene.add(sunLight);
 
-            // Cyan Secondary Rim Light
-            const cyanLight = new THREE.DirectionalLight(0x38bdf8, 1.4);
-            cyanLight.position.set(-20, -10, -15);
-            this.scene.add(cyanLight);
+            // Cyan Secondary Rim Light (Edges & Silhouettes)
+            const cyanRim = new THREE.DirectionalLight(0x38bdf8, 1.8);
+            cyanRim.position.set(-25, -12, -18);
+            this.scene.add(cyanRim);
 
-            // Purple Deep Space Fill
-            const purpleLight = new THREE.DirectionalLight(0xa855f7, 1.2);
-            purpleLight.position.set(10, -35, 15);
-            this.scene.add(purpleLight);
+            // Purple Deep Space Fill Light
+            const purpleFill = new THREE.DirectionalLight(0xa855f7, 1.6);
+            purpleFill.position.set(15, -40, 15);
+            this.scene.add(purpleFill);
 
-            // Golden Warm Beacon Light
-            const goldLight = new THREE.DirectionalLight(0xf59e0b, 1.3);
-            goldLight.position.set(-10, -50, 10);
-            this.scene.add(goldLight);
+            // Warm Amber Under-Light
+            const amberUnder = new THREE.DirectionalLight(0xf59e0b, 1.4);
+            amberUnder.position.set(-15, -55, 12);
+            this.scene.add(amberUnder);
+
+            // Local Point Lights on Key Mascots
+            const addPointLight = (color, intensity, x, y, z, dist = 14) => {
+                const pl = new THREE.PointLight(color, intensity, dist, 1.8);
+                pl.position.set(x, y, z);
+                this.scene.add(pl);
+                this.pointLights.push(pl);
+            };
+
+            addPointLight(0xF97316, 2.5, 4.2, -7.5, -2.5);   // Phoenix Flame
+            addPointLight(0xEC4899, 2.2, 4.5, -24.5, -2.5);  // Piggy Gold/Pink
+            addPointLight(0x10B981, 2.2, -3.6, -32.5, -2.5); // Turtle Emerald
+            addPointLight(0x8B5CF6, 2.4, 4.0, -41.5, -2.0);  // Owl Amethyst
+            addPointLight(0x6366F1, 3.5, 0, -50.0, -3.0, 18); // Beacon Core
         }
 
         initCosmicEnvironment() {
-            // Starfield (2,500 Multi-hued stars spanning full scroll depth)
-            const starCount = 2500;
+            const glowTex = makeSoftGlowTexture();
+
+            // Starfield (2,600 Multi-hued stars spanning full scroll depth)
+            const starCount = 2600;
             const starGeo = new THREE.BufferGeometry();
             const positions = new Float32Array(starCount * 3);
             const colors = new Float32Array(starCount * 3);
@@ -149,43 +300,46 @@
 
             for (let i = 0; i < starCount; i++) {
                 const i3 = i * 3;
-                // Distribute stars in a tall cylinder around our scroll journey (y from 10 to -70)
-                const radius = 12 + Math.random() * 50;
+                const radius = 12 + Math.random() * 55;
                 const theta = Math.random() * Math.PI * 2;
                 positions[i3] = radius * Math.cos(theta);
-                positions[i3 + 1] = 12 - (Math.random() * 80); // Y axis span
+                positions[i3 + 1] = 14 - (Math.random() * 85);
                 positions[i3 + 2] = radius * Math.sin(theta);
 
                 const c = palette[Math.floor(Math.random() * palette.length)];
-                colors[i3] = c.r;
-                colors[i3 + 1] = c.g;
-                colors[i3 + 2] = c.b;
+                const brightness = 0.6 + Math.random() * 0.4;
+                colors[i3] = c.r * brightness;
+                colors[i3 + 1] = c.g * brightness;
+                colors[i3 + 2] = c.b * brightness;
             }
 
             starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
             starGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
             const starMat = new THREE.PointsMaterial({
-                size: 0.24,
+                size: 0.32,
+                map: glowTex,
                 vertexColors: true,
                 transparent: true,
-                opacity: 0.85
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
             });
 
             this.starfield = new THREE.Points(starGeo, starMat);
             this.scene.add(this.starfield);
 
             // Glowing Cosmic Nebula Dust Particles
-            const nebulaCount = 180;
+            const nebulaCount = 220;
             const nebulaGeo = new THREE.BufferGeometry();
             const nebulaPos = new Float32Array(nebulaCount * 3);
             const nebulaColors = new Float32Array(nebulaCount * 3);
 
             for (let i = 0; i < nebulaCount; i++) {
                 const i3 = i * 3;
-                nebulaPos[i3] = (Math.random() - 0.5) * 35;
-                nebulaPos[i3 + 1] = 10 - (Math.random() * 70);
-                nebulaPos[i3 + 2] = (Math.random() - 0.5) * 30;
+                nebulaPos[i3] = (Math.random() - 0.5) * 36;
+                nebulaPos[i3 + 1] = 12 - (Math.random() * 75);
+                nebulaPos[i3 + 2] = (Math.random() - 0.5) * 32;
 
                 const c = palette[i % palette.length];
                 nebulaColors[i3] = c.r;
@@ -197,11 +351,13 @@
             nebulaGeo.setAttribute('color', new THREE.BufferAttribute(nebulaColors, 3));
 
             const nebulaMat = new THREE.PointsMaterial({
-                size: 0.9,
+                size: 1.4,
+                map: glowTex,
                 vertexColors: true,
                 transparent: true,
-                opacity: 0.55,
-                blending: THREE.AdditiveBlending
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
             });
 
             this.nebulaPoints = new THREE.Points(nebulaGeo, nebulaMat);
@@ -249,14 +405,17 @@
         createPhoenixMesh() {
             const group = new THREE.Group();
 
-            // Golden Amber Flame Body
+            // Golden Amber Flame Body with High Specular & Clearcoat
             const bodyMat = new THREE.MeshPhysicalMaterial({
                 color: 0xF97316,
                 emissive: 0xEA580C,
-                emissiveIntensity: 0.45,
-                roughness: 0.15,
-                metalness: 0.1,
+                emissiveIntensity: 0.5,
+                roughness: 0.12,
+                metalness: 0.15,
                 clearcoat: 1.0,
+                clearcoatRoughness: 0.08,
+                envMap: this.envMap,
+                envMapIntensity: 2.2,
                 transmission: 0.25
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.35, 32, 32), bodyMat);
@@ -275,7 +434,7 @@
             group.userData.wingR = wingR;
 
             // Golden Beak
-            const beakMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.2, clearcoat: 0.9 });
+            const beakMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.15, clearcoat: 1.0, envMap: this.envMap, envMapIntensity: 2.0 });
             const beak = new THREE.Mesh(new THREE.ConeGeometry(0.26, 0.6, 16), beakMat);
             beak.rotation.x = Math.PI / 2;
             beak.position.set(0, 0.05, 1.4);
@@ -291,20 +450,27 @@
             group.add(eyeL, eyeR);
 
             // Blush Cheeks
-            const cheekMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.45 });
+            const cheekMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.5 });
             const cheekL = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), cheekMat);
             cheekL.position.set(-0.8, 0.05, 1.1);
             const cheekR = cheekL.clone();
             cheekR.position.x = 0.8;
             group.add(cheekL, cheekR);
 
-            // Constellation Orbit Ring
-            const ringGeo = new THREE.RingGeometry(2.1, 2.35, 64);
-            const ringMat = new THREE.MeshBasicMaterial({ color: 0xFBBF24, side: THREE.DoubleSide, transparent: true, opacity: 0.35 });
-            const ring = new THREE.Mesh(ringGeo, ringMat);
-            ring.rotation.x = Math.PI / 2.2;
-            group.add(ring);
-            group.userData.ring = ring;
+            // Double Constellation Orbit Rings
+            const ringGeo1 = new THREE.RingGeometry(2.1, 2.35, 64);
+            const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xFBBF24, side: THREE.DoubleSide, transparent: true, opacity: 0.45 });
+            const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
+            ring1.rotation.x = Math.PI / 2.2;
+            group.add(ring1);
+
+            const ringGeo2 = new THREE.RingGeometry(2.6, 2.75, 64);
+            const ringMat2 = new THREE.MeshBasicMaterial({ color: 0xFB923C, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
+            const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
+            ring2.rotation.y = Math.PI / 3;
+            group.add(ring2);
+            group.userData.ring = ring1;
+            group.userData.ring2 = ring2;
 
             return group;
         }
@@ -312,14 +478,17 @@
         createPiggyMesh() {
             const group = new THREE.Group();
 
-            // Glossy Pinkish-Gold Body
+            // Glossy Pinkish-Gold Claymorphic Body
             const bodyMat = new THREE.MeshPhysicalMaterial({
                 color: 0xF472B6,
                 emissive: 0xDB2777,
                 emissiveIntensity: 0.35,
-                roughness: 0.2,
+                roughness: 0.15,
                 metalness: 0.25,
-                clearcoat: 0.95
+                clearcoat: 1.0,
+                clearcoatRoughness: 0.05,
+                envMap: this.envMap,
+                envMapIntensity: 2.2
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.4, 32, 32), bodyMat);
             group.add(body);
@@ -337,7 +506,7 @@
             group.userData.earR = earR;
 
             // Snout
-            const snoutMat = new THREE.MeshPhysicalMaterial({ color: 0xFDF2F8, roughness: 0.3, emissive: 0xFDF2F8, emissiveIntensity: 0.25 });
+            const snoutMat = new THREE.MeshPhysicalMaterial({ color: 0xFDF2F8, roughness: 0.2, emissive: 0xFDF2F8, emissiveIntensity: 0.3, clearcoat: 0.9 });
             const snout = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.3, 24), snoutMat);
             snout.rotation.x = Math.PI / 2;
             snout.position.set(0, -0.05, 1.4);
@@ -358,14 +527,28 @@
             eyeR.position.x = 0.5;
             group.add(eyeL, eyeR);
 
-            // Floating Golden Coins Orbiting
-            const coinMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, metalness: 0.9, roughness: 0.15, clearcoat: 1.0 });
+            // Orbiting Embossed Golden Coins with Inlay Rings
+            const coinMat = new THREE.MeshPhysicalMaterial({
+                color: 0xFBBF24,
+                metalness: 0.95,
+                roughness: 0.1,
+                clearcoat: 1.0,
+                envMap: this.envMap,
+                envMapIntensity: 2.8
+            });
+            const ringMat = new THREE.MeshBasicMaterial({ color: 0xFFFBEB, side: THREE.DoubleSide });
+
             const coinsGroup = new THREE.Group();
-            for (let i = 0; i < 3; i++) {
-                const coin = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.35, 0.06, 24), coinMat);
-                coin.position.set(Math.cos(i * 2.09) * 2.2, 0.6 + Math.sin(i) * 0.4, Math.sin(i * 2.09) * 2.2);
-                coin.rotation.x = Math.PI / 3;
-                coinsGroup.add(coin);
+            for (let i = 0; i < 4; i++) {
+                const singleCoinGroup = new THREE.Group();
+                const coin = new THREE.Mesh(makeCoinGeometry(0.45), coinMat);
+                const coinRing = new THREE.Mesh(makeCoinFaceRingGeometry(0.45), ringMat);
+                singleCoinGroup.add(coin, coinRing);
+
+                const angle = i * (Math.PI / 2);
+                singleCoinGroup.position.set(Math.cos(angle) * 2.3, 0.5 + Math.sin(i) * 0.4, Math.sin(angle) * 2.3);
+                singleCoinGroup.rotation.x = Math.PI / 3;
+                coinsGroup.add(singleCoinGroup);
             }
             group.add(coinsGroup);
             group.userData.coinsGroup = coinsGroup;
@@ -381,8 +564,10 @@
                 color: 0x62BE96,
                 emissive: 0x34D399,
                 emissiveIntensity: 0.35,
-                roughness: 0.25,
-                clearcoat: 0.85
+                roughness: 0.2,
+                clearcoat: 0.9,
+                envMap: this.envMap,
+                envMapIntensity: 1.8
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.2, 32, 24), skinMat);
             body.scale.set(1.15, 0.65, 1.25);
@@ -416,11 +601,13 @@
             const shellMat = new THREE.MeshPhysicalMaterial({
                 color: 0x10B981,
                 emissive: 0x059669,
-                emissiveIntensity: 0.4,
-                transmission: 0.8,
-                roughness: 0.08,
-                ior: 1.55,
-                clearcoat: 1.0
+                emissiveIntensity: 0.45,
+                transmission: 0.85,
+                roughness: 0.05,
+                ior: 1.58,
+                clearcoat: 1.0,
+                envMap: this.envMap,
+                envMapIntensity: 2.5
             });
             const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1.05, 1), shellMat);
             shell.position.set(0, 0.5, -0.05);
@@ -428,7 +615,7 @@
             group.add(shell);
 
             // Glowing Diamond Hearth
-            const houseMat = new THREE.MeshPhysicalMaterial({ color: 0xFDE047, emissive: 0xF59E0B, emissiveIntensity: 0.7 });
+            const houseMat = new THREE.MeshPhysicalMaterial({ color: 0xFDE047, emissive: 0xF59E0B, emissiveIntensity: 0.8, clearcoat: 1.0 });
             const houseBase = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.35, 0.45), houseMat);
             houseBase.position.set(0, 1.15, -0.05);
             const houseRoof = new THREE.Mesh(new THREE.ConeGeometry(0.4, 0.32, 4), houseMat);
@@ -442,8 +629,8 @@
         createVaultMesh() {
             const group = new THREE.Group();
 
-            const chestMat = new THREE.MeshPhysicalMaterial({ color: 0x78350F, roughness: 0.35, metalness: 0.4, clearcoat: 0.7 });
-            const goldTrimMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, metalness: 0.9, roughness: 0.15, clearcoat: 1.0 });
+            const chestMat = new THREE.MeshPhysicalMaterial({ color: 0x78350F, roughness: 0.3, metalness: 0.45, clearcoat: 0.8, envMap: this.envMap });
+            const goldTrimMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, metalness: 0.95, roughness: 0.1, clearcoat: 1.0, envMap: this.envMap, envMapIntensity: 2.8 });
             const runeGlowMat = new THREE.MeshBasicMaterial({ color: 0x38BDF8 });
 
             const base = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.85, 1.15), chestMat);
@@ -474,22 +661,24 @@
             const featherMat = new THREE.MeshPhysicalMaterial({
                 color: 0x7C3AED,
                 emissive: 0x5B21B6,
-                emissiveIntensity: 0.4,
-                roughness: 0.2,
-                clearcoat: 0.85
+                emissiveIntensity: 0.45,
+                roughness: 0.15,
+                clearcoat: 0.9,
+                envMap: this.envMap,
+                envMapIntensity: 2.0
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.25, 32, 32), featherMat);
             group.add(body);
 
             // Breast
-            const breastMat = new THREE.MeshPhysicalMaterial({ color: 0xEDE9FE, roughness: 0.4 });
+            const breastMat = new THREE.MeshPhysicalMaterial({ color: 0xEDE9FE, roughness: 0.35, clearcoat: 0.8 });
             const breast = new THREE.Mesh(new THREE.SphereGeometry(0.9, 24, 24), breastMat);
             breast.position.set(0, -0.25, 0.6);
             breast.scale.set(0.9, 1.1, 0.65);
             group.add(breast);
 
             // Large Glowing Wise Eyes
-            const eyeFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.2, clearcoat: 1.0 });
+            const eyeFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.15, clearcoat: 1.0, envMap: this.envMap, envMapIntensity: 2.5 });
             const eyeFrameL = new THREE.Mesh(new THREE.TorusGeometry(0.4, 0.08, 16, 24), eyeFrameMat);
             eyeFrameL.position.set(-0.48, 0.48, 1.02);
             const eyeFrameR = eyeFrameL.clone();
@@ -511,7 +700,7 @@
             group.add(beak);
 
             // Perch Book
-            const bookMat = new THREE.MeshPhysicalMaterial({ color: 0x1E1B4B, roughness: 0.3 });
+            const bookMat = new THREE.MeshPhysicalMaterial({ color: 0x1E1B4B, roughness: 0.25, clearcoat: 0.9 });
             const book = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.26, 1.3), bookMat);
             book.position.set(0, -1.3, 0);
             const bookPages = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.2, 1.2), new THREE.MeshBasicMaterial({ color: 0xFEF3C7 }));
@@ -528,11 +717,13 @@
             const coreMat = new THREE.MeshPhysicalMaterial({
                 color: 0x818cf8,
                 emissive: 0x6366f1,
-                emissiveIntensity: 2.0,
-                roughness: 0.1,
+                emissiveIntensity: 2.5,
+                roughness: 0.08,
                 metalness: 0.2,
-                transmission: 0.7,
-                clearcoat: 1.0
+                transmission: 0.75,
+                clearcoat: 1.0,
+                envMap: this.envMap,
+                envMapIntensity: 2.8
             });
             const core = new THREE.Mesh(new THREE.SphereGeometry(1.6, 32, 32), coreMat);
             group.add(core);
@@ -543,7 +734,7 @@
             const beamMat = new THREE.MeshBasicMaterial({
                 color: 0x6366F1,
                 transparent: true,
-                opacity: 0.25,
+                opacity: 0.3,
                 side: THREE.DoubleSide,
                 blending: THREE.AdditiveBlending,
                 depthWrite: false
@@ -559,7 +750,7 @@
                     color: i === 0 ? 0x60a5fa : (i === 1 ? 0xc084fc : 0x34d399),
                     side: THREE.DoubleSide,
                     transparent: true,
-                    opacity: 0.4
+                    opacity: 0.45
                 });
                 const ring = new THREE.Mesh(ringGeo, ringMat);
                 ring.rotation.x = Math.PI / 2 + (i * 0.15);
@@ -570,63 +761,94 @@
             return group;
         }
 
+        // ── 💎 4-Layer High-Dimensional Physical Crystal Planet Marbles ──
         buildFloatingMarbles() {
             const marbleConfigs = [
-                // Hero Nexus Marbles
-                { pos: new THREE.Vector3(-4.5, 2.5, 4), color: 0xF97316, relic: 'star', scale: 0.75 },
-                { pos: new THREE.Vector3(5.0, 1.8, 3), color: 0xEC4899, relic: 'coin', scale: 0.8 },
-                { pos: new THREE.Vector3(-3.8, -1.5, 5), color: 0x10B981, relic: 'gem', scale: 0.65 },
-                { pos: new THREE.Vector3(4.2, -3.2, 4), color: 0x8B5CF6, relic: 'octa', scale: 0.7 },
-                // Pipeline Celestial Marbles (Section 2 - Y: -16.0)
-                { pos: new THREE.Vector3(-5.5, -14.5, -2.5), color: 0xF97316, relic: 'star', scale: 0.9 },
-                { pos: new THREE.Vector3(-3.2, -15.2, -1.8), color: 0xEC4899, relic: 'coin', scale: 0.85 },
-                { pos: new THREE.Vector3(-6.2, -16.8, -2.2), color: 0x10B981, relic: 'gem', scale: 0.95 },
-                { pos: new THREE.Vector3(-4.0, -17.5, -3.0), color: 0xF59E0B, relic: 'cube', scale: 0.85 },
-                { pos: new THREE.Vector3(-5.8, -18.2, -1.5), color: 0x8B5CF6, relic: 'octa', scale: 0.9 },
-                // Deep Path Marbles
-                { pos: new THREE.Vector3(5.2, -30.0, 1.0), color: 0x38BDF8, relic: 'gem', scale: 0.7 },
-                { pos: new THREE.Vector3(-4.8, -44.0, 1.5), color: 0xA855F7, relic: 'star', scale: 0.75 }
+                // 1. Hero Nexus Marbles
+                { pos: new THREE.Vector3(-4.6, 2.6, 4), color: 0xF97316, relic: 'star', scale: 0.9 },
+                { pos: new THREE.Vector3(5.2, 1.9, 3), color: 0xEC4899, relic: 'coin', scale: 0.95 },
+                { pos: new THREE.Vector3(-3.8, -1.5, 5), color: 0x10B981, relic: 'hexGem', scale: 0.85 },
+                { pos: new THREE.Vector3(4.4, -3.2, 4), color: 0x8B5CF6, relic: 'icosa', scale: 0.88 },
+                // 2. Section 2 Pipeline (5 Sacred Celestial Orbs - Y: -15.8)
+                { pos: new THREE.Vector3(-5.8, -14.2, -2.5), color: 0xF97316, relic: 'star', scale: 1.05 },
+                { pos: new THREE.Vector3(-3.4, -15.0, -1.8), color: 0xEC4899, relic: 'coin', scale: 1.0 },
+                { pos: new THREE.Vector3(-6.4, -16.2, -2.2), color: 0x10B981, relic: 'hexGem', scale: 1.1 },
+                { pos: new THREE.Vector3(-4.0, -17.2, -3.0), color: 0xF59E0B, relic: 'icosa', scale: 1.0 },
+                { pos: new THREE.Vector3(-5.9, -18.0, -1.5), color: 0x8B5CF6, relic: 'star', scale: 1.05 },
+                // 3. Deep Path Marbles
+                { pos: new THREE.Vector3(5.2, -30.0, 1.0), color: 0x38BDF8, relic: 'hexGem', scale: 0.85 },
+                { pos: new THREE.Vector3(-4.8, -44.0, 1.5), color: 0xA855F7, relic: 'icosa', scale: 0.9 }
             ];
 
             marbleConfigs.forEach(cfg => {
                 const group = new THREE.Group();
 
-                // 1. Crystal Glass Shell with Transmission
+                // Layer 1: Outer Crystal Glass Shell with Transmission & Specular Reflections
                 const glassMat = new THREE.MeshPhysicalMaterial({
                     color: cfg.color,
-                    transmission: 0.94,
-                    opacity: 1.0,
+                    transmission: 0.93,
+                    opacity: 0.98,
                     transparent: true,
-                    roughness: 0.04,
-                    ior: 1.52,
+                    roughness: 0.03,
+                    ior: 1.54,
                     clearcoat: 1.0,
+                    clearcoatRoughness: 0.04,
+                    specularColor: 0xffffff,
+                    specularIntensity: 1.6,
                     emissive: cfg.color,
-                    emissiveIntensity: 0.22
+                    emissiveIntensity: 0.22,
+                    envMap: this.envMap,
+                    envMapIntensity: 2.8
                 });
-                const shell = new THREE.Mesh(new THREE.SphereGeometry(cfg.scale, 32, 32), glassMat);
+                const shell = new THREE.Mesh(new THREE.SphereGeometry(cfg.scale, 36, 36), glassMat);
                 group.add(shell);
 
-                // 2. Inner Floating Relic
+                // Layer 2: Outer Atmospheric Corona Ring
+                const ringGeo = new THREE.RingGeometry(cfg.scale * 1.18, cfg.scale * 1.35, 48);
+                const ringMat = new THREE.MeshBasicMaterial({
+                    color: cfg.color,
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.38
+                });
+                const atmosphereRing = new THREE.Mesh(ringGeo, ringMat);
+                atmosphereRing.rotation.x = Math.PI / 2.3;
+                group.add(atmosphereRing);
+
+                // Layer 3: Inner Faceted 3D Relic Jewel
                 let relicGeo;
-                if (cfg.relic === 'star') relicGeo = new THREE.IcosahedronGeometry(cfg.scale * 0.42, 0);
-                else if (cfg.relic === 'coin') relicGeo = new THREE.CylinderGeometry(cfg.scale * 0.42, cfg.scale * 0.42, 0.08, 16);
-                else if (cfg.relic === 'gem') relicGeo = new THREE.OctahedronGeometry(cfg.scale * 0.45, 0);
-                else if (cfg.relic === 'cube') relicGeo = new THREE.BoxGeometry(cfg.scale * 0.45, cfg.scale * 0.45, cfg.scale * 0.45);
-                else relicGeo = new THREE.DodecahedronGeometry(cfg.scale * 0.42, 0);
+                if (cfg.relic === 'star') relicGeo = makeStarSparkGeometry(cfg.scale * 0.48);
+                else if (cfg.relic === 'coin') relicGeo = makeCoinGeometry(cfg.scale * 0.46);
+                else if (cfg.relic === 'hexGem') relicGeo = makeHexGemGeometry(cfg.scale * 0.48);
+                else relicGeo = new THREE.IcosahedronGeometry(cfg.scale * 0.46, 0);
 
                 const relicMat = new THREE.MeshPhysicalMaterial({
                     color: 0xffffff,
                     emissive: cfg.color,
                     emissiveIntensity: 1.4,
-                    metalness: 0.8,
-                    roughness: 0.1
+                    metalness: 0.85,
+                    roughness: 0.1,
+                    clearcoat: 1.0,
+                    envMap: this.envMap,
+                    envMapIntensity: 2.5
                 });
                 const relic = new THREE.Mesh(relicGeo, relicMat);
                 group.add(relic);
                 group.userData.relic = relic;
 
+                // Layer 4: Inner Core Star Sparkle
+                const innerCoreGeo = new THREE.SphereGeometry(cfg.scale * 0.18, 16, 16);
+                const innerCoreMat = new THREE.MeshBasicMaterial({
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.95
+                });
+                const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
+                group.add(innerCore);
+
                 group.position.copy(cfg.pos);
                 group.userData.basePos = new THREE.Vector3().copy(cfg.pos);
+                group.userData.ring = atmosphereRing;
 
                 this.floatingMarbles.push(group);
                 this.scene.add(group);
@@ -639,7 +861,7 @@
             for (let i = 0; i <= 24; i++) {
                 const t = i / 24;
                 const angle = t * Math.PI * 4;
-                const radius = 6.5 + Math.sin(t * Math.PI * 3) * 1.5;
+                const radius = 6.8 + Math.sin(t * Math.PI * 3) * 1.5;
                 const x = Math.sin(angle) * radius;
                 const y = 5 - (t * 58);
                 const z = Math.cos(angle) * radius;
@@ -647,11 +869,11 @@
             }
 
             const curve = new THREE.CatmullRomCurve3(curvePoints);
-            const tubeGeo = new THREE.TubeGeometry(curve, 128, 0.06, 8, false);
+            const tubeGeo = new THREE.TubeGeometry(curve, 128, 0.07, 8, false);
             const tubeMat = new THREE.MeshBasicMaterial({
                 color: 0x6366F1,
                 transparent: true,
-                opacity: 0.22
+                opacity: 0.28
             });
             const highway = new THREE.Mesh(tubeGeo, tubeMat);
             this.scene.add(highway);
@@ -710,7 +932,6 @@
         }
 
         interpolateCamera(progress) {
-            // Find current waypoint segment
             const waypoints = this.cameraWaypoints;
             let i = 0;
             while (i < waypoints.length - 1 && waypoints[i + 1].progress < progress) {
@@ -721,16 +942,14 @@
             const p1 = waypoints[Math.min(i + 1, waypoints.length - 1)];
 
             const segmentProgress = (p1.progress === p0.progress) ? 0 : (progress - p0.progress) / (p1.progress - p0.progress);
-            const easeProgress = 0.5 - 0.5 * Math.cos(segmentProgress * Math.PI); // Smooth cosine ease
+            const easeProgress = 0.5 - 0.5 * Math.cos(segmentProgress * Math.PI);
 
             const targetCam = new THREE.Vector3().lerpVectors(p0.cam, p1.cam, easeProgress);
             const targetLook = new THREE.Vector3().lerpVectors(p0.lookAt, p1.lookAt, easeProgress);
 
-            // Apply Mouse Parallax offset
-            targetCam.x += this.mouse.x * 0.8;
-            targetCam.y += -this.mouse.y * 0.5;
+            targetCam.x += this.mouse.x * 0.85;
+            targetCam.y += -this.mouse.y * 0.55;
 
-            // Smoothly interpolate current camera position and lookAt
             this.currentCamPos.lerp(targetCam, 0.08);
             this.currentLookAt.lerp(targetLook, 0.08);
 
@@ -744,12 +963,11 @@
             const delta = this.clock.getDelta();
             const time = this.clock.getElapsedTime();
 
-            // Smooth Scroll Progress Interpolation
+            // Smooth Scroll Progress & Mouse Parallax Interpolation
             this.scrollProgress += (this.targetScrollProgress - this.scrollProgress) * 0.07;
             this.mouse.x += (this.mouse.targetX - this.mouse.x) * 0.05;
             this.mouse.y += (this.mouse.targetY - this.mouse.y) * 0.05;
 
-            // Update Camera Position along Spline
             this.interpolateCamera(this.scrollProgress);
 
             // Mascots Idle Animations
@@ -758,6 +976,7 @@
                 this.mascots.phoenix.position.y = base.y + Math.sin(time * 2.8) * 0.2;
                 this.mascots.phoenix.rotation.y = Math.sin(time * 1.2) * 0.25;
                 if (this.mascots.phoenix.userData.ring) this.mascots.phoenix.userData.ring.rotation.z += 0.02;
+                if (this.mascots.phoenix.userData.ring2) this.mascots.phoenix.userData.ring2.rotation.z -= 0.015;
             }
 
             if (this.mascots.piggy) {
@@ -790,13 +1009,16 @@
                 this.mascots.beacon.userData.core.scale.set(s, s, s);
             }
 
-            // Floating Marbles Bobbing & Relic Spin
+            // 💎 Floating Marbles Multi-Layer Animation (Bobbing, Relic Spin, Atmosphere Rings)
             this.floatingMarbles.forEach((marble, idx) => {
                 const base = marble.userData.basePos;
                 marble.position.y = base.y + Math.sin(time * 1.8 + idx) * 0.25;
                 if (marble.userData.relic) {
                     marble.userData.relic.rotation.x += 0.02;
-                    marble.userData.relic.rotation.y += 0.025;
+                    marble.userData.relic.rotation.y += 0.028;
+                }
+                if (marble.userData.ring) {
+                    marble.userData.ring.rotation.z += 0.012;
                 }
             });
 
