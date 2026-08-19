@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KAI SOFT — High-Performance Apps & Enterprise Solutions</title>
-    <meta name="description" content="KAI SOFT delivers specialized Flutter, React, Supabase, and AI-powered enterprise software development to scale your business.">
+    <meta name="description" content="KAI SOFT delivers specialized Flutter, React, Supabase, and AI-powered enterprise software development to scale your business in a full-dimensional 3D ecosystem.">
     <meta property="og:title" content="KAI SOFT — High-Performance Apps & Enterprise Solutions">
-    <meta property="og:description" content="Premium AI-driven software house from Thailand. We turn complex requirements into scalable digital products.">
+    <meta property="og:description" content="Premium AI-driven software house from Thailand. We turn complex requirements into scalable digital products across 5 AI dimensions.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kaisoftthailand.com/">
     <meta name="twitter:card" content="summary_large_image">
@@ -26,38 +26,70 @@
         html[lang="en"] .lang-th { display: none !important; }
         html[lang="th"] .lang-en { display: none !important; }
 
-        /* ===== HERO ===== */
-        .hero-section {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #020617 0%, #0f172a 35%, #0c1a3a 65%, #020617 100%);
-        }
-        .hero-section::before {
-            content: '';
-            position: absolute;
+        /* ===== 3D CANVAS & GLASS STYLES ===== */
+        #cosmic-canvas {
+            position: fixed;
             inset: 0;
-            background:
-                radial-gradient(ellipse at 25% 40%, rgba(59,130,246,0.12) 0%, transparent 55%),
-                radial-gradient(ellipse at 75% 60%, rgba(6,182,212,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(99,102,241,0.06) 0%, transparent 40%);
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
             pointer-events: none;
         }
-        #hero-canvas {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.5;
-            pointer-events: none;
+
+        /* Glassmorphic Cyber-Cosmic Cards */
+        .cosmic-card {
+            background: rgba(13, 20, 42, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cosmic-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 45px -10px rgba(99, 102, 241, 0.25);
+        }
+
+        .cosmic-pill {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Realm Badges */
+        .realm-badge-phoenix {
+            background: rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(249, 115, 22, 0.4);
+            color: #fdba74;
+        }
+        .realm-badge-piggy {
+            background: rgba(236, 72, 153, 0.15);
+            border: 1px solid rgba(236, 72, 153, 0.4);
+            color: #f9a8d4;
+        }
+        .realm-badge-turtle {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #6ee7b7;
+        }
+        .realm-badge-vault {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            color: #fcd34d;
+        }
+        .realm-badge-owl {
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            color: #c4b5fd;
         }
 
         /* ===== NAVBAR ===== */
         nav { transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease; }
-        .nav-scrolled {
-            background: rgba(255,255,255,0.82) !important;
+        .nav-glass {
+            background: rgba(10, 15, 30, 0.75) !important;
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* ===== SCROLL REVEAL ===== */
@@ -71,39 +103,24 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
-        /* ===== CARDS & GLASS ===== */
-        .glass-card {
-            background: rgba(255,255,255,0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.6);
-            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
-        }
-        .service-icon {
-            background: linear-gradient(135deg, #eff6ff 0%, #e0f2fe 100%);
-        }
-
-                /* ===== 3D GAME CARDS ===== */
+        /* ===== 3D GAME CARDS (FLOW LINK) ===== */
         .card-active {
             z-index: 30;
             transform: translate(-1.5rem, -0.5rem) rotate(-3deg) scale(1) !important;
             opacity: 1;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
         }
         .card-right {
             z-index: 20;
             transform: translate(2rem, 1.5rem) rotate(6deg) scale(0.95) !important;
             opacity: 0.9;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.4);
         }
         .card-left {
             z-index: 10;
             transform: translate(-4rem, -2rem) rotate(-12deg) scale(0.9) !important;
             opacity: 0.8;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
         }
         @media (max-width: 640px) {
             .card-left { display: none !important; }
@@ -115,8 +132,8 @@
         .marquee-container::after {
             content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
         }
-        .marquee-container::before { left: 0; background: linear-gradient(90deg, #f8fafc, transparent); }
-        .marquee-container::after  { right: 0; background: linear-gradient(90deg, transparent, #f8fafc); }
+        .marquee-container::before { left: 0; background: linear-gradient(90deg, #030712, transparent); }
+        .marquee-container::after  { right: 0; background: linear-gradient(90deg, transparent, #030712); }
         .marquee-track {
             display: flex;
             animation: marquee 35s linear infinite;
@@ -131,22 +148,10 @@
         /* ===== FLOATING & EFFECTS ===== */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50%      { transform: translateY(-12px); }
+            50%      { transform: translateY(-10px); }
         }
         .float { animation: float 4s ease-in-out infinite; }
         .float-delay { animation: float 4s ease-in-out infinite 2s; }
-
-        .about-viz {
-            position: relative; overflow: hidden; border-radius: 1rem;
-            background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #0c1a3a 100%);
-        }
-        .about-viz .grid-overlay {
-            position: absolute; inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
 
         /* ===== HAMBURGER & MOBILE MENU ===== */
         .hamburger-line {
@@ -159,8 +164,8 @@
 
         .mobile-menu {
             position: fixed; inset: 0; top: 72px;
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(20px);
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(25px);
             z-index: 45;
             transform: translateY(-110%);
             opacity: 0;
@@ -173,100 +178,108 @@
             pointer-events: all;
         }
 
-        /* ===== REDUCED MOTION ===== */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            .reveal { opacity: 1; transform: none; }
-            .marquee-track { animation: none; }
-            #hero-canvas { display: none; }
-        }
-        
-        /* Estimation form inputs */
-        .form-input {
+        /* Form Inputs in Dark Glass */
+        .form-input-cosmic {
             width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid #e2e8f0;
-            background: #f8fafc;
+            padding: 0.85rem 1.1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(15, 23, 42, 0.75);
+            color: #ffffff;
             transition: all 0.2s;
             font-size: 0.875rem;
         }
-        .form-input:focus {
+        .form-input-cosmic:focus {
             outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            background: #ffffff;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+            background: rgba(15, 23, 42, 0.95);
         }
     </style>
 
     <script>
-        // Language init
         (function() {
             const savedLang = localStorage.getItem('preferred-language') || 'th';
             document.documentElement.setAttribute('lang', savedLang);
         })();
+
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('lang', lang);
+            localStorage.setItem('preferred-language', lang);
+            document.querySelectorAll('.lang-btn-th').forEach(b => {
+                b.classList.toggle('text-white', lang === 'th');
+                b.classList.toggle('text-slate-400', lang !== 'th');
+            });
+            document.querySelectorAll('.lang-btn-en').forEach(b => {
+                b.classList.toggle('text-white', lang === 'en');
+                b.classList.toggle('text-slate-400', lang !== 'en');
+            });
+        }
     </script>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-[#030712] text-slate-100 selection:bg-indigo-600 selection:text-white relative min-h-screen overflow-x-hidden">
+
+    <!-- ===== FULL-PAGE 3D COSMIC CANVAS ===== -->
+    <canvas id="cosmic-canvas"></canvas>
 
     <!-- ===== NAVBAR ===== -->
-    <nav id="main-nav" class="bg-white shadow-sm fixed w-full z-50 top-0 border-b border-slate-100">
+    <nav id="main-nav" class="nav-glass fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex justify-between items-center py-4">
-                <a href="#" class="flex items-center space-x-2.5 group">
-                    <div class="bg-gradient-to-br from-blue-600 to-cyan-500 text-white p-2 rounded-xl shadow-md shadow-blue-500/20 group-hover:shadow-blue-500/40 transition">
+                <a href="#home" class="flex items-center space-x-2.5 group">
+                    <div class="bg-gradient-to-br from-indigo-500 via-purple-500 to-cyan-400 text-white p-2 rounded-xl shadow-lg shadow-indigo-500/25 group-hover:shadow-indigo-500/50 transition">
                         <i class="fa-solid fa-microchip fa-lg"></i>
                     </div>
                     <div class="flex flex-col">
-                        <span class="font-bold text-lg text-slate-900 tracking-wide font-heading leading-none">KAI SOFT</span>
-                        <span class="text-[9px] text-slate-400 font-medium tracking-widest uppercase leading-none mt-0.5">Software House</span>
+                        <span class="font-bold text-lg text-white tracking-wide font-heading leading-none">KAI SOFT</span>
+                        <span class="text-[9px] text-cyan-400 font-medium tracking-widest uppercase leading-none mt-0.5">3D AI Universe</span>
                     </div>
                 </a>
 
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <div class="flex space-x-6 text-sm font-semibold text-slate-600">
-                        <a href="#cosmic-universe" class="text-indigo-600 hover:text-indigo-800 transition flex items-center space-x-1.5 font-bold">
-                            <i class="fa-solid fa-wand-magic-sparkles text-xs text-indigo-500 animate-pulse"></i>
-                            <span class="lang-th">จักรวาล 3D</span><span class="lang-en">3D Universe</span>
+                    <div class="flex space-x-6 text-sm font-semibold text-slate-300">
+                        <a href="#case-studies" class="hover:text-cyan-400 transition flex items-center space-x-1.5">
+                            <span class="text-orange-400">🔥</span>
+                            <span class="lang-th">ผลงาน & สมอง</span><span class="lang-en">Cases & Brain</span>
                         </a>
-                        <a href="#case-studies" class="hover:text-blue-600 transition">
-                            <span class="lang-th">ผลงาน (Case Studies)</span><span class="lang-en">Case Studies</span>
+                        <a href="#pipeline" class="hover:text-cyan-400 transition flex items-center space-x-1.5">
+                            <span class="text-indigo-400">🪐</span>
+                            <span class="lang-th">ผลิตภัณฑ์ & สัตว์ทั้ง 5</span><span class="lang-en">5 Buddies</span>
                         </a>
-                        <a href="#pipeline" class="hover:text-blue-600 transition">
-                            <span class="lang-th">ผลิตภัณฑ์</span><span class="lang-en">Products</span>
+                        <a href="#services" class="hover:text-cyan-400 transition flex items-center space-x-1.5">
+                            <span class="text-pink-400">🐷</span>
+                            <span class="lang-th">บริการ & การเงิน</span><span class="lang-en">Services & Money</span>
                         </a>
-                        <a href="#services" class="hover:text-blue-600 transition">
-                            <span class="lang-th">บริการของเรา</span><span class="lang-en">Services</span>
+                        <a href="#architecture" class="hover:text-cyan-400 transition flex items-center space-x-1.5">
+                            <span class="text-emerald-400">📦</span>
+                            <span class="lang-th">คลาวด์ & ความปลอดภัย</span><span class="lang-en">Cloud & Vault</span>
                         </a>
-                        <a href="#resources" class="hover:text-blue-600 transition">
-                            <span class="lang-th">แหล่งความรู้</span><span class="lang-en">Resources</span>
+                        <a href="#resources" class="hover:text-cyan-400 transition flex items-center space-x-1.5">
+                            <span class="text-purple-400">🦉</span>
+                            <span class="lang-th">คลังปัญญา</span><span class="lang-en">Wisdom</span>
                         </a>
                     </div>
                     
-                    <a href="#estimation-form" class="hidden lg:flex items-center justify-center px-4 py-2 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-full transition shadow-sm">
+                    <a href="#estimation-form" class="hidden lg:flex items-center justify-center px-5 py-2 text-xs font-bold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 rounded-full transition shadow-lg shadow-indigo-500/30">
                         <span class="lang-th">ประเมินราคาโปรเจกต์</span><span class="lang-en">Estimate Project</span>
                     </a>
 
-                    <div class="flex items-center space-x-1 border-l pl-5 border-slate-200 text-xs font-bold text-slate-400">
-                        <button onclick="setLanguage('th')" class="lang-btn-th transition px-2 py-1 rounded-md hover:bg-slate-100 text-slate-800">TH</button>
-                        <span class="text-slate-200">/</span>
-                        <button onclick="setLanguage('en')" class="lang-btn-en transition px-2 py-1 rounded-md hover:bg-slate-100 text-slate-400">EN</button>
+                    <div class="flex items-center space-x-1 border-l pl-5 border-white/20 text-xs font-bold">
+                        <button onclick="setLanguage('th')" class="lang-btn-th transition px-2 py-1 rounded-md text-white hover:bg-white/10">TH</button>
+                        <span class="text-slate-500">/</span>
+                        <button onclick="setLanguage('en')" class="lang-btn-en transition px-2 py-1 rounded-md text-slate-400 hover:bg-white/10">EN</button>
                     </div>
                 </div>
 
                 <!-- Mobile: Lang + Hamburger -->
                 <div class="flex items-center space-x-3 md:hidden">
-                    <div class="flex items-center space-x-1 text-xs font-bold text-slate-500">
-                        <button onclick="setLanguage('th')" class="lang-btn-th px-1.5 py-0.5 rounded text-slate-800">TH</button>
-                        <span class="text-slate-200">/</span>
+                    <div class="flex items-center space-x-1 text-xs font-bold">
+                        <button onclick="setLanguage('th')" class="lang-btn-th px-1.5 py-0.5 rounded text-white">TH</button>
+                        <span class="text-slate-500">/</span>
                         <button onclick="setLanguage('en')" class="lang-btn-en px-1.5 py-0.5 rounded text-slate-400">EN</button>
                     </div>
-                    <button id="hamburger" class="hamburger flex flex-col space-y-1.5 p-2 text-slate-700" aria-label="Menu">
+                    <button id="hamburger" class="hamburger flex flex-col space-y-1.5 p-2 text-white" aria-label="Menu">
                         <span class="hamburger-line"></span>
                         <span class="hamburger-line"></span>
                         <span class="hamburger-line"></span>
@@ -278,53 +291,51 @@
 
     <!-- ===== MOBILE MENU OVERLAY ===== -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
-        <div class="flex flex-col items-center justify-center space-y-6 pt-16 text-lg font-semibold text-slate-700">
-            <a href="#cosmic-universe" class="text-indigo-600 font-bold flex items-center space-x-2">
-                <i class="fa-solid fa-wand-magic-sparkles text-sm text-indigo-500"></i>
-                <span class="lang-th">จักรวาลลูกแก้ว 3D</span><span class="lang-en">3D Cosmic Universe</span>
+        <div class="flex flex-col items-center justify-center space-y-6 pt-16 text-lg font-semibold text-slate-200">
+            <a href="#case-studies" class="hover:text-cyan-400 transition flex items-center space-x-2">
+                <span>🔥</span><span class="lang-th">ผลงาน & สมองกล (Fenik)</span><span class="lang-en">Cases & Brain</span>
             </a>
-            <a href="#case-studies" class="hover:text-blue-600 transition">
-                <span class="lang-th">ผลงาน (Case Studies)</span><span class="lang-en">Case Studies</span>
+            <a href="#pipeline" class="hover:text-cyan-400 transition flex items-center space-x-2">
+                <span>🪐</span><span class="lang-th">ผลิตภัณฑ์ & สัตว์ทั้ง 5</span><span class="lang-en">5 AI Buddies</span>
             </a>
-            <a href="#pipeline" class="hover:text-blue-600 transition">
-                <span class="lang-th">ผลิตภัณฑ์</span><span class="lang-en">Products</span>
+            <a href="#services" class="hover:text-cyan-400 transition flex items-center space-x-2">
+                <span>🐷</span><span class="lang-th">บริการ & การเงิน (Moni)</span><span class="lang-en">Services & Money</span>
             </a>
-            <a href="#services" class="hover:text-blue-600 transition">
-                <span class="lang-th">บริการของเรา</span><span class="lang-en">Services</span>
+            <a href="#architecture" class="hover:text-cyan-400 transition flex items-center space-x-2">
+                <span>📦</span><span class="lang-th">คลาวด์ & ความปลอดภัย (Stash & Teta)</span><span class="lang-en">Cloud & Vault</span>
             </a>
-            <a href="#resources" class="hover:text-blue-600 transition">
-                <span class="lang-th">แหล่งความรู้</span><span class="lang-en">Resources</span>
+            <a href="#resources" class="hover:text-cyan-400 transition flex items-center space-x-2">
+                <span>🦉</span><span class="lang-th">คลังปัญญา (Ollie)</span><span class="lang-en">Wisdom</span>
             </a>
-            <a href="#estimation-form" class="px-6 py-3 mt-4 text-sm font-bold text-white bg-blue-600 rounded-full shadow-lg">
+            <a href="#estimation-form" class="px-6 py-3 mt-4 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 to-cyan-500 rounded-full shadow-lg">
                 <span class="lang-th">ประเมินราคาโปรเจกต์</span><span class="lang-en">Estimate Project</span>
             </a>
         </div>
     </div>
 
-    <!-- ===== HERO SECTION ===== -->
-    <section id="home" class="hero-section text-white pt-36 pb-24 px-4 min-h-[85vh] flex items-center">
-        <canvas id="hero-canvas"></canvas>
+    <!-- ===== SECTION 0: HERO (COSMIC GATEWAY & NEXUS) ===== -->
+    <section id="home" class="text-white pt-40 pb-28 px-4 min-h-[92vh] flex items-center relative">
         <div class="max-w-5xl mx-auto text-center relative z-10">
             
-            <div class="inline-flex items-center space-x-2 bg-blue-500/10 border border-blue-400/20 rounded-full py-1.5 px-4 mb-6 backdrop-blur-md">
+            <div class="inline-flex items-center space-x-2 bg-indigo-500/20 border border-indigo-400/30 rounded-full py-1.5 px-4 mb-6 backdrop-blur-md">
                 <span class="relative flex h-2 w-2">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
                 </span>
-                <span class="text-xs font-semibold text-blue-200 uppercase tracking-widest">
-                    <span class="lang-th">เปลี่ยนไอเดียให้เป็นโปรดักต์ระดับโลก</span>
-                    <span class="lang-en">Turning Ideas into World-Class Products</span>
+                <span class="text-xs font-semibold text-indigo-200 uppercase tracking-widest">
+                    <span class="lang-th">จักรวาลลูกแก้ว 3 มิติ & สัตว์ทั้ง 5 &middot; KAI SOFT</span>
+                    <span class="lang-en">3D Marble Universe & 5 Mascots &middot; KAI SOFT</span>
                 </span>
             </div>
 
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight font-heading">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight font-heading tracking-tight">
                 <span class="lang-th">
                     พัฒนาซอฟต์แวร์และแอปพลิเคชัน<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">เพื่อสเกลธุรกิจคุณสู่สากล</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400">เพื่อสเกลธุรกิจคุณสู่สากล</span>
                 </span>
                 <span class="lang-en">
                     Building High-Performance Apps<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">& Enterprise Solutions</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400">& Enterprise Solutions</span>
                 </span>
             </h1>
 
@@ -334,143 +345,144 @@
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#cosmic-universe" class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold py-3.5 px-8 rounded-xl transition shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 flex items-center justify-center space-x-2 border border-indigo-400/30 group">
-                    <i class="fa-solid fa-wand-magic-sparkles text-sm text-yellow-300 group-hover:rotate-12 transition-transform"></i>
-                    <span class="lang-th">จักรวาลลูกแก้ว 3D</span>
-                    <span class="lang-en">3D Cosmic Universe</span>
+                <a href="#case-studies" class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-semibold py-3.5 px-8 rounded-xl transition shadow-lg shadow-indigo-500/30 flex items-center justify-center space-x-2 border border-white/20">
+                    <span class="lang-th">ออกเดินทางสู่จักรวาล</span>
+                    <span class="lang-en">Explore the Universe</span>
+                    <i class="fa-solid fa-arrow-down ml-2 text-xs animate-bounce"></i>
                 </a>
-                <a href="#estimation-form" class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold py-3.5 px-8 rounded-xl transition shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center justify-center">
-                    <i class="fa-solid fa-calculator mr-2 text-sm"></i>
+                <a href="#estimation-form" class="bg-white/10 hover:bg-white/20 text-white font-semibold py-3.5 px-8 rounded-xl transition border border-white/20 backdrop-blur-md flex items-center justify-center">
+                    <i class="fa-solid fa-calculator mr-2 text-sm text-cyan-400"></i>
                     <span class="lang-th">ประเมินราคาโปรเจกต์</span>
                     <span class="lang-en">Estimate Your Project</span>
                 </a>
-                <a href="#case-studies" class="bg-white/[0.05] hover:bg-white/[0.1] text-white font-semibold py-3.5 px-8 rounded-xl transition border border-white/[0.1] backdrop-blur-sm flex items-center justify-center">
-                    <span class="lang-th">ดูผลงานของเรา</span>
-                    <span class="lang-en">View Case Studies</span>
-                </a>
             </div>
         </div>
 
-        <!-- Floating decorative icons -->
-        <div class="absolute top-1/4 left-[10%] hidden lg:block float opacity-20 text-blue-400 text-4xl"><i class="fa-brands fa-react"></i></div>
-        <div class="absolute top-1/3 right-[12%] hidden lg:block float-delay opacity-15 text-cyan-400 text-3xl"><i class="fa-solid fa-database"></i></div>
-        <div class="absolute bottom-1/4 left-[15%] hidden lg:block float opacity-15 text-indigo-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
+        <!-- Floating 3D Hint Badge -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 cosmic-pill py-2 px-5 rounded-full text-xs text-slate-300 flex items-center space-x-2 shadow-xl pointer-events-none">
+            <i class="fa-solid fa-arrows-up-down text-cyan-400 animate-pulse"></i>
+            <span class="lang-th">เลื่อนหน้าจอเพื่อท่องเที่ยวผ่านดินแดนสัตว์ทั้ง 5 ในจักรวาล 3 มิติ</span>
+            <span class="lang-en">Scroll to glide across the 5 mascot realms in continuous 3D</span>
+        </div>
     </section>
 
-    <!-- ===== TECH STACK MARQUEE ===== -->
-    <section class="py-4 bg-slate-50 border-b border-slate-200">
+    <!-- ===== TECH STACK MARQUEE (GLASS STRIP) ===== -->
+    <section class="py-5 bg-black/40 border-y border-white/10 backdrop-blur-md">
         <div class="marquee-container">
             <div class="marquee-track">
                 <div class="flex items-center space-x-12 px-6">
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-react text-blue-500 text-lg"></i><span>React / Next.js</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-mobile-screen text-cyan-500 text-lg"></i><span>Flutter & Dart</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-database text-emerald-500 text-lg"></i><span>Supabase</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-google text-orange-500 text-lg"></i><span>Firebase</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-aws text-slate-700 text-lg"></i><span>AWS & Google Cloud</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-wand-magic-sparkles text-purple-500 text-lg"></i><span>AI & NLP</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-500 text-lg"></i><span>Python / FastAPI</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-react text-cyan-400 text-lg"></i><span>React / Next.js</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-mobile-screen text-blue-400 text-lg"></i><span>Flutter & Dart</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-database text-emerald-400 text-lg"></i><span>Supabase</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-google text-orange-400 text-lg"></i><span>Firebase</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-aws text-yellow-400 text-lg"></i><span>AWS & Google Cloud</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-wand-magic-sparkles text-purple-400 text-lg"></i><span>AI & NLP</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-cube text-indigo-400 text-lg"></i><span>Three.js WebGL</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-300 text-lg"></i><span>Python / FastAPI</span></span>
                 </div>
-                <!-- Duplicate -->
+                <!-- Duplicate for infinite scroll -->
                 <div class="flex items-center space-x-12 px-6">
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-react text-blue-500 text-lg"></i><span>React / Next.js</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-mobile-screen text-cyan-500 text-lg"></i><span>Flutter & Dart</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-database text-emerald-500 text-lg"></i><span>Supabase</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-google text-orange-500 text-lg"></i><span>Firebase</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-aws text-slate-700 text-lg"></i><span>AWS & Google Cloud</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-wand-magic-sparkles text-purple-500 text-lg"></i><span>AI & NLP</span></span>
-                    <span class="flex items-center space-x-2 text-slate-500 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-500 text-lg"></i><span>Python / FastAPI</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-react text-cyan-400 text-lg"></i><span>React / Next.js</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-mobile-screen text-blue-400 text-lg"></i><span>Flutter & Dart</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-database text-emerald-400 text-lg"></i><span>Supabase</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-google text-orange-400 text-lg"></i><span>Firebase</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-aws text-yellow-400 text-lg"></i><span>AWS & Google Cloud</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-wand-magic-sparkles text-purple-400 text-lg"></i><span>AI & NLP</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-solid fa-cube text-indigo-400 text-lg"></i><span>Three.js WebGL</span></span>
+                    <span class="flex items-center space-x-2 text-slate-300 text-sm font-bold whitespace-nowrap"><i class="fa-brands fa-python text-yellow-300 text-lg"></i><span>Python / FastAPI</span></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CASE STUDIES (PROVEN IMPACT) ===== -->
-    <section id="case-studies" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- ===== SECTION 1: CASE STUDIES (DOMINATED BY FENIK THE PHOENIX 🔥) ===== -->
+    <section id="case-studies" class="py-28 px-4 relative">
+        <div class="max-w-7xl mx-auto sm:px-6">
             <div class="text-center mb-16 reveal">
-                <span class="inline-block text-blue-600 bg-blue-50 border border-blue-100 py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-                    <span class="lang-th">ผลงานที่พิสูจน์แล้ว</span>
-                    <span class="lang-en">Proven Impact</span>
+                <span class="inline-flex items-center space-x-2 realm-badge-phoenix py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                    <span>🔥</span>
+                    <span class="lang-th">ดินแดนฟีนิกซ์ &middot; สมองกล &amp; เควสต์โซลูชัน</span>
+                    <span class="lang-en">Domain of Fenik &middot; Brain &amp; Enterprise Intellect</span>
                 </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 font-heading">
-                    <span class="lang-th">โซลูชันที่เราสร้าง<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">เพื่อแก้ปัญหาจริง</span></span>
-                    <span class="lang-en">Real Solutions <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Real Impact</span></span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white font-heading">
+                    <span class="lang-th">โซลูชันที่เราสร้าง<span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">เพื่อแก้ปัญหาจริง</span></span>
+                    <span class="lang-en">Real Solutions <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-yellow-400">Real Impact</span></span>
                 </h2>
-                <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-sm">
-                    <span class="lang-th">เราไม่ได้แค่เขียนโค้ด แต่เราสร้างระบบที่วัดผลตอบแทน (ROI) ได้ชัดเจน ไม่ว่าจะเป็นการลดเวลาทำงานขององค์กรขนาดใหญ่ หรือสร้างแอปพลิเคชันที่รองรับโหลดมหาศาล</span>
-                    <span class="lang-en">We don't just write code; we engineer systems that deliver measurable ROI, from slashing enterprise workflows to handling massive concurrent data loads.</span>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">
+                    <span class="lang-th">เราวิศวกรรมระบบที่วัดผลตอบแทน (ROI) ได้ชัดเจน ลดเวลาทำงานขององค์กร และรองรับโหลดระดับล้านข้อมูล</span>
+                    <span class="lang-en">We engineer systems that deliver measurable ROI, slashing enterprise workflows and handling massive concurrent data loads.</span>
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Case 1: KaiSoft Tax -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-blue-200 transition duration-300 flex flex-col reveal reveal-delay-1">
-                    <div class="p-8 bg-white border-b border-slate-100 relative">
-                        <div class="absolute top-4 right-4 bg-emerald-100 text-emerald-700 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase">Enterprise</div>
-                        <i class="fa-solid fa-file-invoice-dollar text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-bold font-heading text-slate-900">KaiSoft Tax System</h3>
-                        <p class="text-sm font-semibold text-emerald-600 mt-2">
+                <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col reveal reveal-delay-1">
+                    <div class="p-8 border-b border-white/10 relative bg-gradient-to-b from-blue-900/40 to-transparent">
+                        <div class="absolute top-4 right-4 bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase">Enterprise</div>
+                        <i class="fa-solid fa-file-invoice-dollar text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-xl font-bold font-heading text-white">KaiSoft Tax System</h3>
+                        <p class="text-sm font-semibold text-emerald-400 mt-2">
                             <span class="lang-th">"ย่นเวลาประมวลผลภาษีจาก 1 ปี เหลือเพียง 1 เดือน"</span>
                             <span class="lang-en">"Reduced processing time from 1 year to 1 month"</span>
                         </p>
                     </div>
-                    <div class="p-6 flex-1">
-                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                             <span class="lang-th">ระบบบริหารจัดการเอกสารภาษีระดับองค์กร ที่ออกแบบมาเพื่อรองรับเอกสารปริมาณมหาศาลและกระบวนการอนุมัติที่ซับซ้อน (Workflow Automation) เชื่อมต่อคลาวด์และ Database สเกลใหญ่</span>
                             <span class="lang-en">An enterprise-grade tax and document management platform designed to automate complex approval workflows and handle massive data volume securely via robust cloud architecture.</span>
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">React</span>
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Cloud Architecture</span>
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Data Pipeline</span>
+                        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                            <span class="text-[10px] bg-white/10 text-cyan-200 px-2.5 py-1 rounded font-mono">React</span>
+                            <span class="text-[10px] bg-white/10 text-cyan-200 px-2.5 py-1 rounded font-mono">Cloud Architecture</span>
+                            <span class="text-[10px] bg-white/10 text-cyan-200 px-2.5 py-1 rounded font-mono">Data Pipeline</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Case 2: Buddy Money -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-indigo-200 transition duration-300 flex flex-col reveal reveal-delay-2">
-                    <div class="p-8 bg-white border-b border-slate-100 relative">
-                        <div class="absolute top-4 right-4 bg-indigo-100 text-indigo-700 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase">AI App</div>
-                        <i class="fa-solid fa-wallet text-4xl text-indigo-600 mb-4"></i>
-                        <h3 class="text-xl font-bold font-heading text-slate-900">Buddy Money (Moni.ai)</h3>
-                        <p class="text-sm font-semibold text-indigo-600 mt-2">
+                <!-- Case 2: Buddy Money (Moni.ai) -->
+                <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col reveal reveal-delay-2">
+                    <div class="p-8 border-b border-white/10 relative bg-gradient-to-b from-indigo-900/40 to-transparent">
+                        <div class="absolute top-4 right-4 bg-indigo-500/20 border border-indigo-400/40 text-indigo-300 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase">AI App</div>
+                        <i class="fa-solid fa-wallet text-4xl text-pink-400 mb-4"></i>
+                        <h3 class="text-xl font-bold font-heading text-white">Buddy Money (Moni.ai)</h3>
+                        <p class="text-sm font-semibold text-pink-400 mt-2">
                             <span class="lang-th">"Zero-friction OCR ลดความผิดพลาดบันทึกบัญชี 99%"</span>
                             <span class="lang-en">"Zero-friction OCR with 99% accuracy in logging"</span>
                         </p>
                     </div>
-                    <div class="p-6 flex-1">
-                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                             <span class="lang-th">เปลี่ยนการจดบัญชีที่น่าเบื่อด้วย AI เพียงโยนสลิปโอนเงิน หรือพูดสิ่งที่จ่าย ระบบ AI OCR และ NLP จะถอดข้อมูล ตัวเลข และหมวดหมู่ลงฐานข้อมูลให้ทันที พร้อมบุคลิกโต้ตอบแบบมีชีวิตชีวา</span>
                             <span class="lang-en">Revolutionizing personal finance. Users simply upload bank slips or speak their expenses; our integrated AI OCR and NLP engine instantly categorizes and logs data with zero friction.</span>
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Flutter</span>
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">LLM API</span>
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Supabase</span>
+                        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                            <span class="text-[10px] bg-white/10 text-pink-200 px-2.5 py-1 rounded font-mono">Flutter</span>
+                            <span class="text-[10px] bg-white/10 text-pink-200 px-2.5 py-1 rounded font-mono">LLM API</span>
+                            <span class="text-[10px] bg-white/10 text-pink-200 px-2.5 py-1 rounded font-mono">Supabase</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Case 3: Flow Link -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-purple-200 transition duration-300 flex flex-col reveal reveal-delay-3">
-                    <div class="p-8 bg-white border-b border-slate-100 relative">
-                        <div class="absolute top-4 right-4 bg-purple-100 text-purple-700 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase">Gaming</div>
-                        <i class="fa-solid fa-gamepad text-4xl text-purple-600 mb-4"></i>
-                        <h3 class="text-xl font-bold font-heading text-slate-900">Flow Link</h3>
-                        <p class="text-sm font-semibold text-purple-600 mt-2">
+                <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col reveal reveal-delay-3">
+                    <div class="p-8 border-b border-white/10 relative bg-gradient-to-b from-purple-900/40 to-transparent">
+                        <div class="absolute top-4 right-4 bg-purple-500/20 border border-purple-400/40 text-purple-300 text-[9px] font-bold py-1 px-2.5 rounded-full uppercase">Gaming</div>
+                        <i class="fa-solid fa-gamepad text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-bold font-heading text-white">Flow Link</h3>
+                        <p class="text-sm font-semibold text-purple-300 mt-2">
                             <span class="lang-th">"18,000+ ด่าน ยืนยันความถูกต้องด้วย AI ตรรกะคณิตศาสตร์"</span>
                             <span class="lang-en">"18,000+ levels procedurally generated & solver-verified"</span>
                         </p>
                     </div>
-                    <div class="p-6 flex-1">
-                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
                             <span class="lang-th">เกมพัซเซิลลากเส้น 3 มิติเชิงพื้นที่ลึกซึ้ง พัฒนาด้วยระบบ Procedural Generation ทุกด่านผ่านการตรวจสอบด้วย Google OR-Tools CP-SAT เพื่อรับประกันว่าแก้ไขได้ 100% ไม่มีข้อผิดพลาด</span>
                             <span class="lang-en">A deeply engaging 3D connection puzzle built with procedural level algorithms. Every level is mathematically proven solvable via Google OR-Tools CP-SAT constraint programming.</span>
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Flutter</span>
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Algorithms</span>
-                            <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">OR-Tools</span>
+                        <div class="flex flex-wrap gap-2 pt-2 border-t border-white/10">
+                            <span class="text-[10px] bg-white/10 text-purple-200 px-2.5 py-1 rounded font-mono">Flutter</span>
+                            <span class="text-[10px] bg-white/10 text-purple-200 px-2.5 py-1 rounded font-mono">Algorithms</span>
+                            <span class="text-[10px] bg-white/10 text-purple-200 px-2.5 py-1 rounded font-mono">CP-SAT</span>
                         </div>
                     </div>
                 </div>
@@ -478,291 +490,114 @@
         </div>
     </section>
 
-    <!-- ===== 3D COSMIC MARBLE UNIVERSE (AI MEMORY BUDDY & 5 MASCOTS) ===== -->
-    <section id="cosmic-universe" class="py-24 bg-gradient-to-b from-slate-950 via-[#0a0f24] to-slate-950 text-white relative overflow-hidden">
-        <!-- Cosmic Ambient Backdrop -->
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute -top-40 left-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl"></div>
-            <div class="absolute top-1/2 right-10 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-20 left-1/3 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-            <!-- Section Header -->
-            <div class="text-center mb-10 reveal">
-                <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-400/25 rounded-full py-1 px-4 mb-4 backdrop-blur-md">
-                    <i class="fa-solid fa-wand-magic-sparkles text-xs text-yellow-300 animate-pulse"></i>
-                    <span class="text-[11px] font-bold text-indigo-300 uppercase tracking-widest">
-                        <span class="lang-th">3D WebGL Cosmic Showcase</span>
-                        <span class="lang-en">3D WebGL Cosmic Showcase</span>
-                    </span>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-extrabold font-heading text-white tracking-tight">
-                    <span class="lang-th">จักรวาลลูกแก้ว 3 มิติ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-pink-400 to-indigo-400">& สัตว์ทั้งห้า</span></span>
-                    <span class="lang-en">3D Marble Universe <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-pink-400 to-indigo-400">& The 5 Mascots</span></span>
-                </h2>
-                <p class="text-slate-400 mt-3 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
-                    <span class="lang-th">สัมผัสประสบการณ์ผู้ช่วยอัจฉริยะ <strong>AI Memory Buddy</strong> ในรูปแบบ 3D Interactive เต็มรูปแบบ หมุนสำรวจลูกแก้วคริสตัล สัตว์ศักดิ์สิทธิ์ทั้ง 5 และโครงสร้างเทคโนโลยีระดับ Next-Gen</span>
-                    <span class="lang-en">Experience our flagship <strong>AI Memory Buddy</strong> ecosystem in full 3D interactive glory. Orbit around crystalline orbs, discover the 5 mascots, and explore our next-gen system architecture.</span>
-                </p>
-            </div>
-
-            <!-- Realm Selector Navigation Tabs -->
-            <div class="flex items-center justify-center flex-wrap gap-2 mb-8 reveal">
-                <button data-realm="nexus" class="realm-nav-btn active px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 bg-white/20 text-white shadow-lg backdrop-blur-md">
-                    <span>🌌</span>
-                    <span class="lang-th">จักรวาลรวม 5 สัตว์</span>
-                    <span class="lang-en">Cosmic Nexus</span>
-                </button>
-                <button data-realm="phoenix" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
-                    <span>🔥</span>
-                    <span class="lang-th">ฟีนิกซ์ (สมอง & เควสต์)</span>
-                    <span class="lang-en">Fenik (Brain & Quest)</span>
-                </button>
-                <button data-realm="piggy" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
-                    <span>🐷</span>
-                    <span class="lang-th">หมูทอง (การเงิน & สลิป)</span>
-                    <span class="lang-en">Moni (Money & OCR)</span>
-                </button>
-                <button data-realm="turtle" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
-                    <span>🐢</span>
-                    <span class="lang-th">เต่าเตต้า (บ้าน & สุขภาพ)</span>
-                    <span class="lang-en">Teta (Home & Life)</span>
-                </button>
-                <button data-realm="vault" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
-                    <span>📦</span>
-                    <span class="lang-th">หีบสมบัติ (คลังความทรงจำ)</span>
-                    <span class="lang-en">Stash (Encrypted Vault)</span>
-                </button>
-                <button data-realm="owl" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
-                    <span>🦉</span>
-                    <span class="lang-th">นกฮูกปราชญ์ (ปัญญา & นิทาน)</span>
-                    <span class="lang-en">Ollie (Wisdom & Story)</span>
-                </button>
-            </div>
-
-            <!-- 3D Viewport & Hologram HUD Wrapper -->
-            <div class="relative w-full rounded-3xl overflow-hidden border border-slate-800 bg-[#060814] shadow-2xl min-h-[580px] lg:min-h-[680px] flex items-center justify-center select-none reveal">
-                <!-- WebGL Canvas Container -->
-                <div id="universe-canvas-container" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
-
-                <!-- Floating Helper Prompt (Top Left) -->
-                <div class="absolute top-4 left-4 z-20 pointer-events-none bg-black/60 backdrop-blur-md border border-white/10 rounded-full py-1.5 px-4 text-[11px] text-slate-300 flex items-center space-x-2 shadow-lg">
-                    <i class="fa-solid fa-arrows-spin text-indigo-400 animate-spin" style="animation-duration: 6s;"></i>
-                    <span class="lang-th">ลากเมาส์ / ปัดหน้าจอหมุน 360° &middot; แตะที่สัตว์หรือลูกแก้วเพื่อเลือก</span>
-                    <span class="lang-en">Drag / Swipe to rotate 360° &middot; Tap mascot or orb to focus</span>
-                </div>
-
-                <!-- Floating Controls (Top Right) -->
-                <div class="absolute top-4 right-4 z-20 flex items-center space-x-2">
-                    <button id="universe-sound-toggle" class="bg-black/60 hover:bg-black/80 text-white p-2.5 rounded-full border border-white/15 backdrop-blur-md transition shadow-lg text-xs" title="เปิด/ปิดเสียงสังเคราะห์">
-                        <i class="fa-solid fa-volume-high"></i>
-                    </button>
-                    <button onclick="window.jumpToUniverseRealm('nexus')" class="bg-black/60 hover:bg-black/80 text-white py-1.5 px-3 rounded-full border border-white/15 backdrop-blur-md transition shadow-lg text-xs font-semibold flex items-center space-x-1.5">
-                        <i class="fa-solid fa-rotate-left text-[10px]"></i>
-                        <span class="lang-th">รีเซ็ตมุมมอง</span>
-                        <span class="lang-en">Reset View</span>
-                    </button>
-                </div>
-
-                <!-- Glassmorphic Hologram HUD Card Overlay (Bottom / Right) -->
-                <div class="absolute bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:w-[420px] z-20 bg-slate-900/80 backdrop-blur-xl border border-white/15 rounded-3xl p-6 shadow-2xl text-white pointer-events-auto transition-all duration-300">
-                    <div class="flex items-center justify-between mb-3">
-                        <span id="universe-hud-tag" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border">
-                            All-in-One AI Suite
-                        </span>
-                        <span class="text-[10px] text-slate-400 font-mono">
-                            <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-1 animate-ping"></i> LIVE 3D
-                        </span>
-                    </div>
-
-                    <h3 id="universe-hud-name" class="text-xl font-bold font-heading text-white">
-                        จักรวาลรวม 5 สัตว์ศักดิ์สิทธิ์
-                    </h3>
-                    <p id="universe-hud-title" class="text-xs font-semibold text-indigo-300 mt-0.5">
-                        ศูนย์กลางจักรวาลแห่งความจำอัจฉริยะ
-                    </p>
-
-                    <p id="universe-hud-desc" class="text-xs text-slate-300 mt-3 leading-relaxed">
-                        ระบบนิเวศผู้ช่วยอัจฉริยะที่เชื่อมโยง 5 มิติของชีวิต (สมอง, เงิน, บ้าน, คลัง, เรื่องเล่า) เข้าด้วยกันอย่างสมบูรณ์แบบ
-                    </p>
-
-                    <!-- Features List -->
-                    <div id="universe-hud-features" class="space-y-2 mt-4 pt-3 border-t border-white/10">
-                        <!-- Dynamic content injected by JS -->
-                    </div>
-
-                    <!-- Tech Stack Badges -->
-                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
-                        <div id="universe-hud-tech" class="flex flex-wrap gap-1.5">
-                            <!-- Dynamic badges -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== PIPELINE ===== -->
-    <section id="pipeline" class="py-24 bg-white border-t border-slate-200 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- ===== SECTION 2: FLAGSHIP (FLOW LINK) & AI MEMORY 5 BUDDIES (🪐 CELESTIAL BRIDGE) ===== -->
+    <section id="pipeline" class="py-28 px-4 relative">
+        <div class="max-w-7xl mx-auto sm:px-6">
             <div class="text-center mb-16 reveal">
-                <span class="inline-block ai-badge text-blue-700 py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-                    <span class="lang-th">แผนพัฒนาผลิตภัณฑ์</span>
-                    <span class="lang-en">Product Pipeline</span>
+                <span class="inline-flex items-center space-x-2 realm-badge-owl py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                    <span>🪐</span>
+                    <span class="lang-th">ดินแดนสะพานดวงดาว &middot; เกมเรือธง &amp; สัตว์ทั้ง 5</span>
+                    <span class="lang-en">Celestial Bridge &middot; Flagship &amp; 5 AI Buddies</span>
                 </span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 font-heading">
-                    <span class="lang-th">เปิดตัวแล้ว และ<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">กำลังจะมา</span></span>
-                    <span class="lang-en">Shipped &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">In the Works</span></span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white font-heading">
+                    <span class="lang-th">เปิดตัวแล้ว และ<span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400">ระบบนิเวศ Next-Gen</span></span>
+                    <span class="lang-en">Shipped &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400">Next-Gen Ecosystem</span></span>
                 </h2>
-                <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
-                    <span class="lang-th">Flow Link เกมเรือธงของเราเปิดให้เล่นแล้วทั้ง iOS และ Android ส่วนซีรีส์ผู้ช่วยอัจฉริยะกำลังพัฒนาอยู่ในห้องแล็บของ KAI SOFT</span>
-                    <span class="lang-en">Flow Link, our flagship game, is live on iOS and Android. The AI Memory Buddy series is still cooking in the KAI SOFT laboratories.</span>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">
+                    <span class="lang-th">Flow Link พร้อมให้ดาวน์โหลดแล้วทั้ง iOS และ Android ควบคู่ไปกับชุด AI Memory Buddy ครบทั้ง 5 ด้าน</span>
+                    <span class="lang-en">Flow Link is live on iOS & Android, alongside our interconnected 5-dimension AI Memory Buddy ecosystem.</span>
                 </p>
             </div>
 
-            <!-- Featured Flagship Game: Flow Link -->
-            <div class="bg-white rounded-3xl border border-slate-200 shadow-xl flex flex-col lg:flex-row hover:shadow-2xl transition duration-300 mb-16 overflow-hidden reveal">
-
+            <!-- Featured Flagship: Flow Link 3D Card Display -->
+            <div class="cosmic-card rounded-3xl flex flex-col lg:flex-row hover:shadow-2xl transition duration-300 mb-20 overflow-hidden reveal">
                 <!-- Visual Mockup Showcase (Overlapping 3D Cards) -->
-                <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-blue-50/50 via-slate-50 to-indigo-50/30 overflow-hidden select-none">
-                    <div class="absolute w-72 h-72 bg-blue-500/10 rounded-full blur-3xl -top-10 -left-10"></div>
-                    <div class="absolute w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl -bottom-10 -right-10"></div>
+                <div class="lg:w-1/2 flex items-center justify-center p-8 relative min-h-[480px] bg-gradient-to-br from-indigo-950/60 to-slate-900/60 overflow-hidden select-none">
+                    <div class="absolute w-72 h-72 bg-blue-500/20 rounded-full blur-3xl -top-10 -left-10"></div>
+                    <div class="absolute w-72 h-72 bg-purple-500/20 rounded-full blur-3xl -bottom-10 -right-10"></div>
 
-                    <div id="card-concept" onclick="bringToFront('concept')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-active">
+                    <div id="card-concept" onclick="bringToFront('concept')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white/40 bg-slate-900 transition-all duration-500 cursor-pointer card-active shadow-2xl">
                         <img src="images/line_logic_puzzle.png" alt="Flow Link Cloud Cover" class="w-full h-full object-cover pointer-events-none">
-                        <div class="absolute top-2 left-2 bg-black/50 backdrop-blur-sm text-[8px] text-white font-bold py-0.5 px-2 rounded-full">Concept Art</div>
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-sm text-[8px] text-white font-bold py-0.5 px-2 rounded-full">Concept Art</div>
                     </div>
-                    <div id="card-menu" onclick="bringToFront('menu')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-white transition-all duration-500 cursor-pointer card-right">
+                    <div id="card-menu" onclick="bringToFront('menu')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white/40 bg-slate-900 transition-all duration-500 cursor-pointer card-right shadow-2xl">
                         <img src="images/main_menu.jpg" alt="Flow Link Main Menu" class="w-full h-full object-cover pointer-events-none">
                         <div class="absolute top-3 left-3 bg-blue-600 text-white text-[9px] font-bold py-0.5 px-2 rounded-full shadow-lg">
                             <span class="lang-th">หน้าเมนูเกม</span><span class="lang-en">Main Menu</span>
                         </div>
                     </div>
-                    <div id="card-gameplay" onclick="bringToFront('gameplay')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white bg-slate-900 transition-all duration-500 cursor-pointer card-left">
+                    <div id="card-gameplay" onclick="bringToFront('gameplay')" class="absolute w-[200px] sm:w-[230px] aspect-[9/19] rounded-3xl overflow-hidden border-4 border-white/40 bg-slate-900 transition-all duration-500 cursor-pointer card-left shadow-2xl">
                         <img src="images/gameplay.jpg" alt="Flow Link Gameplay" class="w-full h-full object-cover pointer-events-none">
                         <div class="absolute top-3 left-3 bg-red-600 text-white text-[9px] font-bold py-0.5 px-2.5 rounded-full shadow-lg animate-pulse">
                             <span class="lang-th">ด่าน 34 (Extreme)</span><span class="lang-en">Level 34 (Extreme)</span>
                         </div>
                     </div>
 
-                    <div class="absolute bottom-4 bg-black/75 backdrop-blur-md text-white/95 text-[10px] font-semibold py-2 px-4 rounded-full flex items-center space-x-2 z-40 shadow-lg pointer-events-none">
-                        <i class="fa-solid fa-hand-pointer text-xs text-blue-400 animate-bounce"></i>
+                    <div class="absolute bottom-4 bg-black/75 backdrop-blur-md text-white/95 text-[10px] font-semibold py-2 px-4 rounded-full flex items-center space-x-2 z-40 shadow-lg pointer-events-none border border-white/10">
+                        <i class="fa-solid fa-hand-pointer text-xs text-cyan-400 animate-bounce"></i>
                         <span class="lang-th">คลิกที่รูปภาพเพื่อเปลี่ยนมุมมอง</span>
                         <span class="lang-en">Click on any screen to swap view</span>
                     </div>
                 </div>
 
                 <!-- Game Details -->
-                <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-200">
+                <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-white/10">
                     <div>
                         <div class="flex items-center space-x-2">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-bold py-1 px-3 rounded-full uppercase tracking-wider">
+                            <span class="bg-blue-500/20 border border-blue-400/30 text-cyan-300 text-xs font-bold py-1 px-3 rounded-full uppercase tracking-wider">
                                 <span class="lang-th">เกมเด่นเรือธง</span><span class="lang-en">Featured Flagship Game</span>
                             </span>
-                            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider">
+                            <span class="bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[10px] font-bold py-1 px-2.5 rounded-full uppercase tracking-wider">
                                 <span class="lang-th">เปิดให้เล่นแล้ว</span><span class="lang-en">Out Now</span>
                             </span>
                         </div>
-                        <h3 class="text-3xl md:text-4xl font-extrabold mt-4 text-slate-900 leading-tight font-heading">
+                        <h3 class="text-3xl md:text-4xl font-extrabold mt-4 text-white leading-tight font-heading">
                             Flow Link <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 text-2xl font-bold">เกมลากเส้นเชื่อมจุด 3D / 3D Connection Puzzle</span>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400 text-2xl font-bold">เกมลากเส้นเชื่อมจุด 3D / 3D Connection Puzzle</span>
                         </h3>
 
-                        <p class="text-slate-600 mt-4 leading-relaxed text-sm">
+                        <p class="text-slate-300 mt-4 leading-relaxed text-sm">
                             <span class="lang-th">สุดยอดเกมปริศนาแนวพัซเซิลลากเส้นเชื่อมจุดสีเดียวกันให้ครบทุกสี โดย<strong>ต้องเดินเส้นทางผ่านทุกช่องของตาราง 100% (ลากให้ครบทุกช่อง)</strong> สนุกสนานไปกับสุนทรียภาพท้องฟ้านุ่มนวลและการแก้โจทย์ปริศนาสุดหินระดับแชมป์เปี้ยน</span>
                             <span class="lang-en">An immersive, dreamy 3D-like connection puzzle game powered by procedural scaling algorithms and AI. Connect dots of the same color and <strong>fill 100% of the grid cells</strong>. Simple to learn, highly challenging to master.</span>
                         </p>
 
                         <!-- Level Design Stats Grid -->
-                        <div class="grid grid-cols-3 gap-4 my-6 bg-gradient-to-r from-blue-50/80 to-indigo-50/50 p-5 rounded-2xl border border-blue-100/50 text-center">
+                        <div class="grid grid-cols-3 gap-4 my-6 bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
                             <div>
-                                <p class="text-2xl font-extrabold text-blue-600 font-heading counter" data-target="20000">0</p>
-                                <p class="text-[9px] text-slate-500 font-bold uppercase mt-1">
+                                <p class="text-2xl font-extrabold text-cyan-400 font-heading counter" data-target="20000">0</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">
                                     <span class="lang-th">ด่านทั้งหมด</span><span class="lang-en">Total Levels</span>
                                 </p>
                             </div>
                             <div>
-                                <p class="text-2xl font-extrabold text-indigo-600 font-heading counter" data-target="10">0</p>
-                                <p class="text-[9px] text-slate-500 font-bold uppercase mt-1">
+                                <p class="text-2xl font-extrabold text-indigo-400 font-heading counter" data-target="10">0</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">
                                     <span class="lang-th">โหมดการเล่น</span><span class="lang-en">Submodes</span>
                                 </p>
                             </div>
                             <div>
-                                <p class="text-2xl font-extrabold text-cyan-600 font-heading counter" data-target="2000">0</p>
-                                <p class="text-[9px] text-slate-500 font-bold uppercase mt-1">
+                                <p class="text-2xl font-extrabold text-purple-400 font-heading counter" data-target="2000">0</p>
+                                <p class="text-[9px] text-slate-400 font-bold uppercase mt-1">
                                     <span class="lang-th">ด่านต่อโหมด</span><span class="lang-en">Levels per Mode</span>
                                 </p>
-                            </div>
-                        </div>
-
-                        <!-- Specifications List -->
-                        <div class="space-y-4 text-sm">
-                            <div class="flex items-start space-x-3">
-                                <div class="bg-emerald-100 p-1.5 rounded-lg text-emerald-600 mt-0.5 shrink-0"><i class="fa-solid fa-square-check"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 text-xs">
-                                        <span class="lang-th">4 โหมดหลัก ท้าทายขีดจำกัด</span><span class="lang-en">4 Core Game Modes</span>
-                                    </h4>
-                                    <p class="text-slate-500 text-xs mt-0.5">
-                                        <span class="lang-th"><strong>Normal:</strong> ลากโหมดปกติ | <strong>TimeAttack:</strong> จับเวลาสุดตื่นเต้น | <strong>Extreme:</strong> โหมดมืดสุดโหดท้าทายจอมวางแผน | <strong>Kids:</strong> โหมดสำหรับเด็กเล่นง่ายเสริมทักษะ</span>
-                                        <span class="lang-en"><strong>Normal:</strong> standard puzzle | <strong>TimeAttack:</strong> race against time | <strong>Extreme:</strong> dark UI hidden hints | <strong>Kids:</strong> child-friendly brain development</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="bg-indigo-100 p-1.5 rounded-lg text-indigo-600 mt-0.5 shrink-0"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 text-xs">
-                                        <span class="lang-th">3 รูปแบบไอเท็ม (Submodes)</span><span class="lang-en">3 Gameplay Submodes</span>
-                                    </h4>
-                                    <p class="text-slate-500 text-xs mt-0.5">
-                                        <span class="lang-th"><strong>Classic:</strong> พัซเซิลดั้งเดิม | <strong>ItemRush:</strong> มีระเบิด สลับสี ประตูกุญแจ | <strong>Hardcore:</strong> สุ่มไอเท็มผสมคลาสสิก (80/20)</span>
-                                        <span class="lang-en"><strong>Classic:</strong> pure layouts | <strong>ItemRush:</strong> bombs, switchers, keys/doors | <strong>Hardcore:</strong> random 80/20 mix</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="bg-red-100 p-1.5 rounded-lg text-red-600 mt-0.5 shrink-0"><i class="fa-solid fa-circle-nodes"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 text-xs">
-                                        <span class="lang-th">โหมดมิติซ้อน (Multi-Floor 3D) & UI Masking</span><span class="lang-en">Multi-Floor 3D & UI Masking</span>
-                                    </h4>
-                                    <p class="text-slate-500 text-xs mt-0.5">
-                                        <span class="lang-th">ปีนป่ายตารางซ้อนชั้นสูงถึง 5-7 ชั้น เชื่อมผ่านประตูพอร์ทัล และฟีเจอร์พรางไอเท็ม/ระเบิดเป็นสีเทาลึกลับในโหมด Extreme เพิ่มความลุ่มลึก</span>
-                                        <span class="lang-en">Navigate 3D vertical portals between 5-7 stacked floors with bridges and hidden grey element overlays in Extreme mode.</span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <div class="bg-purple-100 p-1.5 rounded-lg text-purple-600 mt-0.5 shrink-0"><i class="fa-solid fa-calculator"></i></div>
-                                <div>
-                                    <h4 class="font-bold text-slate-900 text-xs">
-                                        <span class="lang-th">พิสูจน์แล้วด้วยคณิตศาสตร์ขั้นสูง (CP-SAT Solver)</span><span class="lang-en">CP-SAT AI-Verified Solvability</span>
-                                    </h4>
-                                    <p class="text-slate-500 text-xs mt-0.5">
-                                        <span class="lang-th">ทุกด่านผ่านการตรวจสอบโดย Google OR-Tools CP-SAT เพื่อรับประกันว่าด่านไม่มีข้อผิดพลาด มีคำตอบเดียว และลากผ่านได้จริง</span>
-                                        <span class="lang-en">Every level layout is verified by Google OR-Tools CP-SAT to guarantee 100% mathematical solvability, logical integrity, and a single solution.</span>
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Download CTA -->
-                    <div class="mt-8 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <span class="text-[11px] text-slate-400 font-medium flex items-center">
-                            <i class="fa-solid fa-mobile-screen text-blue-400 mr-1.5 text-xs"></i>
+                            <i class="fa-solid fa-mobile-screen text-cyan-400 mr-1.5 text-xs"></i>
                             <span class="lang-th">เล่นฟรี &middot; สร้างด้วย Flutter &amp; Dart</span>
                             <span class="lang-en">Free to play &middot; Built with Flutter &amp; Dart</span>
                         </span>
                         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0 w-full sm:w-auto">
-                            <a href="https://apps.apple.com/app/id6761495516" target="_blank" rel="noopener" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-md flex items-center justify-center group">
+                            <a href="https://apps.apple.com/app/id6761495516" target="_blank" rel="noopener" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition border border-white/20 flex items-center justify-center group">
                                 <i class="fa-brands fa-apple mr-2 text-sm"></i>
                                 App Store
                                 <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
                             </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.kaisoft.linelogicaipuzzle" target="_blank" rel="noopener" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-md shadow-blue-600/20 flex items-center justify-center group">
+                            <a href="https://play.google.com/store/apps/details?id=com.kaisoft.linelogicaipuzzle" target="_blank" rel="noopener" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-xs py-2.5 px-5 rounded-full transition shadow-lg shadow-indigo-600/30 flex items-center justify-center group">
                                 <i class="fa-brands fa-google-play mr-2 text-sm"></i>
                                 Google Play
                                 <i class="fa-solid fa-arrow-right ml-2 text-[10px] group-hover:translate-x-1 transition-transform"></i>
@@ -772,238 +607,128 @@
                 </div>
             </div>
 
-            <!-- AI Memory Buddy Series (All 5 Mascots Ecosystem) -->
-            <div class="mt-12 reveal">
-                <div class="text-center mb-12">
-                    <span class="inline-block bg-indigo-50 text-indigo-700 py-1 px-4 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 border border-indigo-100">
-                        <span class="lang-th">ซีรีส์ผู้ช่วยอัจฉริยะ 5 มิติ</span>
-                        <span class="lang-en">The 5-Realm AI Memory Series</span>
-                    </span>
-                    <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 font-heading">
-                        <span class="lang-th">ระบบนิเวศผู้ช่วยอัจฉริยะระดับ <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Next-Gen</span></span>
-                        <span class="lang-en">Next-Gen <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Intelligent Assistants</span></span>
+            <!-- The 5 Mascots Ecosystem Grid (AI Memory Buddy Suite) -->
+            <div class="mt-8">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">
+                        <span class="lang-th">ชุดผู้ช่วยอัจฉริยะ <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400">ครบทั้ง 5 ด้าน</span></span>
+                        <span class="lang-en">The Complete <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400">5-Mascot Ecosystem</span></span>
                     </h3>
-                    <p class="text-slate-500 text-sm mt-3 max-w-2xl mx-auto">
-                        <span class="lang-th">ชุดแอปพลิเคชัน 5 สไตล์ที่เชื่อมโยงกันอย่างสมบูรณ์แบบ ทั้งสมอง การเงิน บ้าน คลังความลับ และเรื่องเล่า ผ่านโมบายล์แอปที่รันได้ทั้ง iOS และ Android</span>
-                        <span class="lang-en">A suite of 5 interconnected intelligent apps covering Brain, Money, Home, Vault, and Story, built for seamless performance on both iOS and Android.</span>
-                    </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- App 1: Buddy Brain (Phoenix) -->
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-1">
-                        <div class="h-44 bg-gradient-to-br from-orange-500 via-amber-500 to-red-500 p-6 relative flex flex-col justify-between text-white overflow-hidden">
-                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-                            <div class="flex justify-between items-start z-10">
-                                <span class="text-3xl">🔥</span>
-                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
-                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                                </span>
-                            </div>
-                            <div class="z-10">
-                                <span class="text-[10px] font-mono uppercase tracking-widest text-orange-100">Brain & Task Hub</span>
-                                <h4 class="text-2xl font-black font-heading text-white">Buddy Brain</h4>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <p class="text-orange-600 text-xs font-semibold">
-                                    <span class="lang-th">"พูดบ่นยาวๆ ให้ AI สรุปและวางแผนให้"</span>
-                                    <span class="lang-en">"Ramble out loud — AI summarizes & plans."</span>
-                                </p>
-                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">สมองกลส่วนเสริมดักจับทุกความคิดที่กระจัดกระจาย เพียงอัดเสียงพูดระบายไอเดีย AI จะถอดความ สรุปย่อ ดึงงานสำคัญเข้าปฏิทิน และบันทึกข้อเท็จจริงสำคัญเพื่อเรียกคืนด้วยภาษาธรรมชาติ</span>
-                                    <span class="lang-en">Instant personal repository. Record your thoughts; AI decodes and summarizes them into structured action items. Store critical facts and query them naturally.</span>
-                                </p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="text-[9px] bg-orange-50 text-orange-700 px-2 py-0.5 rounded font-mono font-semibold">Speech AI</span>
-                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Flutter</span>
-                                </div>
-                                <button onclick="window.jumpToUniverseRealm('phoenix')" class="text-xs font-bold text-orange-600 hover:text-orange-800 transition flex items-center space-x-1">
-                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- App 2: Buddy Money (Piggy) -->
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-2">
-                        <div class="h-44 bg-gradient-to-br from-pink-500 via-rose-500 to-purple-600 p-6 relative flex flex-col justify-between text-white overflow-hidden">
-                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-                            <div class="flex justify-between items-start z-10">
-                                <span class="text-3xl">🐷</span>
-                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
-                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                                </span>
-                            </div>
-                            <div class="z-10">
-                                <span class="text-[10px] font-mono uppercase tracking-widest text-pink-100">Financial OCR AI</span>
-                                <h4 class="text-2xl font-black font-heading text-white">Buddy Money</h4>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <p class="text-pink-600 text-xs font-semibold">
-                                    <span class="lang-th">"บ่นว่าใช้อะไรไป AI ลงบัญชีให้"</span>
-                                    <span class="lang-en">"Talk your spend — AI books it for you."</span>
-                                </p>
-                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">เปลี่ยนการจดบัญชีอันน่าเบื่อด้วย Zero-friction เพียงส่งรูปสลิปโอนเงิน หรือพิมพ์/พูดสั้นๆ AI จะคัดแยกสกุลเงินและหมวดหมู่ทันที พร้อมบุคลิกโต้ตอบหลากหลาย รวมถึง Roast Mode บ่นประชดขำๆ!</span>
-                                    <span class="lang-en">Zero-friction financial logging. Drop a bank transfer slip or simply say what you spent; AI automatically reads amount, converts currency, and logs it.</span>
-                                </p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="text-[9px] bg-pink-50 text-pink-700 px-2 py-0.5 rounded font-mono font-semibold">Vision OCR</span>
-                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Supabase</span>
-                                </div>
-                                <button onclick="window.jumpToUniverseRealm('piggy')" class="text-xs font-bold text-pink-600 hover:text-pink-800 transition flex items-center space-x-1">
-                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- App 3: Buddy Home (Turtle) -->
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-3">
-                        <div class="h-44 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 p-6 relative flex flex-col justify-between text-white overflow-hidden">
-                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-                            <div class="flex justify-between items-start z-10">
-                                <span class="text-3xl">🐢</span>
-                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
-                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                                </span>
-                            </div>
-                            <div class="z-10">
-                                <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-100">Smart Home & Health</span>
-                                <h4 class="text-2xl font-black font-heading text-white">Buddy Home</h4>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <p class="text-emerald-600 text-xs font-semibold">
-                                    <span class="lang-th">"โยนใบเสร็จให้ AI จัดสต๊อกบ้าน"</span>
-                                    <span class="lang-en">"Toss receipts at AI — it sorts your home."</span>
-                                </p>
-                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">ระบบวิเคราะห์สิ่งของและคาดการณ์อุปโภคบริโภคอัตโนมัติจากการถ่ายรูปตู้เย็น ชั้นวางของ หรือใบเสร็จซูเปอร์ฯ พร้อมทั้งช่วยจำตารางแจ้งเตือนประกันและอายุบำรุงรักษาอุปกรณ์ในบ้าน</span>
-                                    <span class="lang-en">Cozy home management. Upload photos of your fridge or supermarket receipts; AI estimates consumption rates, predicts expiry dates, and logs appliance warranties.</span>
-                                </p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-mono font-semibold">Smart Pantry</span>
-                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">React/Capacitor</span>
-                                </div>
-                                <button onclick="window.jumpToUniverseRealm('turtle')" class="text-xs font-bold text-emerald-600 hover:text-emerald-800 transition flex items-center space-x-1">
-                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- App 4: Buddy Stash (Treasure Vault) -->
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-1">
-                        <div class="h-44 bg-gradient-to-br from-amber-600 via-yellow-600 to-orange-600 p-6 relative flex flex-col justify-between text-white overflow-hidden">
-                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-                            <div class="flex justify-between items-start z-10">
-                                <span class="text-3xl">📦</span>
-                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
-                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                                </span>
-                            </div>
-                            <div class="z-10">
-                                <span class="text-[10px] font-mono uppercase tracking-widest text-amber-100">Encrypted Relic Vault</span>
-                                <h4 class="text-2xl font-black font-heading text-white">Buddy Stash</h4>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <p class="text-amber-600 text-xs font-semibold">
-                                    <span class="lang-th">"ตู้เซฟความจำ ถอดรหัสปลอดภัย & คลังของสะสม"</span>
-                                    <span class="lang-en">"Zero-knowledge encrypted memory vault."</span>
-                                </p>
-                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">คลังเก็บความลับ ข้อมูลส่วนตัว รหัส Wi-Fi ขนาดเสื้อผ้า และเอกสารสำคัญ ด้วยสถาปัตยกรรมเข้ารหัสระดับธนาคาร ค้นหาและเรียกคืนได้รวดเร็วทันใจผ่าน AI ภาษาธรรมชาติ</span>
-                                    <span class="lang-en">Bank-grade encrypted private vault for Wi-Fi codes, personal sizing, passports, and collectibles. Search and recall securely in milliseconds via AI.</span>
-                                </p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="text-[9px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-mono font-semibold">AES-256</span>
-                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Secure DB</span>
-                                </div>
-                                <button onclick="window.jumpToUniverseRealm('vault')" class="text-xs font-bold text-amber-600 hover:text-amber-800 transition flex items-center space-x-1">
-                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- App 5: Buddy Story (Wise Owl) -->
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-2">
-                        <div class="h-44 bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-700 p-6 relative flex flex-col justify-between text-white overflow-hidden">
-                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
-                            <div class="flex justify-between items-start z-10">
-                                <span class="text-3xl">🦉</span>
-                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
-                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                                </span>
-                            </div>
-                            <div class="z-10">
-                                <span class="text-[10px] font-mono uppercase tracking-widest text-purple-100">Narrative & Wisdom AI</span>
-                                <h4 class="text-2xl font-black font-heading text-white">Buddy Story</h4>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <p class="text-purple-600 text-xs font-semibold">
-                                    <span class="lang-th">"ถอดบทเรียนชีวิต & ร้อยเรียงนิทานครอบครัว"</span>
-                                    <span class="lang-en">"Life journey storyteller & bedtime narratives."</span>
-                                </p>
-                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">เปลี่ยนบันทึกชีวิตประจำวัน ภาพถ่ายการเดินทาง และช่วงเวลาสำคัญให้กลายเป็นเรื่องเล่าและนิทานสุดประทับใจ พร้อมสรุปข้อคิดและบทเรียนชีวิตประจำสัปดาห์อย่างอบอุ่น</span>
-                                    <span class="lang-en">Transform daily logs, travel snapshots, and precious life milestones into beautifully woven narratives and family bedtime stories with thoughtful weekly insights.</span>
-                                </p>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="text-[9px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-mono font-semibold">LLM Agent</span>
-                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Generative AI</span>
-                                </div>
-                                <button onclick="window.jumpToUniverseRealm('owl')" class="text-xs font-bold text-purple-600 hover:text-purple-800 transition flex items-center space-x-1">
-                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 6: All-in-One AI Suite Nexus CTA -->
-                    <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl border border-indigo-500/30 p-8 shadow-xl flex flex-col justify-between text-white reveal reveal-delay-3 relative overflow-hidden group">
-                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                    <!-- Buddy 1: Fenik (Brain & Quest) -->
+                    <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col justify-between p-6 reveal reveal-delay-1 border-t-4 border-t-orange-500">
                         <div>
-                            <div class="inline-flex items-center space-x-2 bg-indigo-500/20 border border-indigo-400/30 px-3 py-1 rounded-full text-[10px] font-bold text-indigo-300 uppercase tracking-widest mb-4">
-                                <i class="fa-solid fa-cube text-xs text-yellow-300"></i>
-                                <span>3D Interactive Hub</span>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-3xl">🔥</span>
+                                <span class="realm-badge-phoenix text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Brain & Task Hub</span>
                             </div>
-                            <h4 class="text-2xl font-black font-heading text-white mb-2">สำรวจจักรวาล 3 มิติ</h4>
-                            <p class="text-xs text-slate-300 leading-relaxed">
-                                หมุนสำรวจลูกแก้วและสัตว์ทั้ง 5 ตัวในกาแล็กซี 3 มิติแบบเต็มหน้าจอ พร้อมทดลองสั่งการและดูโครงสร้างระบบแบบเรียลไทม์
+                            <h4 class="text-xl font-bold text-white font-heading">Buddy Brain (Fenik)</h4>
+                            <p class="text-orange-400 text-xs font-semibold mt-1">"พูดบ่นยาวๆ ให้ AI สรุปและวางแผนชีวิต"</p>
+                            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                                ดักจับทุกความคิดที่กระจัดกระจาย ถอดความเสียง สรุปย่อ ดึงงานสำคัญเข้าปฏิทิน และบันทึกข้อเท็จจริงสำคัญเพื่อเรียกคืนด้วยภาษาธรรมชาติ
                             </p>
                         </div>
-                        <div class="mt-6">
-                            <button onclick="window.jumpToUniverseRealm('nexus')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs py-3 px-6 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center justify-center space-x-2">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                <span class="lang-th">เปิดจักรวาล 3D Nexus</span>
-                                <span class="lang-en">Launch 3D Nexus</span>
-                            </button>
+                        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-mono text-[10px]">Speech AI &middot; Flutter</span>
+                            <span class="text-orange-400 font-bold">Realm #1 🔥</span>
+                        </div>
+                    </div>
+
+                    <!-- Buddy 2: Moni (Money & Financial AI) -->
+                    <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col justify-between p-6 reveal reveal-delay-2 border-t-4 border-t-pink-500">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-3xl">🐷</span>
+                                <span class="realm-badge-piggy text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Financial OCR</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white font-heading">Buddy Money (Moni)</h4>
+                            <p class="text-pink-400 text-xs font-semibold mt-1">"บ่นว่าใช้อะไรไป AI ลงบัญชีให้"</p>
+                            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                                Zero-friction เพียงส่งรูปสลิปโอนเงินหรือพูดสั้นๆ AI จะคัดแยกสกุลเงินและหมวดหมู่ทันที พร้อมบุคลิกโต้ตอบหลากหลาย รวมถึง Roast Mode!
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-mono text-[10px]">Vision OCR &middot; Supabase</span>
+                            <span class="text-pink-400 font-bold">Realm #2 🐷</span>
+                        </div>
+                    </div>
+
+                    <!-- Buddy 3: Teta (Home & Smart Pantry) -->
+                    <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col justify-between p-6 reveal reveal-delay-3 border-t-4 border-t-emerald-500">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-3xl">🐢</span>
+                                <span class="realm-badge-turtle text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Home & Pantry</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white font-heading">Buddy Home (Teta)</h4>
+                            <p class="text-emerald-400 text-xs font-semibold mt-1">"โยนใบเสร็จให้ AI จัดสต๊อกบ้าน"</p>
+                            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                                วิเคราะห์ของใช้และคาดการณ์อุปโภคบริโภคอัตโนมัติจากการถ่ายรูปตู้เย็น ชั้นวางของ หรือใบเสร็จซูเปอร์ฯ พร้อมเตือนประกันของใช้ในบ้าน
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-mono text-[10px]">Pantry Vision &middot; React</span>
+                            <span class="text-emerald-400 font-bold">Realm #3 🐢</span>
+                        </div>
+                    </div>
+
+                    <!-- Buddy 4: Stash (Encrypted Vault) -->
+                    <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col justify-between p-6 reveal reveal-delay-1 border-t-4 border-t-amber-500">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-3xl">📦</span>
+                                <span class="realm-badge-vault text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Encrypted Vault</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white font-heading">Buddy Stash (Vault)</h4>
+                            <p class="text-amber-400 text-xs font-semibold mt-1">"ตู้เซฟความจำ ถอดรหัสปลอดภัย"</p>
+                            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                                คลังเก็บความลับ ข้อมูลส่วนตัว รหัส Wi-Fi ขนาดเสื้อผ้า และเอกสารสำคัญ ด้วยการเข้ารหัสระดับธนาคาร ค้นหาได้รวดเร็วทันใจผ่าน AI
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-mono text-[10px]">AES-256 &middot; Secure DB</span>
+                            <span class="text-amber-400 font-bold">Realm #4 📦</span>
+                        </div>
+                    </div>
+
+                    <!-- Buddy 5: Ollie (Wisdom & Story) -->
+                    <div class="cosmic-card rounded-3xl overflow-hidden flex flex-col justify-between p-6 reveal reveal-delay-2 border-t-4 border-t-purple-500">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-3xl">🦉</span>
+                                <span class="realm-badge-owl text-[9px] font-bold px-2.5 py-1 rounded-full uppercase">Wisdom & Story</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white font-heading">Buddy Story (Ollie)</h4>
+                            <p class="text-purple-400 text-xs font-semibold mt-1">"ถอดบทเรียนชีวิต & ร้อยเรียงนิทาน"</p>
+                            <p class="text-slate-300 text-xs mt-3 leading-relaxed">
+                                เปลี่ยนบันทึกชีวิตประจำวัน ภาพถ่ายการเดินทาง และช่วงเวลาสำคัญให้กลายเป็นเรื่องเล่าและนิทานสุดประทับใจ พร้อมสรุปข้อคิดประจำสัปดาห์
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-mono text-[10px]">Narrative AI &middot; LLM</span>
+                            <span class="text-purple-400 font-bold">Realm #5 🦉</span>
+                        </div>
+                    </div>
+
+                    <!-- Unified Suite Card -->
+                    <div class="bg-gradient-to-br from-indigo-950/80 via-purple-950/70 to-slate-900/80 rounded-3xl border border-indigo-500/40 p-6 flex flex-col justify-between shadow-2xl reveal reveal-delay-3">
+                        <div>
+                            <div class="inline-flex items-center space-x-2 bg-indigo-500/30 border border-indigo-400/40 px-3 py-1 rounded-full text-[10px] font-bold text-indigo-200 uppercase tracking-widest mb-4">
+                                <i class="fa-solid fa-shield-halved text-xs text-yellow-300"></i>
+                                <span>Cross-Platform 100%</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white font-heading mb-2">iOS &amp; Android Ready</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                ทุกแอปพลิเคชันถูกบิลด์และทดสอบเพื่อให้ใช้งานได้ลื่นไหลสมบูรณ์แบบบนสมาร์ตโฟนทุกระบบปฏิบัติการ
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/10">
+                            <span class="text-cyan-300 text-xs font-bold flex items-center">
+                                <i class="fa-solid fa-circle-check mr-1.5 text-emerald-400"></i>
+                                สถาปัตยกรรมระดับ Enterprise
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -1011,34 +736,34 @@
         </div>
     </section>
 
-    
-    <!-- ===== PRODUCTIZED SERVICES ===== -->
-    <section id="services" class="py-24 bg-slate-50 border-t border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- ===== SECTION 3: PRODUCTIZED SERVICES (CURATED BY MONI THE PIGGY 🐷) ===== -->
+    <section id="services" class="py-28 px-4 relative">
+        <div class="max-w-7xl mx-auto sm:px-6">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 font-heading">
-                    <span class="lang-th">แพ็กเกจบริการที่จัดเตรียม<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">พร้อมลุย</span></span>
-                    <span class="lang-en">Productized <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">Services</span></span>
+                <span class="inline-flex items-center space-x-2 realm-badge-piggy py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                    <span>🐷</span>
+                    <span class="lang-th">ดินแดนหมูทอง &middot; การเงิน &amp; ความคุ้มค่า ROI</span>
+                    <span class="lang-en">Domain of Moni &middot; Services &amp; Business ROI</span>
+                </span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white font-heading">
+                    <span class="lang-th">แพ็กเกจบริการที่จัดเตรียม<span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-300 to-purple-400">พร้อมลุย</span></span>
+                    <span class="lang-en">Productized <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-rose-300 to-purple-400">Services</span></span>
                 </h2>
-                <p class="text-slate-500 mt-4 max-w-2xl mx-auto text-sm">
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto text-sm md:text-base">
                     <span class="lang-th">เราจัดรูปแบบบริการให้อ่านง่าย เข้าใจทันทีว่าเราทำอะไรให้คุณได้บ้าง ไม่ต้องเดา ไม่ต้องเสียเวลาประชุมยาวๆ</span>
-                    <span class="lang-en">Clear, outcome-focused service packages. Know exactly what we build and how we can add value to your business without lengthy discovery calls.</span>
+                    <span class="lang-en">Clear, outcome-focused service packages. Know exactly what we build and how we can add value to your business.</span>
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- S1: Custom App -->
-                <div class="glass-card p-8 rounded-2xl reveal reveal-delay-1 flex items-start space-x-6 relative overflow-hidden group">
-                    <div class="absolute w-2 h-full bg-blue-500 left-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border border-blue-100">
-                        <i class="fa-solid fa-mobile-screen-button text-2xl text-blue-600"></i>
+                <div class="cosmic-card p-8 rounded-3xl reveal reveal-delay-1 flex items-start space-x-6">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-blue-500/20 border border-blue-400/30 text-cyan-400">
+                        <i class="fa-solid fa-mobile-screen-button text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 font-heading mb-2">
-                            <span class="lang-th">Custom App Development</span>
-                            <span class="lang-en">Custom App Development</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg font-bold text-white font-heading mb-2">Custom App Development</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                             <span class="lang-th">รับสร้างแอปพลิเคชัน Mobile และ Web App ตั้งแต่ศูนย์จนขึ้นสโตร์ ด้วยเทคโนโลยีทันสมัย (Flutter, React, Next.js) ที่ทำงานรวดเร็วและรองรับผู้ใช้จำนวนมากได้</span>
                             <span class="lang-en">End-to-end mobile and web application development using modern frameworks (Flutter, React, Next.js) designed for speed, beautiful UX, and scalable performance.</span>
                         </p>
@@ -1046,17 +771,13 @@
                 </div>
 
                 <!-- S2: AI Integration -->
-                <div class="glass-card p-8 rounded-2xl reveal reveal-delay-2 flex items-start space-x-6 relative overflow-hidden group">
-                    <div class="absolute w-2 h-full bg-indigo-500 left-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border border-indigo-100">
-                        <i class="fa-solid fa-wand-magic-sparkles text-2xl text-indigo-600"></i>
+                <div class="cosmic-card p-8 rounded-3xl reveal reveal-delay-2 flex items-start space-x-6">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-indigo-500/20 border border-indigo-400/30 text-indigo-300">
+                        <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 font-heading mb-2">
-                            <span class="lang-th">AI Integration & OCR</span>
-                            <span class="lang-en">AI Integration & OCR</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg font-bold text-white font-heading mb-2">AI Integration &amp; OCR</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                             <span class="lang-th">ติดตั้งความฉลาดให้ระบบเดิมของคุณ ด้วยการฝัง AI Language Models, ระบบอ่านข้อความจากภาพ (OCR), และบอทอัตโนมัติ เพื่อลดงาน Manual ของพนักงาน</span>
                             <span class="lang-en">Supercharge your existing systems by integrating AI LLMs, optical character recognition (OCR), and intelligent automation to eliminate manual data entry.</span>
                         </p>
@@ -1064,17 +785,13 @@
                 </div>
 
                 <!-- S3: Cloud & Data -->
-                <div class="glass-card p-8 rounded-2xl reveal reveal-delay-3 flex items-start space-x-6 relative overflow-hidden group">
-                    <div class="absolute w-2 h-full bg-emerald-500 left-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border border-emerald-100">
-                        <i class="fa-solid fa-server text-2xl text-emerald-600"></i>
+                <div class="cosmic-card p-8 rounded-3xl reveal reveal-delay-3 flex items-start space-x-6">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-emerald-500/20 border border-emerald-400/30 text-emerald-400">
+                        <i class="fa-solid fa-server text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 font-heading mb-2">
-                            <span class="lang-th">Cloud & Database Architecture</span>
-                            <span class="lang-en">Cloud & Data Architecture</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg font-bold text-white font-heading mb-2">Cloud &amp; Database Architecture</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                             <span class="lang-th">วางโครงสร้าง Server, Database (Supabase, Firebase, SQL) ย้ายถิ่นข้อมูล (Migration) และจัดการ Data Pipeline อย่างปลอดภัยและไร้รอยต่อ</span>
                             <span class="lang-en">Design robust backend infrastructure, implement Database solutions (Supabase, Firebase), execute safe data migrations, and build reliable cloud pipelines.</span>
                         </p>
@@ -1082,17 +799,13 @@
                 </div>
 
                 <!-- S4: Dedicated Team -->
-                <div class="glass-card p-8 rounded-2xl reveal reveal-delay-4 flex items-start space-x-6 relative overflow-hidden group">
-                    <div class="absolute w-2 h-full bg-slate-800 left-0 top-0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="service-icon w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border border-slate-200 bg-gradient-to-br from-slate-100 to-slate-200">
-                        <i class="fa-solid fa-users-gear text-2xl text-slate-700"></i>
+                <div class="cosmic-card p-8 rounded-3xl reveal reveal-delay-4 flex items-start space-x-6">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 bg-purple-500/20 border border-purple-400/30 text-purple-300">
+                        <i class="fa-solid fa-users-gear text-2xl"></i>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-slate-900 font-heading mb-2">
-                            <span class="lang-th">Dedicated Team / Outsource</span>
-                            <span class="lang-en">Dedicated Team / Outsource</span>
-                        </h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">
+                        <h3 class="text-lg font-bold text-white font-heading mb-2">Dedicated Team / Outsource</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
                             <span class="lang-th">จัดเตรียมทีมนักพัฒนาที่มีประสบการณ์สูง เข้าร่วมโปรเจกต์ไอทีขนาดใหญ่ขององค์กร เพื่อเร่งความเร็วในการส่งมอบซอฟต์แวร์สู่ตลาด</span>
                             <span class="lang-en">Provide highly skilled dedicated developers to integrate with your enterprise IT teams, accelerating product delivery and maintaining code excellence.</span>
                         </p>
@@ -1102,437 +815,325 @@
         </div>
     </section>
 
-    <!-- ===== RESOURCES / BLOG ===== -->
-    <section id="resources" class="py-24 bg-white border-t border-slate-200">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <!-- ===== SECTION 4: CLOUD ARCHITECTURE & SECURITY (GUARDED BY STASH & TETA 📦🐢) ===== -->
+    <section id="architecture" class="py-28 px-4 relative">
+        <div class="max-w-7xl mx-auto sm:px-6">
+            <div class="cosmic-card rounded-3xl p-8 md:p-12 border border-emerald-500/30 shadow-2xl relative overflow-hidden reveal">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                    <div class="lg:w-2/3">
+                        <div class="inline-flex items-center space-x-2 realm-badge-turtle py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                            <span>📦 &middot; 🐢</span>
+                            <span class="lang-th">ความปลอดภัยระดับตู้เซฟ &amp; สถาปัตยกรรมเพชรมรกต</span>
+                            <span class="lang-en">Bank-Grade Vault &amp; Diamond Architecture</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold text-white font-heading">
+                            <span class="lang-th">ระบบความปลอดภัย &amp; สถาปัตยกรรมระดับองค์กร</span>
+                            <span class="lang-en">Enterprise Security &amp; Resilient Architecture</span>
+                        </h3>
+                        <p class="text-slate-300 mt-4 text-sm leading-relaxed">
+                            <span class="lang-th">เราวางมาตรฐานความปลอดภัยสูงสุดด้วยการเข้ารหัส End-to-End (AES-256), สถาปัตยกรรมฐานข้อมูล Zero-Knowledge, และ Cloud Serverless ที่ขยายตัวได้ตามโหลดผู้ใช้จริงโดยไม่มีวันล่ม</span>
+                            <span class="lang-en">We implement top-tier cybersecurity with End-to-End encryption (AES-256), zero-knowledge storage protocols, and auto-scaling serverless infrastructure designed for zero-downtime reliability.</span>
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-6 border-t border-white/10 text-center">
+                            <div>
+                                <p class="text-2xl font-bold text-emerald-400 font-mono">AES-256</p>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">Data Encryption</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-cyan-400 font-mono">99.99%</p>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">Cloud Uptime</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-indigo-400 font-mono">&lt; 100ms</p>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">API Latency</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-amber-400 font-mono">Zero</p>
+                                <p class="text-[10px] text-slate-400 font-bold uppercase mt-1">Data Leaks</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-1/3 flex justify-center">
+                        <div class="w-56 h-56 rounded-full bg-gradient-to-tr from-emerald-500/20 via-cyan-500/20 to-amber-500/20 border border-emerald-400/40 backdrop-blur-2xl flex flex-col items-center justify-center p-6 text-center shadow-2xl float">
+                            <i class="fa-solid fa-shield-halved text-5xl text-emerald-400 mb-3"></i>
+                            <span class="text-xs font-bold text-white uppercase tracking-wider">Certified Secure</span>
+                            <span class="text-[10px] text-slate-300 mt-1">Supabase &middot; Firebase &middot; AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SECTION 5: TECH INSIGHTS & RESOURCES (CURATED BY OLLIE THE OWL 🦉) ===== -->
+    <section id="resources" class="py-28 px-4 relative">
+        <div class="max-w-6xl mx-auto sm:px-6">
             <div class="flex justify-between items-end mb-12 reveal">
                 <div>
-                    <h2 class="text-3xl font-bold text-slate-900 font-heading">
+                    <span class="inline-flex items-center space-x-2 realm-badge-owl py-1 px-4 rounded-full text-xs font-bold uppercase tracking-widest mb-3">
+                        <span>🦉</span>
+                        <span class="lang-th">หอสมุดคอสมิก &middot; คลังปัญญาวิศวกรรม</span>
+                        <span class="lang-en">Wisdom Spire &middot; Engineering Insights</span>
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white font-heading">
                         <span class="lang-th">ความรู้และเครื่องมือ</span>
-                        <span class="lang-en">Tech Insights & Resources</span>
+                        <span class="lang-en">Tech Insights &amp; Resources</span>
                     </h2>
-                    <p class="text-slate-500 mt-2 text-sm">
+                    <p class="text-slate-400 mt-2 text-sm">
                         <span class="lang-th">บทความ เทคนิค และแนวคิดเบื้องหลังการสร้างซอฟต์แวร์ของเรา</span>
                         <span class="lang-en">Articles, techniques, and the engineering thoughts behind our products.</span>
                     </p>
                 </div>
-                <a href="#" class="hidden md:inline-flex text-blue-600 font-semibold text-sm hover:text-blue-800 items-center transition">
-                    <span class="lang-th">ดูบทความทั้งหมด</span><span class="lang-en">View All</span> <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal reveal-delay-1">
-                <a href="#" class="group block border border-slate-100 rounded-2xl overflow-hidden hover:shadow-lg transition bg-slate-50">
-                    <div class="h-40 bg-gradient-to-br from-blue-900 to-indigo-900 relative">
-                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 20px 20px;"></div>
-                        <div class="absolute bottom-4 left-4 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">Architecture</div>
+                <a href="#" class="cosmic-card rounded-3xl overflow-hidden group block">
+                    <div class="h-44 bg-gradient-to-br from-indigo-900/60 to-purple-950/60 p-6 relative flex flex-col justify-end">
+                        <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full font-mono">Architecture</div>
+                        <i class="fa-solid fa-database text-4xl text-cyan-400/40 absolute top-4 right-4"></i>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition">Supabase vs Firebase: เลือกใช้อะไรสำหรับ Tech Stack ถัดไป?</h4>
-                        <p class="text-sm text-slate-500 line-clamp-2">เปรียบเทียบข้อดีข้อเสียของ BaaS สองตัวท็อปในมุมมองของการทำแอปสเกลระดับหลักหมื่นผู้ใช้งาน...</p>
-                        <p class="text-xs text-slate-400 mt-4 font-medium">Coming Soon</p>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition">Supabase vs Firebase: เลือกใช้อะไรสำหรับ Tech Stack ถัดไป?</h4>
+                        <p class="text-xs sm:text-sm text-slate-300 line-clamp-2">เปรียบเทียบข้อดีข้อเสียของ BaaS สองตัวท็อปในมุมมองของการทำแอปสเกลระดับหลักหมื่นผู้ใช้งาน...</p>
+                        <p class="text-xs text-slate-500 mt-4 font-medium">Coming Soon &middot; By KAI SOFT Labs</p>
                     </div>
                 </a>
                 
-                <a href="#" class="group block border border-slate-100 rounded-2xl overflow-hidden hover:shadow-lg transition bg-slate-50">
-                    <div class="h-40 bg-gradient-to-br from-slate-800 to-slate-900 relative">
-                        <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size: 20px 20px;"></div>
-                        <div class="absolute bottom-4 left-4 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">AI Engineering</div>
+                <a href="#" class="cosmic-card rounded-3xl overflow-hidden group block">
+                    <div class="h-44 bg-gradient-to-br from-slate-900/60 to-indigo-950/60 p-6 relative flex flex-col justify-end">
+                        <div class="absolute top-4 left-4 bg-white/20 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full font-mono">AI Engineering</div>
+                        <i class="fa-solid fa-wand-magic-sparkles text-4xl text-purple-400/40 absolute top-4 right-4"></i>
                     </div>
                     <div class="p-6">
-                        <h4 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition">การประยุกต์ใช้ Prompt Engineering สำหรับงาน OCR บิลใบเสร็จ</h4>
-                        <p class="text-sm text-slate-500 line-clamp-2">เทคนิคการสกัดข้อมูล (Data Extraction) จากสลิปหรือใบเสร็จรับเงินที่รูปแบบไม่ตายตัวด้วย LLM...</p>
-                        <p class="text-xs text-slate-400 mt-4 font-medium">Coming Soon</p>
+                        <h4 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition">การประยุกต์ใช้ Prompt Engineering สำหรับงาน OCR บิลใบเสร็จ</h4>
+                        <p class="text-xs sm:text-sm text-slate-300 line-clamp-2">เทคนิคการสกัดข้อมูล (Data Extraction) จากสลิปหรือใบเสร็จรับเงินที่รูปแบบไม่ตายตัวด้วย LLM...</p>
+                        <p class="text-xs text-slate-500 mt-4 font-medium">Coming Soon &middot; By KAI SOFT Labs</p>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ===== ESTIMATION FORM / CONTACT ===== -->
-    <section id="estimation-form" class="py-24 bg-slate-900 relative overflow-hidden">
-        <!-- Background decoration -->
-        <div class="absolute w-96 h-96 bg-blue-600/10 rounded-full blur-3xl top-0 right-0 -translate-y-1/2 translate-x-1/3"></div>
-        <div class="absolute w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl bottom-0 left-0 translate-y-1/3 -translate-x-1/3"></div>
-
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+    <!-- ===== SECTION 6: ESTIMATION & CONTACT (✨ THE GRAND COSMIC BEACON) ===== -->
+    <section id="estimation-form" class="py-28 px-4 relative">
+        <div class="max-w-4xl mx-auto sm:px-6 relative z-10">
             <div class="text-center mb-12 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white font-heading">
+                <div class="inline-flex items-center space-x-2 bg-indigo-500/20 border border-indigo-400/30 rounded-full py-1 px-4 mb-4 backdrop-blur-md">
+                    <i class="fa-solid fa-tower-broadcast text-xs text-cyan-300 animate-pulse"></i>
+                    <span class="text-[11px] font-bold text-indigo-200 uppercase tracking-widest">
+                        <span class="lang-th">ประภาคารจักรวาล Cosmic Beacon</span>
+                        <span class="lang-en">The Grand Cosmic Beacon</span>
+                    </span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white font-heading">
                     <span class="lang-th">เริ่มคุยโปรเจกต์ของคุณ</span>
                     <span class="lang-en">Start Your Project</span>
                 </h2>
-                <p class="text-slate-400 mt-4 text-sm max-w-lg mx-auto">
-                    <span class="lang-th">กรอกข้อมูลเบื้องต้นเพื่อความรวดเร็วในการประเมินราคา เราจะตอบกลับอีเมลพร้อมความเป็นไปได้และราคาคร่าวๆ ทันที</span>
-                    <span class="lang-en">Provide a few details below for a quick estimation. We will reply with technical feasibility and rough cost estimates promptly.</span>
+                <p class="text-slate-300 mt-4 text-sm md:text-base max-w-lg mx-auto">
+                    <span class="lang-th">กรอกข้อมูลเบื้องต้นเพื่อประเมินราคา เราจะตอบกลับอีเมลพร้อมความเป็นไปได้และราคาคร่าวๆ ทันที</span>
+                    <span class="lang-en">Provide a few details below for a quick estimation. We will reply promptly with technical feasibility and rough cost estimates.</span>
                 </p>
             </div>
 
-            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-2xl reveal reveal-delay-1">
+            <div class="cosmic-card rounded-3xl p-8 md:p-12 shadow-2xl reveal reveal-delay-1 border border-indigo-500/30">
                 <form id="project-form" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wide mb-2">
                                 <span class="lang-th">ชื่อ / บริษัท</span><span class="lang-en">Name / Company</span>
                             </label>
-                            <input type="text" id="form-name" class="form-input" placeholder="e.g. John Doe / Tech Corp" required>
+                            <input type="text" id="form-name" class="form-input-cosmic" placeholder="e.g. John Doe / Tech Corp" required>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wide mb-2">
                                 <span class="lang-th">อีเมลติดต่อ</span><span class="lang-en">Email Address</span>
                             </label>
-                            <input type="email" id="form-email" class="form-input" placeholder="john@example.com" required>
+                            <input type="email" id="form-email" class="form-input-cosmic" placeholder="john@example.com" required>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wide mb-2">
                                 <span class="lang-th">ประเภทโปรเจกต์</span><span class="lang-en">Project Type</span>
                             </label>
-                            <select id="form-type" class="form-input text-slate-700" required>
+                            <select id="form-type" class="form-input-cosmic" required>
                                 <option value="" disabled selected class="lang-th">-- เลือกประเภท --</option>
                                 <option value="" disabled selected class="lang-en">-- Select Type --</option>
-                                <option value="Mobile App (iOS/Android)">Mobile App (iOS/Android)</option>
-                                <option value="Web Application">Web Application</option>
-                                <option value="AI / OCR Integration">AI / OCR Integration</option>
-                                <option value="Dedicated Team / Outsource">Dedicated Team / Outsource</option>
-                                <option value="Other">Other / Not Sure</option>
+                                <option value="Mobile App (Flutter/Native)">Mobile Application (iOS / Android)</option>
+                                <option value="Web App / SaaS (React/Next.js)">Web Application / SaaS</option>
+                                <option value="AI Integration / OCR Engine">AI Integration &amp; OCR Engine</option>
+                                <option value="Enterprise Software / Tax System">Enterprise System Architecture</option>
+                                <option value="Game Development (3D / Puzzle)">Game Development (3D / Puzzle)</option>
+                                <option value="Dedicated Engineering Team">Dedicated Engineering Team</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
-                                <span class="lang-th">งบประมาณที่ตั้งไว้ (โดยประมาณ)</span><span class="lang-en">Estimated Budget</span>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wide mb-2">
+                                <span class="lang-th">งบประมาณโดยประมาณ</span><span class="lang-en">Estimated Budget</span>
                             </label>
-                            <select id="form-budget" class="form-input text-slate-700" required>
-                                <option value="" disabled selected class="lang-th">-- เลือกงบประมาณ --</option>
-                                <option value="" disabled selected class="lang-en">-- Select Budget --</option>
-                                <option value="Less than 100k THB">< 100,000 THB</option>
-                                <option value="100k - 500k THB">100,000 - 500,000 THB</option>
-                                <option value="500k - 1M THB">500,000 - 1,000,000 THB</option>
-                                <option value="1M+ THB">1,000,000+ THB</option>
+                            <select id="form-budget" class="form-input-cosmic" required>
+                                <option value="" disabled selected class="lang-th">-- เลือกช่วงงบประมาณ --</option>
+                                <option value="" disabled selected class="lang-en">-- Select Budget Range --</option>
+                                <option value="< 100k THB">&lt; 100,000 THB</option>
+                                <option value="100k - 300k THB">100,000 - 300,000 THB</option>
+                                <option value="300k - 800k THB">300,000 - 800,000 THB</option>
+                                <option value="800k+ THB">800,000+ THB (Enterprise)</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-2">
-                            <span class="lang-th">อธิบายความต้องการสั้นๆ (ถ้ามีฟีเจอร์หลักๆ อะไรบ้าง)</span>
-                            <span class="lang-en">Brief Description (Key features needed)</span>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wide mb-2">
+                            <span class="lang-th">รายละเอียดโปรเจกต์</span><span class="lang-en">Project Overview</span>
                         </label>
-                        <textarea id="form-desc" rows="4" class="form-input resize-none" placeholder="..." required></textarea>
+                        <textarea id="form-desc" rows="4" class="form-input-cosmic resize-none" placeholder="อธิบายไอเดีย ฟีเจอร์หลัก หรือปัญหาที่ต้องการแก้ไข..." required></textarea>
                     </div>
 
-                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
-                        <div class="flex items-center space-x-3 text-sm text-slate-500">
-                            <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-envelope text-slate-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-xs font-bold uppercase">Direct Email</p>
-                                <p class="font-medium text-slate-700">admin@kaisoft.net</p>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition shadow-lg shadow-blue-500/30 flex items-center justify-center group">
-                            <span class="lang-th">ส่งเพื่อประเมินราคา</span>
-                            <span class="lang-en">Submit Request</span>
-                            <i class="fa-solid fa-paper-plane ml-2 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"></i>
-                        </button>
-                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold py-4 rounded-xl transition shadow-xl shadow-indigo-600/30 flex items-center justify-center space-x-2 group text-sm sm:text-base">
+                        <i class="fa-solid fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                        <span class="lang-th">ส่งสารสู่ประภาคารจักรวาล</span>
+                        <span class="lang-en">Transmit Project to Beacon</span>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- ===== FOOTER ===== -->
-    <footer class="bg-slate-950 text-slate-400 pt-16 pb-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-12 border-b border-slate-800 pb-12">
-                <div class="text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start space-x-2.5 mb-4">
-                        <div class="bg-gradient-to-br from-blue-500 to-cyan-400 text-white p-2 rounded-xl shadow-md">
-                            <i class="fa-solid fa-microchip fa-lg"></i>
-                        </div>
-                        <span class="font-bold text-xl text-white tracking-wide font-heading">KAI SOFT</span>
-                    </div>
-                    <p class="text-sm text-slate-500 max-w-xs">
-                        <span class="lang-th">บริษัท ไค ซอฟต์ จำกัด<br>High-Performance Software House</span>
-                        <span class="lang-en">KAI SOFT COMPANY LIMITED<br>High-Performance Software House</span>
-                    </p>
-                </div>
-
-                <div class="flex gap-8 text-sm">
-                    <a href="privacy/index.html" class="hover:text-blue-400 transition">Privacy Policy</a>
-                    <a href="terms/index.html" class="hover:text-blue-400 transition">Terms of Service</a>
-                </div>
+    <footer class="py-12 bg-black/60 border-t border-white/10 backdrop-blur-md text-xs text-slate-400 text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="font-bold text-white font-heading">KAI SOFT</span>
+                <span>&copy; 2026 Kai Soft Co., Ltd. All rights reserved.</span>
             </div>
-
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-                <p class="text-xs text-slate-600">
-                    <span class="lang-th">&copy; 2026 บริษัท ไค ซอฟต์ จำกัด สงวนลิขสิทธิ์ทั้งหมด</span>
-                    <span class="lang-en">&copy; 2026 KAI SOFT COMPANY LIMITED. All rights reserved.</span>
-                </p>
-                <div class="flex items-center space-x-2 text-xs text-slate-600">
-                    <i class="fa-solid fa-bolt text-blue-500"></i>
-                    <span>Built with Logic & AI</span>
-                </div>
+            <div class="flex items-center space-x-6 text-slate-400">
+                <a href="privacy-policy.html" class="hover:text-white transition">Privacy Policy</a>
+                <a href="delete-account.html" class="hover:text-white transition">Delete Account</a>
+                <a href="mailto:admin@kaisoft.net" class="hover:text-white transition">admin@kaisoft.net</a>
             </div>
         </div>
     </footer>
 
-    <!-- ===== BACK TO TOP ===== -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fa-solid fa-arrow-up text-sm"></i>
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 bg-indigo-600/80 hover:bg-indigo-600 text-white p-3.5 rounded-full shadow-2xl backdrop-blur-md transition-all opacity-0 pointer-events-none duration-300 border border-white/20" aria-label="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
     </button>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- Interactive Scripts -->
     <script>
-    (function() {
-        // ===== LANGUAGE TOGGLE =====
-        function setLanguage(lang) {
-            document.documentElement.setAttribute('lang', lang);
-            localStorage.setItem('preferred-language', lang);
-            document.title = lang === 'th'
-                ? 'KAI SOFT — สร้างสรรค์ซอฟต์แวร์ระดับองค์กร'
-                : 'KAI SOFT — High-Performance Apps & Enterprise Solutions';
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
 
-            document.querySelectorAll('.lang-btn-en').forEach(btn => {
-                btn.classList.toggle('text-blue-600', lang === 'en');
-                btn.classList.toggle('text-slate-800', lang !== 'en');
+        // Back to top
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none');
+                backToTop.classList.add('opacity-100');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none');
+                backToTop.classList.remove('opacity-100');
+            }
+        }, { passive: true });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        // Scroll Reveal
+        if ('IntersectionObserver' in window) {
+            const revealObs = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('revealed');
+                        revealObs.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+        }
+
+        // Counters
+        const counters = document.querySelectorAll('.counter');
+        if (counters.length > 0 && 'IntersectionObserver' in window) {
+            const countObs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute('data-target'));
+                        let count = 0;
+                        const inc = target / 50;
+                        const timer = setInterval(() => {
+                            count += inc;
+                            if (count >= target) {
+                                entry.target.innerText = target.toLocaleString();
+                                clearInterval(timer);
+                            } else {
+                                entry.target.innerText = Math.floor(count).toLocaleString();
+                            }
+                        }, 25);
+                        countObs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+            counters.forEach(c => countObs.observe(c));
+        }
+
+        // Form Submit
+        const form = document.getElementById('project-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('form-name').value;
+                const email = document.getElementById('form-email').value;
+                const type = document.getElementById('form-type').value;
+                const budget = document.getElementById('form-budget').value;
+                const desc = document.getElementById('form-desc').value;
+
+                const subject = encodeURIComponent(`[KAI SOFT 3D Project] from ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nType: ${type}\nBudget: ${budget}\n\nProject Scope:\n${desc}`);
+                window.location.href = `mailto:admin@kaisoft.net?subject=${subject}&body=${body}`;
             });
-            document.querySelectorAll('.lang-btn-th').forEach(btn => {
-                btn.classList.toggle('text-blue-600', lang === 'th');
-                btn.classList.toggle('text-slate-800', lang !== 'th');
-            });
-            
-            // Re-render form placeholders based on language
-            const desc = document.getElementById('form-desc');
-            if (desc) {
-                desc.placeholder = lang === 'th' ? "เช่น ต้องการแอปบน iOS และแอดมินพาเนล..." : "e.g. Need an iOS app and a web admin panel...";
+        }
+
+        // Flow Link 3D Card Bring to Front
+        function bringToFront(cardType) {
+            const cConcept = document.getElementById('card-concept');
+            const cMenu = document.getElementById('card-menu');
+            const cGameplay = document.getElementById('card-gameplay');
+
+            cConcept.className = cConcept.className.replace(/card-(active|left|right)/g, '');
+            cMenu.className = cMenu.className.replace(/card-(active|left|right)/g, '');
+            cGameplay.className = cGameplay.className.replace(/card-(active|left|right)/g, '');
+
+            if (cardType === 'concept') {
+                cConcept.classList.add('card-active');
+                cMenu.classList.add('card-right');
+                cGameplay.classList.add('card-left');
+            } else if (cardType === 'menu') {
+                cMenu.classList.add('card-active');
+                cGameplay.classList.add('card-right');
+                cConcept.classList.add('card-left');
+            } else {
+                cGameplay.classList.add('card-active');
+                cConcept.classList.add('card-right');
+                cMenu.classList.add('card-left');
             }
         }
-        window.setLanguage = setLanguage;
-
-                    window.bringToFront = function(cardId) {
-                const cards = {
-                    concept: document.getElementById('card-concept'),
-                    menu: document.getElementById('card-menu'),
-                    gameplay: document.getElementById('card-gameplay')
-                };
-                Object.values(cards).forEach(c => c.classList.remove('card-active','card-right','card-left'));
-                if (cardId === 'concept') {
-                    cards.concept.classList.add('card-active');
-                    cards.menu.classList.add('card-right');
-                    cards.gameplay.classList.add('card-left');
-                } else if (cardId === 'menu') {
-                    cards.menu.classList.add('card-active');
-                    cards.gameplay.classList.add('card-right');
-                    cards.concept.classList.add('card-left');
-                } else {
-                    cards.gameplay.classList.add('card-active');
-                    cards.concept.classList.add('card-right');
-                    cards.menu.classList.add('card-left');
-                }
-            };
-
-            document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferred-language') || 'th';
-            setLanguage(savedLang);
-
-            // ===== HAMBURGER MENU =====
-            const hamburger = document.getElementById('hamburger');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (hamburger && mobileMenu) {
-                hamburger.addEventListener('click', function() {
-                    hamburger.classList.toggle('active');
-                    mobileMenu.classList.toggle('active');
-                });
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        hamburger.classList.remove('active');
-                        mobileMenu.classList.remove('active');
-                    });
-                });
-            }
-
-            // ===== NAVBAR GLASS =====
-            const nav = document.getElementById('main-nav');
-            window.addEventListener('scroll', function() {
-                nav.classList.toggle('nav-scrolled', window.scrollY > 20);
-            }, { passive: true });
-
-            // ===== BACK TO TOP =====
-            const backToTop = document.getElementById('back-to-top');
-            window.addEventListener('scroll', function() {
-                backToTop.classList.toggle('visible', window.scrollY > 500);
-            }, { passive: true });
-            backToTop.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // ===== SCROLL REVEAL =====
-            const revealElements = document.querySelectorAll('.reveal');
-            if ('IntersectionObserver' in window) {
-                const revealObserver = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('revealed');
-                            revealObserver.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-                revealElements.forEach(function(el) { revealObserver.observe(el); });
-            } else {
-                revealElements.forEach(function(el) { el.classList.add('revealed'); });
-            }
-
-            // ===== COUNTER ANIMATION =====
-            const counters = document.querySelectorAll('.counter');
-            if (counters.length > 0) {
-                if ('IntersectionObserver' in window) {
-                    const countObserver = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const counter = entry.target;
-                                const target = parseInt(counter.getAttribute('data-target'));
-                                const duration = 1500;
-                                const startTime = performance.now();
-
-                                function updateCount(currentTime) {
-                                    const elapsed = currentTime - startTime;
-                                    const progress = Math.min(elapsed / duration, 1);
-                                    const ease = progress * (2 - progress);
-                                    const currentVal = Math.floor(ease * target);
-                                    
-                                    counter.innerText = currentVal.toLocaleString();
-
-                                    if (progress < 1) {
-                                        requestAnimationFrame(updateCount);
-                                    } else {
-                                        counter.innerText = target.toLocaleString();
-                                    }
-                                }
-
-                                requestAnimationFrame(updateCount);
-                                countObserver.unobserve(counter);
-                            }
-                        });
-                    }, { threshold: 0.1 });
-                    counters.forEach(counter => countObserver.observe(counter));
-                } else {
-                    counters.forEach(counter => {
-                        const target = parseInt(counter.getAttribute('data-target'));
-                        counter.innerText = target.toLocaleString();
-                    });
-                }
-            }
-
-            // ===== FORM SUBMISSION (MAILTO INTERCEPT) =====
-            const form = document.getElementById('project-form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const name = document.getElementById('form-name').value;
-                    const email = document.getElementById('form-email').value;
-                    const type = document.getElementById('form-type').value;
-                    const budget = document.getElementById('form-budget').value;
-                    const desc = document.getElementById('form-desc').value;
-
-                    const subject = encodeURIComponent(`Project Estimation Request from ${name}`);
-                    let bodyStr = `Name/Company: ${name}\n`;
-                    bodyStr += `Email: ${email}\n`;
-                    bodyStr += `Project Type: ${type}\n`;
-                    bodyStr += `Estimated Budget: ${budget}\n\n`;
-                    bodyStr += `Description:\n${desc}\n`;
-
-                    const body = encodeURIComponent(bodyStr);
-                    const mailtoLink = `mailto:admin@kaisoft.net?subject=${subject}&body=${body}`;
-                    
-                    window.location.href = mailtoLink;
-                    
-                    // Show a quick alert as feedback
-                    const lang = document.documentElement.getAttribute('lang');
-                    alert(lang === 'th' ? "กำลังเปิดแอปพลิเคชันอีเมลของคุณ..." : "Opening your email client...");
-                });
-            }
-
-            // ===== PARTICLE NETWORK CANVAS (FROM PREVIOUS) =====
-            const canvas = document.getElementById('hero-canvas');
-            if (canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                const ctx = canvas.getContext('2d');
-                let particles = [];
-                const isMobile = window.innerWidth < 768;
-                const PARTICLE_COUNT = isMobile ? 35 : 70;
-                const CONNECT_DIST = isMobile ? 100 : 140;
-
-                function resizeCanvas() {
-                    const parent = canvas.parentElement;
-                    canvas.width = parent.offsetWidth;
-                    canvas.height = parent.offsetHeight;
-                }
-
-                function createParticles() {
-                    particles = [];
-                    for (let i = 0; i < PARTICLE_COUNT; i++) {
-                        particles.push({
-                            x: Math.random() * canvas.width,
-                            y: Math.random() * canvas.height,
-                            vx: (Math.random() - 0.5) * 0.4,
-                            vy: (Math.random() - 0.5) * 0.4,
-                            r: Math.random() * 2 + 0.8
-                        });
-                    }
-                }
-
-                function animateParticles() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    for (let i = 0; i < particles.length; i++) {
-                        const p = particles[i];
-                        p.x += p.vx; p.y += p.vy;
-                        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                        ctx.fillStyle = 'rgba(96,165,250,0.5)';
-                        ctx.fill();
-
-                        for (let j = i + 1; j < particles.length; j++) {
-                            const q = particles[j];
-                            const dx = p.x - q.x, dy = p.y - q.y;
-                            const dist = Math.sqrt(dx*dx + dy*dy);
-                            if (dist < CONNECT_DIST) {
-                                ctx.beginPath();
-                                ctx.moveTo(p.x, p.y);
-                                ctx.lineTo(q.x, q.y);
-                                ctx.strokeStyle = 'rgba(96,165,250,' + (0.15 * (1 - dist/CONNECT_DIST)) + ')';
-                                ctx.lineWidth = 0.6;
-                                ctx.stroke();
-                            }
-                        }
-                    }
-                    requestAnimationFrame(animateParticles);
-                }
-
-                resizeCanvas();
-                createParticles();
-                animateParticles();
-
-                let resizeTimeout;
-                window.addEventListener('resize', function() {
-                    clearTimeout(resizeTimeout);
-                    resizeTimeout = setTimeout(function() {
-                        resizeCanvas();
-                        createParticles();
-                    }, 200);
-                });
-            }
-        });
-    })();
     </script>
 
-    <!-- 3D Cosmic Marble Universe & 5 Mascots Engine -->
+    <!-- Full-Page 3D Cosmic Marble Universe Script -->
     <script src="js/three-universe.js"></script>
 </body>
 </html>
