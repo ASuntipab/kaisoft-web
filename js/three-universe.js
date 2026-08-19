@@ -3,13 +3,14 @@
  * Powered by Three.js & GSAP
  * 
  * Features:
- * - Vibrant, Rich Natural Colors for All 5 Mascots (No White Bleaching or Overexposure)
- * - 3D Planet Marbles with Deep Element-Tinted Crystal Shells & Glowing Relics
- * - Balanced Atmospheric 3-Point Lighting with Deep Contrast & Shadows
+ * - Crystal Clear, Transparent Glass Planet Marbles with Glowing Faceted Relics Inside
+ * - Generously Spaced Orbs Framed Elegantly Around Content (No Clumping or Overlap)
+ * - Rich Claymorphic Mascots with Vibrant Non-Bleached Colors
+ * - Balanced Atmospheric 3-Point Lighting with Deep Contrast & Real Shadows
  * - 5 Realm Guardians overseeing their respective sections:
  *     Section 0 (Hero): Cosmic Nexus Overview
  *     Section 1 (Case Studies): 🔥 Fenik the Phoenix (The Fire & Intellect Guardian)
- *     Section 2 (Pipeline & Flow Link): 🪐 Celestial Bridge & 5 Crystalline Relic Orbs
+ *     Section 2 (Pipeline & Flow Link): 🪐 Celestial Bridge & 5 Widely-Spaced Sacred Relic Orbs
  *     Section 3 (Services & ROI): 🐷 Moni the Piggy (The Fortune & Growth Guardian)
  *     Section 4 (Architecture & Security): 📦 Stash the Vault & 🐢 Teta the Turtle
  *     Section 5 (Insights & Resources): 🦉 Ollie the Wise Owl (The Wisdom Guardian)
@@ -137,8 +138,8 @@
                 { progress: 0.00, cam: new THREE.Vector3(0, 3.8, 17.5), lookAt: new THREE.Vector3(0, 0.8, 0) },
                 // 1. Case Studies (Scroll 0.18) - Phoenix Realm (Right side focus)
                 { progress: 0.18, cam: new THREE.Vector3(1.6, -6.0, 7.2), lookAt: new THREE.Vector3(4.0, -7.5, -3.5) },
-                // 2. Product Pipeline / Flow Link (Scroll 0.36) - Celestial Bridge & 5 Relic Orbs (Left side focus)
-                { progress: 0.36, cam: new THREE.Vector3(-1.4, -14.2, 7.8), lookAt: new THREE.Vector3(-4.2, -15.8, -3.2) },
+                // 2. Product Pipeline / Flow Link (Scroll 0.36) - Centered View with Side-Flanking Orbs
+                { progress: 0.36, cam: new THREE.Vector3(0, -15.2, 9.2), lookAt: new THREE.Vector3(0, -16.0, -1.0) },
                 // 3. Services & ROI (Scroll 0.54) - Piggy Bank Realm (Right side focus)
                 { progress: 0.54, cam: new THREE.Vector3(1.8, -22.8, 7.2), lookAt: new THREE.Vector3(4.2, -24.5, -3.5) },
                 // 4. Cloud Architecture & Security (Scroll 0.72) - Stash & Turtle (Left side focus)
@@ -186,7 +187,7 @@
             // 4. Build Mascots with Rich Clay/Standard Materials
             this.buildMascots();
 
-            // 5. Build High-Dimensional Floating Physical Crystal Marbles
+            // 5. Build High-Dimensional Floating Transparent Crystal Marbles (Generously Spaced)
             this.buildFloatingMarbles();
 
             // 6. Build Celestial Highway & Orbit Pathways
@@ -710,81 +711,113 @@
             return group;
         }
 
-        // ── 💎 4-Layer High-Dimensional Physical Crystal Planet Marbles ──
+        // ── 💎 Crystal Clear Glass Planet Marbles with Glowing Faceted 3D Relics Inside ──
         buildFloatingMarbles() {
+            // Generously spaced positions flanking the content on left & right margins
             const marbleConfigs = [
-                // 1. Hero Nexus Marbles
-                { pos: new THREE.Vector3(-4.6, 2.6, 4), color: 0xF97316, relic: 'star', scale: 0.9 },
-                { pos: new THREE.Vector3(5.2, 1.9, 3), color: 0xFB7185, relic: 'coin', scale: 0.95 },
-                { pos: new THREE.Vector3(-3.8, -1.5, 5), color: 0x10B981, relic: 'hexGem', scale: 0.85 },
-                { pos: new THREE.Vector3(4.4, -3.2, 4), color: 0x8B5CF6, relic: 'icosa', scale: 0.88 },
-                // 2. Section 2 Pipeline (5 Sacred Celestial Orbs - Y: -15.8)
-                { pos: new THREE.Vector3(-5.8, -14.2, -2.5), color: 0xF97316, relic: 'star', scale: 1.05 },
-                { pos: new THREE.Vector3(-3.4, -15.0, -1.8), color: 0xFB7185, relic: 'coin', scale: 1.0 },
-                { pos: new THREE.Vector3(-6.4, -16.2, -2.2), color: 0x10B981, relic: 'hexGem', scale: 1.1 },
-                { pos: new THREE.Vector3(-4.0, -17.2, -3.0), color: 0xF59E0B, relic: 'icosa', scale: 1.0 },
-                { pos: new THREE.Vector3(-5.9, -18.0, -1.5), color: 0x8B5CF6, relic: 'star', scale: 1.05 },
-                // 3. Deep Path Marbles
-                { pos: new THREE.Vector3(5.2, -30.0, 1.0), color: 0x06B6D4, relic: 'hexGem', scale: 0.85 },
-                { pos: new THREE.Vector3(-4.8, -44.0, 1.5), color: 0xA855F7, relic: 'icosa', scale: 0.9 }
+                // 1. Hero Nexus Orbs (Y: 2.5 to -3.0)
+                { pos: new THREE.Vector3(-6.8, 2.6, 2.5), color: 0xF97316, relic: 'star', scale: 0.85 },
+                { pos: new THREE.Vector3(6.8, 1.8, 2.0), color: 0xFB7185, relic: 'coin', scale: 0.88 },
+                { pos: new THREE.Vector3(-6.2, -2.2, 2.8), color: 0x10B981, relic: 'hexGem', scale: 0.82 },
+                { pos: new THREE.Vector3(6.2, -3.2, 2.5), color: 0x8B5CF6, relic: 'icosa', scale: 0.85 },
+
+                // 2. Section 1 Case Studies Orbs (Y: -7.5 to -10.5)
+                { pos: new THREE.Vector3(-7.8, -7.8, 1.5), color: 0xF97316, relic: 'star', scale: 0.85 },
+                { pos: new THREE.Vector3(-7.2, -10.5, 1.2), color: 0xF59E0B, relic: 'hexGem', scale: 0.8 },
+
+                // 3. Section 2 Pipeline / Flow Link (5 Sacred Realm Orbs - Generously Flanking Left & Right!)
+                { pos: new THREE.Vector3(-8.8, -13.5, 1.5), color: 0xF97316, relic: 'star', scale: 0.95 },    // 🔥 Phoenix Fire Star (Top-Left)
+                { pos: new THREE.Vector3(8.6, -13.8, 1.5), color: 0xFB7185, relic: 'coin', scale: 0.92 },     // 🐷 Moni Gold Coin (Top-Right)
+                { pos: new THREE.Vector3(-8.6, -17.0, 2.0), color: 0x10B981, relic: 'hexGem', scale: 0.98 },   // 🐢 Teta Emerald Hex (Mid-Left)
+                { pos: new THREE.Vector3(8.8, -17.5, 1.5), color: 0xF59E0B, relic: 'icosa', scale: 0.92 },     // 📦 Stash Vault Diamond (Mid-Right)
+                { pos: new THREE.Vector3(7.8, -20.8, 2.0), color: 0x8B5CF6, relic: 'star', scale: 0.95 },     // 🦉 Ollie Wisdom Star (Bottom-Right)
+
+                // 4. Section 3 Services & ROI (Y: -24 to -27)
+                { pos: new THREE.Vector3(-7.8, -24.0, 1.5), color: 0xFB7185, relic: 'coin', scale: 0.85 },
+                { pos: new THREE.Vector3(-7.2, -27.0, 1.8), color: 0x06B6D4, relic: 'hexGem', scale: 0.8 },
+
+                // 5. Section 4 Architecture & Security (Y: -32 to -36)
+                { pos: new THREE.Vector3(8.2, -32.5, 1.5), color: 0x10B981, relic: 'hexGem', scale: 0.88 },
+                { pos: new THREE.Vector3(7.6, -35.8, 1.2), color: 0xF59E0B, relic: 'icosa', scale: 0.85 },
+
+                // 6. Section 5 Resources & Wisdom (Y: -40 to -44)
+                { pos: new THREE.Vector3(-7.8, -40.8, 1.5), color: 0x8B5CF6, relic: 'star', scale: 0.88 },
+                { pos: new THREE.Vector3(-7.0, -43.8, 1.8), color: 0xA855F7, relic: 'icosa', scale: 0.82 },
+
+                // 7. Section 6 Grand Beacon Satellites (Y: -49.0)
+                { pos: new THREE.Vector3(-6.5, -49.0, 1.5), color: 0x60A5FA, relic: 'star', scale: 0.85 },
+                { pos: new THREE.Vector3(6.5, -49.0, 1.5), color: 0x34D399, relic: 'hexGem', scale: 0.85 }
             ];
 
             marbleConfigs.forEach(cfg => {
                 const group = new THREE.Group();
 
-                // Layer 1: Outer Crystal Glass Shell with Rich Color & Gemstone Tint
+                // Layer 1: Pure Transparent Crystal Glass Shell with Crystal Refraction & Gentle Edge Tint
                 const glassMat = new THREE.MeshPhysicalMaterial({
-                    color: cfg.color,
-                    emissive: cfg.color,
-                    emissiveIntensity: 0.2,
-                    transmission: 0.35,
-                    opacity: 0.85,
+                    color: 0xffffff,
+                    attenuationColor: new THREE.Color(cfg.color),
+                    attenuationDistance: 2.2,
+                    transmission: 0.95,          // 95% light transmission: Ultra-clear crystal!
                     transparent: true,
-                    roughness: 0.12,
+                    opacity: 1.0,
+                    roughness: 0.05,
                     metalness: 0.05,
+                    ior: 1.52,                   // Optical glass refraction
+                    thickness: 1.2,
                     clearcoat: 1.0,
-                    clearcoatRoughness: 0.08
+                    clearcoatRoughness: 0.05,
+                    depthWrite: false,           // Crystal transparency without z-occlusion
+                    side: THREE.FrontSide
                 });
                 const shell = new THREE.Mesh(new THREE.SphereGeometry(cfg.scale, 36, 36), glassMat);
                 group.add(shell);
 
-                // Layer 2: Outer Atmospheric Corona Ring
-                const ringGeo = new THREE.RingGeometry(cfg.scale * 1.18, cfg.scale * 1.35, 48);
+                // Layer 2: Outer Atmospheric Corona Orbit Ring
+                const ringGeo = new THREE.RingGeometry(cfg.scale * 1.22, cfg.scale * 1.36, 64);
                 const ringMat = new THREE.MeshBasicMaterial({
                     color: cfg.color,
                     side: THREE.DoubleSide,
                     transparent: true,
-                    opacity: 0.5,
+                    opacity: 0.45,
                     blending: THREE.AdditiveBlending
                 });
                 const atmosphereRing = new THREE.Mesh(ringGeo, ringMat);
                 atmosphereRing.rotation.x = Math.PI / 2.3;
                 group.add(atmosphereRing);
 
-                // Layer 3: Inner Faceted 3D Relic Jewel (Rich Saturated Gem Color)
+                // Layer 3: Inner Faceted 3D Relic Gemstone (Vibrant Saturated Element Color & Sharp Facets)
                 let relicGeo;
-                if (cfg.relic === 'star') relicGeo = makeStarSparkGeometry(cfg.scale * 0.48);
-                else if (cfg.relic === 'coin') relicGeo = makeCoinGeometry(cfg.scale * 0.46);
-                else if (cfg.relic === 'hexGem') relicGeo = makeHexGemGeometry(cfg.scale * 0.48);
-                else relicGeo = new THREE.IcosahedronGeometry(cfg.scale * 0.46, 0);
+                if (cfg.relic === 'star') relicGeo = makeStarSparkGeometry(cfg.scale * 0.52);
+                else if (cfg.relic === 'coin') relicGeo = makeCoinGeometry(cfg.scale * 0.50);
+                else if (cfg.relic === 'hexGem') relicGeo = makeHexGemGeometry(cfg.scale * 0.52);
+                else relicGeo = new THREE.IcosahedronGeometry(cfg.scale * 0.50, 0);
 
                 const relicMat = new THREE.MeshStandardMaterial({
                     color: cfg.color,
                     emissive: cfg.color,
-                    emissiveIntensity: 0.7,
-                    metalness: 0.3,
-                    roughness: 0.2
+                    emissiveIntensity: 0.45,
+                    metalness: 0.25,
+                    roughness: 0.15,
+                    flatShading: true
                 });
                 const relic = new THREE.Mesh(relicGeo, relicMat);
                 group.add(relic);
                 group.userData.relic = relic;
 
-                // Layer 4: Inner Core Glow Sparkle (Matching Element Color)
-                const innerCoreGeo = new THREE.SphereGeometry(cfg.scale * 0.18, 16, 16);
+                // Extra Inlay Ring for Coin Relics
+                if (cfg.relic === 'coin') {
+                    const coinInlayMat = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide, transparent: true, opacity: 0.85 });
+                    const coinInlay = new THREE.Mesh(makeCoinFaceRingGeometry(cfg.scale * 0.50), coinInlayMat);
+                    group.add(coinInlay);
+                    group.userData.coinInlay = coinInlay;
+                }
+
+                // Layer 4: Inner Glowing Core White Sparkle
+                const innerCoreGeo = new THREE.SphereGeometry(cfg.scale * 0.14, 16, 16);
                 const innerCoreMat = new THREE.MeshBasicMaterial({
-                    color: cfg.color,
+                    color: 0xffffff,
                     transparent: true,
-                    opacity: 0.8,
+                    opacity: 0.9,
                     blending: THREE.AdditiveBlending
                 });
                 const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
@@ -953,13 +986,17 @@
                 this.mascots.beacon.userData.core.scale.set(s, s, s);
             }
 
-            // 💎 Floating Marbles Multi-Layer Animation (Bobbing, Relic Spin, Atmosphere Rings)
+            // 💎 Floating Transparent Crystal Marbles Multi-Layer Animation (Bobbing, Relic Spin, Atmosphere Rings)
             this.floatingMarbles.forEach((marble, idx) => {
                 const base = marble.userData.basePos;
                 marble.position.y = base.y + Math.sin(time * 1.8 + idx) * 0.25;
                 if (marble.userData.relic) {
                     marble.userData.relic.rotation.x += 0.02;
                     marble.userData.relic.rotation.y += 0.028;
+                }
+                if (marble.userData.coinInlay) {
+                    marble.userData.coinInlay.rotation.x += 0.02;
+                    marble.userData.coinInlay.rotation.y += 0.028;
                 }
                 if (marble.userData.ring) {
                     marble.userData.ring.rotation.z += 0.012;
