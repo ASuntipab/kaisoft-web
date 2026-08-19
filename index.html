@@ -13,6 +13,8 @@
     <link rel="canonical" href="https://kaisoftthailand.com/">
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -228,8 +230,15 @@
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-6">
                     <div class="flex space-x-6 text-sm font-semibold text-slate-600">
+                        <a href="#cosmic-universe" class="text-indigo-600 hover:text-indigo-800 transition flex items-center space-x-1.5 font-bold">
+                            <i class="fa-solid fa-wand-magic-sparkles text-xs text-indigo-500 animate-pulse"></i>
+                            <span class="lang-th">จักรวาล 3D</span><span class="lang-en">3D Universe</span>
+                        </a>
                         <a href="#case-studies" class="hover:text-blue-600 transition">
                             <span class="lang-th">ผลงาน (Case Studies)</span><span class="lang-en">Case Studies</span>
+                        </a>
+                        <a href="#pipeline" class="hover:text-blue-600 transition">
+                            <span class="lang-th">ผลิตภัณฑ์</span><span class="lang-en">Products</span>
                         </a>
                         <a href="#services" class="hover:text-blue-600 transition">
                             <span class="lang-th">บริการของเรา</span><span class="lang-en">Services</span>
@@ -270,8 +279,15 @@
     <!-- ===== MOBILE MENU OVERLAY ===== -->
     <div id="mobile-menu" class="mobile-menu md:hidden">
         <div class="flex flex-col items-center justify-center space-y-6 pt-16 text-lg font-semibold text-slate-700">
+            <a href="#cosmic-universe" class="text-indigo-600 font-bold flex items-center space-x-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-sm text-indigo-500"></i>
+                <span class="lang-th">จักรวาลลูกแก้ว 3D</span><span class="lang-en">3D Cosmic Universe</span>
+            </a>
             <a href="#case-studies" class="hover:text-blue-600 transition">
                 <span class="lang-th">ผลงาน (Case Studies)</span><span class="lang-en">Case Studies</span>
+            </a>
+            <a href="#pipeline" class="hover:text-blue-600 transition">
+                <span class="lang-th">ผลิตภัณฑ์</span><span class="lang-en">Products</span>
             </a>
             <a href="#services" class="hover:text-blue-600 transition">
                 <span class="lang-th">บริการของเรา</span><span class="lang-en">Services</span>
@@ -318,6 +334,11 @@
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#cosmic-universe" class="bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold py-3.5 px-8 rounded-xl transition shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 flex items-center justify-center space-x-2 border border-indigo-400/30 group">
+                    <i class="fa-solid fa-wand-magic-sparkles text-sm text-yellow-300 group-hover:rotate-12 transition-transform"></i>
+                    <span class="lang-th">จักรวาลลูกแก้ว 3D</span>
+                    <span class="lang-en">3D Cosmic Universe</span>
+                </a>
                 <a href="#estimation-form" class="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-semibold py-3.5 px-8 rounded-xl transition shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 flex items-center justify-center">
                     <i class="fa-solid fa-calculator mr-2 text-sm"></i>
                     <span class="lang-th">ประเมินราคาโปรเจกต์</span>
@@ -450,6 +471,131 @@
                             <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Flutter</span>
                             <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">Algorithms</span>
                             <span class="text-[10px] bg-slate-200 text-slate-700 px-2 py-1 rounded font-medium">OR-Tools</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3D COSMIC MARBLE UNIVERSE (AI MEMORY BUDDY & 5 MASCOTS) ===== -->
+    <section id="cosmic-universe" class="py-24 bg-gradient-to-b from-slate-950 via-[#0a0f24] to-slate-950 text-white relative overflow-hidden">
+        <!-- Cosmic Ambient Backdrop -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute -top-40 left-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl"></div>
+            <div class="absolute top-1/2 right-10 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-20 left-1/3 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center mb-10 reveal">
+                <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-400/25 rounded-full py-1 px-4 mb-4 backdrop-blur-md">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs text-yellow-300 animate-pulse"></i>
+                    <span class="text-[11px] font-bold text-indigo-300 uppercase tracking-widest">
+                        <span class="lang-th">3D WebGL Cosmic Showcase</span>
+                        <span class="lang-en">3D WebGL Cosmic Showcase</span>
+                    </span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-extrabold font-heading text-white tracking-tight">
+                    <span class="lang-th">จักรวาลลูกแก้ว 3 มิติ <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-pink-400 to-indigo-400">& สัตว์ทั้งห้า</span></span>
+                    <span class="lang-en">3D Marble Universe <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-pink-400 to-indigo-400">& The 5 Mascots</span></span>
+                </h2>
+                <p class="text-slate-400 mt-3 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
+                    <span class="lang-th">สัมผัสประสบการณ์ผู้ช่วยอัจฉริยะ <strong>AI Memory Buddy</strong> ในรูปแบบ 3D Interactive เต็มรูปแบบ หมุนสำรวจลูกแก้วคริสตัล สัตว์ศักดิ์สิทธิ์ทั้ง 5 และโครงสร้างเทคโนโลยีระดับ Next-Gen</span>
+                    <span class="lang-en">Experience our flagship <strong>AI Memory Buddy</strong> ecosystem in full 3D interactive glory. Orbit around crystalline orbs, discover the 5 mascots, and explore our next-gen system architecture.</span>
+                </p>
+            </div>
+
+            <!-- Realm Selector Navigation Tabs -->
+            <div class="flex items-center justify-center flex-wrap gap-2 mb-8 reveal">
+                <button data-realm="nexus" class="realm-nav-btn active px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 bg-white/20 text-white shadow-lg backdrop-blur-md">
+                    <span>🌌</span>
+                    <span class="lang-th">จักรวาลรวม 5 สัตว์</span>
+                    <span class="lang-en">Cosmic Nexus</span>
+                </button>
+                <button data-realm="phoenix" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
+                    <span>🔥</span>
+                    <span class="lang-th">ฟีนิกซ์ (สมอง & เควสต์)</span>
+                    <span class="lang-en">Fenik (Brain & Quest)</span>
+                </button>
+                <button data-realm="piggy" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
+                    <span>🐷</span>
+                    <span class="lang-th">หมูทอง (การเงิน & สลิป)</span>
+                    <span class="lang-en">Moni (Money & OCR)</span>
+                </button>
+                <button data-realm="turtle" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
+                    <span>🐢</span>
+                    <span class="lang-th">เต่าเตต้า (บ้าน & สุขภาพ)</span>
+                    <span class="lang-en">Teta (Home & Life)</span>
+                </button>
+                <button data-realm="vault" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
+                    <span>📦</span>
+                    <span class="lang-th">หีบสมบัติ (คลังความทรงจำ)</span>
+                    <span class="lang-en">Stash (Encrypted Vault)</span>
+                </button>
+                <button data-realm="owl" class="realm-nav-btn px-4 py-2 rounded-xl text-xs font-bold transition flex items-center space-x-2 border border-white/10 text-slate-300 hover:bg-white/10 backdrop-blur-md">
+                    <span>🦉</span>
+                    <span class="lang-th">นกฮูกปราชญ์ (ปัญญา & นิทาน)</span>
+                    <span class="lang-en">Ollie (Wisdom & Story)</span>
+                </button>
+            </div>
+
+            <!-- 3D Viewport & Hologram HUD Wrapper -->
+            <div class="relative w-full rounded-3xl overflow-hidden border border-slate-800 bg-[#060814] shadow-2xl min-h-[580px] lg:min-h-[680px] flex items-center justify-center select-none reveal">
+                <!-- WebGL Canvas Container -->
+                <div id="universe-canvas-container" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+                <!-- Floating Helper Prompt (Top Left) -->
+                <div class="absolute top-4 left-4 z-20 pointer-events-none bg-black/60 backdrop-blur-md border border-white/10 rounded-full py-1.5 px-4 text-[11px] text-slate-300 flex items-center space-x-2 shadow-lg">
+                    <i class="fa-solid fa-arrows-spin text-indigo-400 animate-spin" style="animation-duration: 6s;"></i>
+                    <span class="lang-th">ลากเมาส์ / ปัดหน้าจอหมุน 360° &middot; แตะที่สัตว์หรือลูกแก้วเพื่อเลือก</span>
+                    <span class="lang-en">Drag / Swipe to rotate 360° &middot; Tap mascot or orb to focus</span>
+                </div>
+
+                <!-- Floating Controls (Top Right) -->
+                <div class="absolute top-4 right-4 z-20 flex items-center space-x-2">
+                    <button id="universe-sound-toggle" class="bg-black/60 hover:bg-black/80 text-white p-2.5 rounded-full border border-white/15 backdrop-blur-md transition shadow-lg text-xs" title="เปิด/ปิดเสียงสังเคราะห์">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <button onclick="window.jumpToUniverseRealm('nexus')" class="bg-black/60 hover:bg-black/80 text-white py-1.5 px-3 rounded-full border border-white/15 backdrop-blur-md transition shadow-lg text-xs font-semibold flex items-center space-x-1.5">
+                        <i class="fa-solid fa-rotate-left text-[10px]"></i>
+                        <span class="lang-th">รีเซ็ตมุมมอง</span>
+                        <span class="lang-en">Reset View</span>
+                    </button>
+                </div>
+
+                <!-- Glassmorphic Hologram HUD Card Overlay (Bottom / Right) -->
+                <div class="absolute bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:w-[420px] z-20 bg-slate-900/80 backdrop-blur-xl border border-white/15 rounded-3xl p-6 shadow-2xl text-white pointer-events-auto transition-all duration-300">
+                    <div class="flex items-center justify-between mb-3">
+                        <span id="universe-hud-tag" class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border">
+                            All-in-One AI Suite
+                        </span>
+                        <span class="text-[10px] text-slate-400 font-mono">
+                            <i class="fa-solid fa-circle text-[8px] text-emerald-400 mr-1 animate-ping"></i> LIVE 3D
+                        </span>
+                    </div>
+
+                    <h3 id="universe-hud-name" class="text-xl font-bold font-heading text-white">
+                        จักรวาลรวม 5 สัตว์ศักดิ์สิทธิ์
+                    </h3>
+                    <p id="universe-hud-title" class="text-xs font-semibold text-indigo-300 mt-0.5">
+                        ศูนย์กลางจักรวาลแห่งความจำอัจฉริยะ
+                    </p>
+
+                    <p id="universe-hud-desc" class="text-xs text-slate-300 mt-3 leading-relaxed">
+                        ระบบนิเวศผู้ช่วยอัจฉริยะที่เชื่อมโยง 5 มิติของชีวิต (สมอง, เงิน, บ้าน, คลัง, เรื่องเล่า) เข้าด้วยกันอย่างสมบูรณ์แบบ
+                    </p>
+
+                    <!-- Features List -->
+                    <div id="universe-hud-features" class="space-y-2 mt-4 pt-3 border-t border-white/10">
+                        <!-- Dynamic content injected by JS -->
+                    </div>
+
+                    <!-- Tech Stack Badges -->
+                    <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                        <div id="universe-hud-tech" class="flex flex-wrap gap-1.5">
+                            <!-- Dynamic badges -->
                         </div>
                     </div>
                 </div>
@@ -626,90 +772,238 @@
                 </div>
             </div>
 
-            <!-- AI Memory Buddy Series -->
+            <!-- AI Memory Buddy Series (All 5 Mascots Ecosystem) -->
             <div class="mt-12 reveal">
                 <div class="text-center mb-12">
                     <span class="inline-block bg-indigo-50 text-indigo-700 py-1 px-4 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 border border-indigo-100">
-                        <span class="lang-th">ซีรีส์ผู้ช่วยอัจฉริยะ</span>
-                        <span class="lang-en">The AI Memory Buddy Series</span>
+                        <span class="lang-th">ซีรีส์ผู้ช่วยอัจฉริยะ 5 มิติ</span>
+                        <span class="lang-en">The 5-Realm AI Memory Series</span>
                     </span>
-                    <h3 class="text-3xl font-extrabold text-slate-900 font-heading">
-                        <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะระดับ <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Next-Gen</span></span>
+                    <h3 class="text-3xl md:text-4xl font-extrabold text-slate-900 font-heading">
+                        <span class="lang-th">ระบบนิเวศผู้ช่วยอัจฉริยะระดับ <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Next-Gen</span></span>
                         <span class="lang-en">Next-Gen <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-500">Intelligent Assistants</span></span>
                     </h3>
                     <p class="text-slate-500 text-sm mt-3 max-w-2xl mx-auto">
-                        <span class="lang-th">แอปพลิเคชันผู้ช่วยอัจฉริยะ 3 สไตล์ที่จะทำหน้าที่เป็นเสมือน "สมองส่วนเสริม" และ "เลขาส่วนตัว" ที่เข้าใจคุณผ่านภาษาธรรมชาติและการมองเห็นอย่างลึกซึ้ง</span>
-                        <span class="lang-en">A suite of 3 intelligent companion apps that serve as your "external brain," understanding you through natural language and vision without friction.</span>
+                        <span class="lang-th">ชุดแอปพลิเคชัน 5 สไตล์ที่เชื่อมโยงกันอย่างสมบูรณ์แบบ ทั้งสมอง การเงิน บ้าน คลังความลับ และเรื่องเล่า ผ่านโมบายล์แอปที่รันได้ทั้ง iOS และ Android</span>
+                        <span class="lang-en">A suite of 5 interconnected intelligent apps covering Brain, Money, Home, Vault, and Story, built for seamless performance on both iOS and Android.</span>
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- App 1: Buddy Home -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- App 1: Buddy Brain (Phoenix) -->
                     <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-1">
-                        <div class="h-48 overflow-hidden relative bg-slate-50">
-                            <img src="images/buddy_home_preview.png" alt="Buddy Home Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
-                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                            </span>
+                        <div class="h-44 bg-gradient-to-br from-orange-500 via-amber-500 to-red-500 p-6 relative flex flex-col justify-between text-white overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex justify-between items-start z-10">
+                                <span class="text-3xl">🔥</span>
+                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
+                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                                </span>
+                            </div>
+                            <div class="z-10">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-orange-100">Brain & Task Hub</span>
+                                <h4 class="text-2xl font-black font-heading text-white">Buddy Brain</h4>
+                            </div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="text-xl font-bold text-slate-900 font-heading">🏡 Buddy Home</h4>
-                                <p class="text-blue-600 text-xs font-semibold mt-1">
-                                    <span class="lang-th">"โยนใบเสร็จให้ AI จัดบ้านให้"</span>
-                                    <span class="lang-en">"Toss receipts at AI — it sorts your home."</span>
+                                <p class="text-orange-600 text-xs font-semibold">
+                                    <span class="lang-th">"พูดบ่นยาวๆ ให้ AI สรุปและวางแผนให้"</span>
+                                    <span class="lang-en">"Ramble out loud — AI summarizes & plans."</span>
                                 </p>
                                 <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">ระบบวิเคราะห์สิ่งของและคาดการณ์อุปโภคบริโภคอัตโนมัติจากการแชร์รูปสินค้า ถ่ายรูปตู้เย็น/ชั้นวาง หรือใบเสร็จซูเปอร์มาร์เก็ตยาวเหยียด พร้อมทั้งช่วยจำตารางแจ้งเตือนประกันและอายุบำรุงรักษาอุปกรณ์ในบ้านล่วงหน้าอย่างแม่นยำ</span>
-                                    <span class="lang-en">Cozy home management. Just upload photos of your fridge, pantry, or scan supermarket receipts; AI estimates consumption rates, predicts when items will run out, organizes shopping lists, and logs appliance warranties.</span>
+                                    <span class="lang-th">สมองกลส่วนเสริมดักจับทุกความคิดที่กระจัดกระจาย เพียงอัดเสียงพูดระบายไอเดีย AI จะถอดความ สรุปย่อ ดึงงานสำคัญเข้าปฏิทิน และบันทึกข้อเท็จจริงสำคัญเพื่อเรียกคืนด้วยภาษาธรรมชาติ</span>
+                                    <span class="lang-en">Instant personal repository. Record your thoughts; AI decodes and summarizes them into structured action items. Store critical facts and query them naturally.</span>
                                 </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-[9px] bg-orange-50 text-orange-700 px-2 py-0.5 rounded font-mono font-semibold">Speech AI</span>
+                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Flutter</span>
+                                </div>
+                                <button onclick="window.jumpToUniverseRealm('phoenix')" class="text-xs font-bold text-orange-600 hover:text-orange-800 transition flex items-center space-x-1">
+                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- App 2: Buddy Brain -->
+                    <!-- App 2: Buddy Money (Piggy) -->
                     <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-2">
-                        <div class="h-48 overflow-hidden relative bg-slate-50">
-                            <img src="images/buddy_brain_preview.png" alt="Buddy Brain Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
-                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                            </span>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h4 class="text-xl font-bold text-slate-900 font-heading">🧠 Buddy Brain</h4>
-                                <p class="text-indigo-600 text-xs font-semibold mt-1">
-                                    <span class="lang-th">"พูดบ่นยาวๆ ให้ AI สรุปและจำให้"</span>
-                                    <span class="lang-en">"Ramble out loud — AI summarizes & remembers."</span>
-                                </p>
-                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">สมองกลส่วนเสริมดักจับทุกความคิดที่กระจัดกระจาย เพียงอัดเสียงพูดระบายไอเดียยาวๆ AI จะถอดความ สรุปย่อ ดึงงานสำคัญเข้าปฏิทิน และบันทึกข้อเท็จจริงสำคัญ (เช่น รหัสผ่าน ขนาดเสื้อผ้า) เพื่อเรียกคืนด้วยภาษาธรรมชาติอย่างปลอดภัย</span>
-                                    <span class="lang-en">Instant personal repository. Record your random thoughts, rants or narratives; AI decodes and summarizes them into structured action items. Store critical details like Wi-Fi passwords or clothing sizes, and query them naturally.</span>
-                                </p>
+                        <div class="h-44 bg-gradient-to-br from-pink-500 via-rose-500 to-purple-600 p-6 relative flex flex-col justify-between text-white overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex justify-between items-start z-10">
+                                <span class="text-3xl">🐷</span>
+                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
+                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                                </span>
+                            </div>
+                            <div class="z-10">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-pink-100">Financial OCR AI</span>
+                                <h4 class="text-2xl font-black font-heading text-white">Buddy Money</h4>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- App 3: Buddy Money -->
-                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-3">
-                        <div class="h-48 overflow-hidden relative bg-slate-50">
-                            <img src="images/moni_ai_preview.png" alt="Buddy Money Preview" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider shadow-sm">
-                                <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
-                            </span>
-                        </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
-                                <h4 class="text-xl font-bold text-slate-900 font-heading">💵 Buddy Money</h4>
-                                <p class="text-cyan-600 text-xs font-semibold mt-1">
+                                <p class="text-pink-600 text-xs font-semibold">
                                     <span class="lang-th">"บ่นว่าใช้อะไรไป AI ลงบัญชีให้"</span>
                                     <span class="lang-en">"Talk your spend — AI books it for you."</span>
                                 </p>
                                 <p class="text-slate-600 text-xs mt-3 leading-relaxed">
-                                    <span class="lang-th">เปลี่ยนการจดบัญชีอันน่าเบื่อด้วย Zero-friction เพียงส่งรูปสลิปโอนเงิน หรือพิมพ์/พูดสั้นๆ AI จะคัดแยกสกุลเงินและหมวดหมู่ทันที พร้อมบุคลิกโต้ตอบหลากหลายแบบมีชีวิตชีวา (รวมถึงโหมด Roast บ่นประชดขำๆ ยามช้อปฟุ่มเฟือย!)</span>
-                                    <span class="lang-en">Zero-friction financial logging. Drop a screenshot of your bank transfer slip or simply say what you spent; AI automatically reads the amount, converts currency, and books it. Choose customizable personas, including a hilarious 'Roast Mode'!</span>
+                                    <span class="lang-th">เปลี่ยนการจดบัญชีอันน่าเบื่อด้วย Zero-friction เพียงส่งรูปสลิปโอนเงิน หรือพิมพ์/พูดสั้นๆ AI จะคัดแยกสกุลเงินและหมวดหมู่ทันที พร้อมบุคลิกโต้ตอบหลากหลาย รวมถึง Roast Mode บ่นประชดขำๆ!</span>
+                                    <span class="lang-en">Zero-friction financial logging. Drop a bank transfer slip or simply say what you spent; AI automatically reads amount, converts currency, and logs it.</span>
                                 </p>
                             </div>
+                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-[9px] bg-pink-50 text-pink-700 px-2 py-0.5 rounded font-mono font-semibold">Vision OCR</span>
+                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Supabase</span>
+                                </div>
+                                <button onclick="window.jumpToUniverseRealm('piggy')" class="text-xs font-bold text-pink-600 hover:text-pink-800 transition flex items-center space-x-1">
+                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App 3: Buddy Home (Turtle) -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-3">
+                        <div class="h-44 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-600 p-6 relative flex flex-col justify-between text-white overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex justify-between items-start z-10">
+                                <span class="text-3xl">🐢</span>
+                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
+                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                                </span>
+                            </div>
+                            <div class="z-10">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-emerald-100">Smart Home & Health</span>
+                                <h4 class="text-2xl font-black font-heading text-white">Buddy Home</h4>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <p class="text-emerald-600 text-xs font-semibold">
+                                    <span class="lang-th">"โยนใบเสร็จให้ AI จัดสต๊อกบ้าน"</span>
+                                    <span class="lang-en">"Toss receipts at AI — it sorts your home."</span>
+                                </p>
+                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                                    <span class="lang-th">ระบบวิเคราะห์สิ่งของและคาดการณ์อุปโภคบริโภคอัตโนมัติจากการถ่ายรูปตู้เย็น ชั้นวางของ หรือใบเสร็จซูเปอร์ฯ พร้อมทั้งช่วยจำตารางแจ้งเตือนประกันและอายุบำรุงรักษาอุปกรณ์ในบ้าน</span>
+                                    <span class="lang-en">Cozy home management. Upload photos of your fridge or supermarket receipts; AI estimates consumption rates, predicts expiry dates, and logs appliance warranties.</span>
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-[9px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded font-mono font-semibold">Smart Pantry</span>
+                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">React/Capacitor</span>
+                                </div>
+                                <button onclick="window.jumpToUniverseRealm('turtle')" class="text-xs font-bold text-emerald-600 hover:text-emerald-800 transition flex items-center space-x-1">
+                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App 4: Buddy Stash (Treasure Vault) -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-1">
+                        <div class="h-44 bg-gradient-to-br from-amber-600 via-yellow-600 to-orange-600 p-6 relative flex flex-col justify-between text-white overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex justify-between items-start z-10">
+                                <span class="text-3xl">📦</span>
+                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
+                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                                </span>
+                            </div>
+                            <div class="z-10">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-amber-100">Encrypted Relic Vault</span>
+                                <h4 class="text-2xl font-black font-heading text-white">Buddy Stash</h4>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <p class="text-amber-600 text-xs font-semibold">
+                                    <span class="lang-th">"ตู้เซฟความจำ ถอดรหัสปลอดภัย & คลังของสะสม"</span>
+                                    <span class="lang-en">"Zero-knowledge encrypted memory vault."</span>
+                                </p>
+                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                                    <span class="lang-th">คลังเก็บความลับ ข้อมูลส่วนตัว รหัส Wi-Fi ขนาดเสื้อผ้า และเอกสารสำคัญ ด้วยสถาปัตยกรรมเข้ารหัสระดับธนาคาร ค้นหาและเรียกคืนได้รวดเร็วทันใจผ่าน AI ภาษาธรรมชาติ</span>
+                                    <span class="lang-en">Bank-grade encrypted private vault for Wi-Fi codes, personal sizing, passports, and collectibles. Search and recall securely in milliseconds via AI.</span>
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-[9px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-mono font-semibold">AES-256</span>
+                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Secure DB</span>
+                                </div>
+                                <button onclick="window.jumpToUniverseRealm('vault')" class="text-xs font-bold text-amber-600 hover:text-amber-800 transition flex items-center space-x-1">
+                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App 5: Buddy Story (Wise Owl) -->
+                    <div class="bg-white rounded-3xl border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition duration-300 overflow-hidden flex flex-col group reveal reveal-delay-2">
+                        <div class="h-44 bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-700 p-6 relative flex flex-col justify-between text-white overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex justify-between items-start z-10">
+                                <span class="text-3xl">🦉</span>
+                                <span class="bg-black/30 backdrop-blur-md text-[9px] font-bold py-1 px-3 rounded-full uppercase tracking-wider border border-white/20">
+                                    <span class="lang-th">กำลังพัฒนา</span><span class="lang-en">In Dev</span>
+                                </span>
+                            </div>
+                            <div class="z-10">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-purple-100">Narrative & Wisdom AI</span>
+                                <h4 class="text-2xl font-black font-heading text-white">Buddy Story</h4>
+                            </div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between">
+                            <div>
+                                <p class="text-purple-600 text-xs font-semibold">
+                                    <span class="lang-th">"ถอดบทเรียนชีวิต & ร้อยเรียงนิทานครอบครัว"</span>
+                                    <span class="lang-en">"Life journey storyteller & bedtime narratives."</span>
+                                </p>
+                                <p class="text-slate-600 text-xs mt-3 leading-relaxed">
+                                    <span class="lang-th">เปลี่ยนบันทึกชีวิตประจำวัน ภาพถ่ายการเดินทาง และช่วงเวลาสำคัญให้กลายเป็นเรื่องเล่าและนิทานสุดประทับใจ พร้อมสรุปข้อคิดและบทเรียนชีวิตประจำสัปดาห์อย่างอบอุ่น</span>
+                                    <span class="lang-en">Transform daily logs, travel snapshots, and precious life milestones into beautifully woven narratives and family bedtime stories with thoughtful weekly insights.</span>
+                                </p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="text-[9px] bg-purple-50 text-purple-700 px-2 py-0.5 rounded font-mono font-semibold">LLM Agent</span>
+                                    <span class="text-[9px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Generative AI</span>
+                                </div>
+                                <button onclick="window.jumpToUniverseRealm('owl')" class="text-xs font-bold text-purple-600 hover:text-purple-800 transition flex items-center space-x-1">
+                                    <span class="lang-th">ชมใน 3D</span><span class="lang-en">3D View</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: All-in-One AI Suite Nexus CTA -->
+                    <div class="bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 rounded-3xl border border-indigo-500/30 p-8 shadow-xl flex flex-col justify-between text-white reveal reveal-delay-3 relative overflow-hidden group">
+                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                        <div>
+                            <div class="inline-flex items-center space-x-2 bg-indigo-500/20 border border-indigo-400/30 px-3 py-1 rounded-full text-[10px] font-bold text-indigo-300 uppercase tracking-widest mb-4">
+                                <i class="fa-solid fa-cube text-xs text-yellow-300"></i>
+                                <span>3D Interactive Hub</span>
+                            </div>
+                            <h4 class="text-2xl font-black font-heading text-white mb-2">สำรวจจักรวาล 3 มิติ</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed">
+                                หมุนสำรวจลูกแก้วและสัตว์ทั้ง 5 ตัวในกาแล็กซี 3 มิติแบบเต็มหน้าจอ พร้อมทดลองสั่งการและดูโครงสร้างระบบแบบเรียลไทม์
+                            </p>
+                        </div>
+                        <div class="mt-6">
+                            <button onclick="window.jumpToUniverseRealm('nexus')" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold text-xs py-3 px-6 rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span class="lang-th">เปิดจักรวาล 3D Nexus</span>
+                                <span class="lang-en">Launch 3D Nexus</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1237,5 +1531,8 @@
         });
     })();
     </script>
+
+    <!-- 3D Cosmic Marble Universe & 5 Mascots Engine -->
+    <script src="js/three-universe.js"></script>
 </body>
 </html>

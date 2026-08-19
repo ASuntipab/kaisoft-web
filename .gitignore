@@ -1,0 +1,6 @@
+old_index*.html
+restore*.py
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
