@@ -777,29 +777,28 @@
                 { pos: new THREE.Vector3(-4.0, -17.2, -3.0), color: 0xF59E0B, relic: 'icosa', scale: 1.0 },
                 { pos: new THREE.Vector3(-5.9, -18.0, -1.5), color: 0x8B5CF6, relic: 'star', scale: 1.05 },
                 // 3. Deep Path Marbles
-                { pos: new THREE.Vector3(5.2, -30.0, 1.0), color: 0x38BDF8, relic: 'hexGem', scale: 0.85 },
+                { pos: new THREE.Vector3(5.2, -30.0, 1.0), color: 0x06B6D4, relic: 'hexGem', scale: 0.85 },
                 { pos: new THREE.Vector3(-4.8, -44.0, 1.5), color: 0xA855F7, relic: 'icosa', scale: 0.9 }
             ];
 
             marbleConfigs.forEach(cfg => {
                 const group = new THREE.Group();
 
-                // Layer 1: Outer Crystal Glass Shell with Transmission & Specular Reflections
+                // Layer 1: Outer Crystal Glass Shell with Rich Color & Gemstone Tint
                 const glassMat = new THREE.MeshPhysicalMaterial({
                     color: cfg.color,
-                    transmission: 0.93,
-                    opacity: 0.98,
-                    transparent: true,
-                    roughness: 0.03,
-                    ior: 1.54,
-                    clearcoat: 1.0,
-                    clearcoatRoughness: 0.04,
-                    specularColor: 0xffffff,
-                    specularIntensity: 1.6,
                     emissive: cfg.color,
-                    emissiveIntensity: 0.18,
+                    emissiveIntensity: 0.3,
+                    transmission: 0.45,
+                    opacity: 0.88,
+                    transparent: true,
+                    roughness: 0.1,
+                    metalness: 0.08,
+                    ior: 1.5,
+                    clearcoat: 1.0,
+                    clearcoatRoughness: 0.08,
                     envMap: this.envMap,
-                    envMapIntensity: 2.6
+                    envMapIntensity: 1.0
                 });
                 const shell = new THREE.Mesh(new THREE.SphereGeometry(cfg.scale, 36, 36), glassMat);
                 group.add(shell);
@@ -810,13 +809,14 @@
                     color: cfg.color,
                     side: THREE.DoubleSide,
                     transparent: true,
-                    opacity: 0.32
+                    opacity: 0.45,
+                    blending: THREE.AdditiveBlending
                 });
                 const atmosphereRing = new THREE.Mesh(ringGeo, ringMat);
                 atmosphereRing.rotation.x = Math.PI / 2.3;
                 group.add(atmosphereRing);
 
-                // Layer 3: Inner Faceted 3D Relic Jewel
+                // Layer 3: Inner Faceted 3D Relic Jewel (Rich Saturated Gem Color)
                 let relicGeo;
                 if (cfg.relic === 'star') relicGeo = makeStarSparkGeometry(cfg.scale * 0.48);
                 else if (cfg.relic === 'coin') relicGeo = makeCoinGeometry(cfg.scale * 0.46);
@@ -824,25 +824,26 @@
                 else relicGeo = new THREE.IcosahedronGeometry(cfg.scale * 0.46, 0);
 
                 const relicMat = new THREE.MeshPhysicalMaterial({
-                    color: 0xffffff,
+                    color: cfg.color,
                     emissive: cfg.color,
-                    emissiveIntensity: 1.1,
-                    metalness: 0.8,
+                    emissiveIntensity: 0.85,
+                    metalness: 0.25,
                     roughness: 0.12,
-                    clearcoat: 0.95,
+                    clearcoat: 1.0,
                     envMap: this.envMap,
-                    envMapIntensity: 2.2
+                    envMapIntensity: 1.2
                 });
                 const relic = new THREE.Mesh(relicGeo, relicMat);
                 group.add(relic);
                 group.userData.relic = relic;
 
-                // Layer 4: Inner Core Star Sparkle
+                // Layer 4: Inner Core Glow Sparkle (Matching Element Color)
                 const innerCoreGeo = new THREE.SphereGeometry(cfg.scale * 0.18, 16, 16);
                 const innerCoreMat = new THREE.MeshBasicMaterial({
-                    color: 0xffffff,
+                    color: cfg.color,
                     transparent: true,
-                    opacity: 0.9
+                    opacity: 0.75,
+                    blending: THREE.AdditiveBlending
                 });
                 const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
                 group.add(innerCore);
