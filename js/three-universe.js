@@ -3,6 +3,7 @@
  * Powered by Three.js & GSAP
  * 
  * Features:
+ * - Balanced, Natural 3D Mascots Lighting (Gentle Emissive, Rich Shading & Shadows)
  * - Stunning 3D Planet Marbles with multi-layer depth:
  *     1. Crystal Physical Glass Shell (Transmission, Refraction, Clearcoat, EnvMap Reflections)
  *     2. Inner Faceted 3D Relics (Flame Star, Gold Coin with Inlay, Hex Gem, Rune Vault, Wisdom Tome)
@@ -205,7 +206,7 @@
             this.renderer.setSize(width, height);
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
             this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            this.renderer.toneMappingExposure = 1.35;
+            this.renderer.toneMappingExposure = 1.15; // Natural contrast exposure
 
             // 2. High-End Equirectangular Reflection Map
             this.envMap = makeOrbEnvMap(this.renderer, [
@@ -217,7 +218,7 @@
             ]);
             this.scene.environment = this.envMap;
 
-            // 3. Dynamic Cosmic 3-Point Lighting + Realm Point Lights
+            // 3. Balanced Cosmic 3-Point Lighting + Realm Point Lights
             this.initLighting();
 
             // 4. Starfield & Cosmic Dust Clouds
@@ -242,30 +243,30 @@
 
         initLighting() {
             // Ambient soft fill for shadow detail
-            const ambient = new THREE.AmbientLight(0xdbeafe, 1.2);
+            const ambient = new THREE.AmbientLight(0xdbeafe, 0.9);
             this.scene.add(ambient);
 
             // Primary Sun/Nebula Directional Light (Crisp Key Light with Specular)
-            const sunLight = new THREE.DirectionalLight(0xffffff, 2.6);
+            const sunLight = new THREE.DirectionalLight(0xffffff, 2.0);
             sunLight.position.set(20, 32, 25);
             this.scene.add(sunLight);
 
             // Cyan Secondary Rim Light (Edges & Silhouettes)
-            const cyanRim = new THREE.DirectionalLight(0x38bdf8, 1.8);
+            const cyanRim = new THREE.DirectionalLight(0x38bdf8, 1.4);
             cyanRim.position.set(-25, -12, -18);
             this.scene.add(cyanRim);
 
             // Purple Deep Space Fill Light
-            const purpleFill = new THREE.DirectionalLight(0xa855f7, 1.6);
+            const purpleFill = new THREE.DirectionalLight(0xa855f7, 1.2);
             purpleFill.position.set(15, -40, 15);
             this.scene.add(purpleFill);
 
             // Warm Amber Under-Light
-            const amberUnder = new THREE.DirectionalLight(0xf59e0b, 1.4);
+            const amberUnder = new THREE.DirectionalLight(0xf59e0b, 1.0);
             amberUnder.position.set(-15, -55, 12);
             this.scene.add(amberUnder);
 
-            // Local Point Lights on Key Mascots
+            // Local Point Lights on Key Mascots (Toned down for rich shading)
             const addPointLight = (color, intensity, x, y, z, dist = 14) => {
                 const pl = new THREE.PointLight(color, intensity, dist, 1.8);
                 pl.position.set(x, y, z);
@@ -273,11 +274,11 @@
                 this.pointLights.push(pl);
             };
 
-            addPointLight(0xF97316, 2.5, 4.2, -7.5, -2.5);   // Phoenix Flame
-            addPointLight(0xEC4899, 2.2, 4.5, -24.5, -2.5);  // Piggy Gold/Pink
-            addPointLight(0x10B981, 2.2, -3.6, -32.5, -2.5); // Turtle Emerald
-            addPointLight(0x8B5CF6, 2.4, 4.0, -41.5, -2.0);  // Owl Amethyst
-            addPointLight(0x6366F1, 3.5, 0, -50.0, -3.0, 18); // Beacon Core
+            addPointLight(0xF97316, 1.3, 4.2, -7.5, -2.5);   // Phoenix Flame
+            addPointLight(0xEC4899, 1.1, 4.5, -24.5, -2.5);  // Piggy Gold/Pink
+            addPointLight(0x10B981, 1.1, -3.6, -32.5, -2.5); // Turtle Emerald
+            addPointLight(0x8B5CF6, 1.2, 4.0, -41.5, -2.0);  // Owl Amethyst
+            addPointLight(0x6366F1, 2.2, 0, -50.0, -3.0, 18); // Beacon Core
         }
 
         initCosmicEnvironment() {
@@ -405,18 +406,18 @@
         createPhoenixMesh() {
             const group = new THREE.Group();
 
-            // Golden Amber Flame Body with High Specular & Clearcoat
+            // Golden Amber Flame Body with Natural Shading
             const bodyMat = new THREE.MeshPhysicalMaterial({
                 color: 0xF97316,
                 emissive: 0xEA580C,
-                emissiveIntensity: 0.5,
-                roughness: 0.12,
-                metalness: 0.15,
-                clearcoat: 1.0,
-                clearcoatRoughness: 0.08,
+                emissiveIntensity: 0.22,
+                roughness: 0.18,
+                metalness: 0.1,
+                clearcoat: 0.85,
+                clearcoatRoughness: 0.1,
                 envMap: this.envMap,
-                envMapIntensity: 2.2,
-                transmission: 0.25
+                envMapIntensity: 1.8,
+                transmission: 0.15
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.35, 32, 32), bodyMat);
             group.add(body);
@@ -434,7 +435,7 @@
             group.userData.wingR = wingR;
 
             // Golden Beak
-            const beakMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.15, clearcoat: 1.0, envMap: this.envMap, envMapIntensity: 2.0 });
+            const beakMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.2, clearcoat: 0.8, envMap: this.envMap, envMapIntensity: 1.6 });
             const beak = new THREE.Mesh(new THREE.ConeGeometry(0.26, 0.6, 16), beakMat);
             beak.rotation.x = Math.PI / 2;
             beak.position.set(0, 0.05, 1.4);
@@ -450,7 +451,7 @@
             group.add(eyeL, eyeR);
 
             // Blush Cheeks
-            const cheekMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.5 });
+            const cheekMat = new THREE.MeshBasicMaterial({ color: 0xef4444, transparent: true, opacity: 0.45 });
             const cheekL = new THREE.Mesh(new THREE.SphereGeometry(0.2, 16, 16), cheekMat);
             cheekL.position.set(-0.8, 0.05, 1.1);
             const cheekR = cheekL.clone();
@@ -459,13 +460,13 @@
 
             // Double Constellation Orbit Rings
             const ringGeo1 = new THREE.RingGeometry(2.1, 2.35, 64);
-            const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xFBBF24, side: THREE.DoubleSide, transparent: true, opacity: 0.45 });
+            const ringMat1 = new THREE.MeshBasicMaterial({ color: 0xFBBF24, side: THREE.DoubleSide, transparent: true, opacity: 0.35 });
             const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
             ring1.rotation.x = Math.PI / 2.2;
             group.add(ring1);
 
             const ringGeo2 = new THREE.RingGeometry(2.6, 2.75, 64);
-            const ringMat2 = new THREE.MeshBasicMaterial({ color: 0xFB923C, side: THREE.DoubleSide, transparent: true, opacity: 0.3 });
+            const ringMat2 = new THREE.MeshBasicMaterial({ color: 0xFB923C, side: THREE.DoubleSide, transparent: true, opacity: 0.22 });
             const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
             ring2.rotation.y = Math.PI / 3;
             group.add(ring2);
@@ -478,17 +479,17 @@
         createPiggyMesh() {
             const group = new THREE.Group();
 
-            // Glossy Pinkish-Gold Claymorphic Body
+            // Glossy Pinkish-Gold Claymorphic Body (Balanced Emissive)
             const bodyMat = new THREE.MeshPhysicalMaterial({
                 color: 0xF472B6,
                 emissive: 0xDB2777,
-                emissiveIntensity: 0.35,
-                roughness: 0.15,
-                metalness: 0.25,
-                clearcoat: 1.0,
-                clearcoatRoughness: 0.05,
+                emissiveIntensity: 0.16,
+                roughness: 0.2,
+                metalness: 0.2,
+                clearcoat: 0.85,
+                clearcoatRoughness: 0.08,
                 envMap: this.envMap,
-                envMapIntensity: 2.2
+                envMapIntensity: 1.8
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.4, 32, 32), bodyMat);
             group.add(body);
@@ -506,7 +507,7 @@
             group.userData.earR = earR;
 
             // Snout
-            const snoutMat = new THREE.MeshPhysicalMaterial({ color: 0xFDF2F8, roughness: 0.2, emissive: 0xFDF2F8, emissiveIntensity: 0.3, clearcoat: 0.9 });
+            const snoutMat = new THREE.MeshPhysicalMaterial({ color: 0xFDF2F8, roughness: 0.25, emissive: 0xFDF2F8, emissiveIntensity: 0.12, clearcoat: 0.7 });
             const snout = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.3, 24), snoutMat);
             snout.rotation.x = Math.PI / 2;
             snout.position.set(0, -0.05, 1.4);
@@ -530,11 +531,11 @@
             // Orbiting Embossed Golden Coins with Inlay Rings
             const coinMat = new THREE.MeshPhysicalMaterial({
                 color: 0xFBBF24,
-                metalness: 0.95,
-                roughness: 0.1,
-                clearcoat: 1.0,
+                metalness: 0.9,
+                roughness: 0.15,
+                clearcoat: 0.9,
                 envMap: this.envMap,
-                envMapIntensity: 2.8
+                envMapIntensity: 2.2
             });
             const ringMat = new THREE.MeshBasicMaterial({ color: 0xFFFBEB, side: THREE.DoubleSide });
 
@@ -559,15 +560,15 @@
         createTurtleMesh() {
             const group = new THREE.Group();
 
-            // Mint Green Body
+            // Mint Green Body (Natural Shading)
             const skinMat = new THREE.MeshPhysicalMaterial({
                 color: 0x62BE96,
                 emissive: 0x34D399,
-                emissiveIntensity: 0.35,
-                roughness: 0.2,
-                clearcoat: 0.9,
+                emissiveIntensity: 0.15,
+                roughness: 0.25,
+                clearcoat: 0.8,
                 envMap: this.envMap,
-                envMapIntensity: 1.8
+                envMapIntensity: 1.5
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.2, 32, 24), skinMat);
             body.scale.set(1.15, 0.65, 1.25);
@@ -601,13 +602,13 @@
             const shellMat = new THREE.MeshPhysicalMaterial({
                 color: 0x10B981,
                 emissive: 0x059669,
-                emissiveIntensity: 0.45,
+                emissiveIntensity: 0.2,
                 transmission: 0.85,
-                roughness: 0.05,
+                roughness: 0.08,
                 ior: 1.58,
-                clearcoat: 1.0,
+                clearcoat: 0.95,
                 envMap: this.envMap,
-                envMapIntensity: 2.5
+                envMapIntensity: 2.0
             });
             const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(1.05, 1), shellMat);
             shell.position.set(0, 0.5, -0.05);
@@ -615,7 +616,7 @@
             group.add(shell);
 
             // Glowing Diamond Hearth
-            const houseMat = new THREE.MeshPhysicalMaterial({ color: 0xFDE047, emissive: 0xF59E0B, emissiveIntensity: 0.8, clearcoat: 1.0 });
+            const houseMat = new THREE.MeshPhysicalMaterial({ color: 0xFDE047, emissive: 0xF59E0B, emissiveIntensity: 0.4, clearcoat: 0.9 });
             const houseBase = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.35, 0.45), houseMat);
             houseBase.position.set(0, 1.15, -0.05);
             const houseRoof = new THREE.Mesh(new THREE.ConeGeometry(0.4, 0.32, 4), houseMat);
@@ -629,8 +630,8 @@
         createVaultMesh() {
             const group = new THREE.Group();
 
-            const chestMat = new THREE.MeshPhysicalMaterial({ color: 0x78350F, roughness: 0.3, metalness: 0.45, clearcoat: 0.8, envMap: this.envMap });
-            const goldTrimMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, metalness: 0.95, roughness: 0.1, clearcoat: 1.0, envMap: this.envMap, envMapIntensity: 2.8 });
+            const chestMat = new THREE.MeshPhysicalMaterial({ color: 0x78350F, roughness: 0.35, metalness: 0.4, clearcoat: 0.7, envMap: this.envMap });
+            const goldTrimMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, metalness: 0.9, roughness: 0.15, clearcoat: 0.95, envMap: this.envMap, envMapIntensity: 2.2 });
             const runeGlowMat = new THREE.MeshBasicMaterial({ color: 0x38BDF8 });
 
             const base = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.85, 1.15), chestMat);
@@ -661,24 +662,24 @@
             const featherMat = new THREE.MeshPhysicalMaterial({
                 color: 0x7C3AED,
                 emissive: 0x5B21B6,
-                emissiveIntensity: 0.45,
-                roughness: 0.15,
-                clearcoat: 0.9,
+                emissiveIntensity: 0.18,
+                roughness: 0.2,
+                clearcoat: 0.85,
                 envMap: this.envMap,
-                envMapIntensity: 2.0
+                envMapIntensity: 1.6
             });
             const body = new THREE.Mesh(new THREE.SphereGeometry(1.25, 32, 32), featherMat);
             group.add(body);
 
             // Breast
-            const breastMat = new THREE.MeshPhysicalMaterial({ color: 0xEDE9FE, roughness: 0.35, clearcoat: 0.8 });
+            const breastMat = new THREE.MeshPhysicalMaterial({ color: 0xEDE9FE, roughness: 0.38, clearcoat: 0.7 });
             const breast = new THREE.Mesh(new THREE.SphereGeometry(0.9, 24, 24), breastMat);
             breast.position.set(0, -0.25, 0.6);
             breast.scale.set(0.9, 1.1, 0.65);
             group.add(breast);
 
             // Large Glowing Wise Eyes
-            const eyeFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.15, clearcoat: 1.0, envMap: this.envMap, envMapIntensity: 2.5 });
+            const eyeFrameMat = new THREE.MeshPhysicalMaterial({ color: 0xFBBF24, roughness: 0.2, clearcoat: 0.9, envMap: this.envMap, envMapIntensity: 2.0 });
             const eyeFrameL = new THREE.Mesh(new THREE.TorusGeometry(0.4, 0.08, 16, 24), eyeFrameMat);
             eyeFrameL.position.set(-0.48, 0.48, 1.02);
             const eyeFrameR = eyeFrameL.clone();
@@ -700,7 +701,7 @@
             group.add(beak);
 
             // Perch Book
-            const bookMat = new THREE.MeshPhysicalMaterial({ color: 0x1E1B4B, roughness: 0.25, clearcoat: 0.9 });
+            const bookMat = new THREE.MeshPhysicalMaterial({ color: 0x1E1B4B, roughness: 0.3, clearcoat: 0.8 });
             const book = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.26, 1.3), bookMat);
             book.position.set(0, -1.3, 0);
             const bookPages = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.2, 1.2), new THREE.MeshBasicMaterial({ color: 0xFEF3C7 }));
@@ -717,13 +718,13 @@
             const coreMat = new THREE.MeshPhysicalMaterial({
                 color: 0x818cf8,
                 emissive: 0x6366f1,
-                emissiveIntensity: 2.5,
-                roughness: 0.08,
+                emissiveIntensity: 1.4,
+                roughness: 0.12,
                 metalness: 0.2,
                 transmission: 0.75,
-                clearcoat: 1.0,
+                clearcoat: 0.95,
                 envMap: this.envMap,
-                envMapIntensity: 2.8
+                envMapIntensity: 2.2
             });
             const core = new THREE.Mesh(new THREE.SphereGeometry(1.6, 32, 32), coreMat);
             group.add(core);
@@ -734,7 +735,7 @@
             const beamMat = new THREE.MeshBasicMaterial({
                 color: 0x6366F1,
                 transparent: true,
-                opacity: 0.3,
+                opacity: 0.24,
                 side: THREE.DoubleSide,
                 blending: THREE.AdditiveBlending,
                 depthWrite: false
@@ -750,7 +751,7 @@
                     color: i === 0 ? 0x60a5fa : (i === 1 ? 0xc084fc : 0x34d399),
                     side: THREE.DoubleSide,
                     transparent: true,
-                    opacity: 0.45
+                    opacity: 0.35
                 });
                 const ring = new THREE.Mesh(ringGeo, ringMat);
                 ring.rotation.x = Math.PI / 2 + (i * 0.15);
@@ -796,9 +797,9 @@
                     specularColor: 0xffffff,
                     specularIntensity: 1.6,
                     emissive: cfg.color,
-                    emissiveIntensity: 0.22,
+                    emissiveIntensity: 0.18,
                     envMap: this.envMap,
-                    envMapIntensity: 2.8
+                    envMapIntensity: 2.6
                 });
                 const shell = new THREE.Mesh(new THREE.SphereGeometry(cfg.scale, 36, 36), glassMat);
                 group.add(shell);
@@ -809,7 +810,7 @@
                     color: cfg.color,
                     side: THREE.DoubleSide,
                     transparent: true,
-                    opacity: 0.38
+                    opacity: 0.32
                 });
                 const atmosphereRing = new THREE.Mesh(ringGeo, ringMat);
                 atmosphereRing.rotation.x = Math.PI / 2.3;
@@ -825,12 +826,12 @@
                 const relicMat = new THREE.MeshPhysicalMaterial({
                     color: 0xffffff,
                     emissive: cfg.color,
-                    emissiveIntensity: 1.4,
-                    metalness: 0.85,
-                    roughness: 0.1,
-                    clearcoat: 1.0,
+                    emissiveIntensity: 1.1,
+                    metalness: 0.8,
+                    roughness: 0.12,
+                    clearcoat: 0.95,
                     envMap: this.envMap,
-                    envMapIntensity: 2.5
+                    envMapIntensity: 2.2
                 });
                 const relic = new THREE.Mesh(relicGeo, relicMat);
                 group.add(relic);
@@ -841,7 +842,7 @@
                 const innerCoreMat = new THREE.MeshBasicMaterial({
                     color: 0xffffff,
                     transparent: true,
-                    opacity: 0.95
+                    opacity: 0.9
                 });
                 const innerCore = new THREE.Mesh(innerCoreGeo, innerCoreMat);
                 group.add(innerCore);
@@ -873,7 +874,7 @@
             const tubeMat = new THREE.MeshBasicMaterial({
                 color: 0x6366F1,
                 transparent: true,
-                opacity: 0.28
+                opacity: 0.24
             });
             const highway = new THREE.Mesh(tubeGeo, tubeMat);
             this.scene.add(highway);
