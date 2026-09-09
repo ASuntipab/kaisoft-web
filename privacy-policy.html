@@ -55,7 +55,16 @@
         <ul>
             <li><strong>ตัวระบุอุปกรณ์ (Device ID):</strong> เพื่อวัตถุประสงค์ในการวิเคราะห์สถิติและการแสดงโฆษณาในเกม (เช่น AdMob)</li>
             <li><strong>ข้อมูลบัญชี (OAuth):</strong> อีเมลเมื่อลงชื่อเข้าใช้ผ่าน Google/Apple เพื่อซิงก์ด่านการเล่นข้ามเครื่อง</li>
-            <li><strong>ประวัติการสั่งซื้อ (In-App Purchases):</strong> บันทึกการปลดล็อก VIP หรือเหรียญในเกม</li>
+            <li><strong>ประวัติการสั่งซื้อ (In-App Purchases & Subscriptions):</strong> บันทึกสถานะการปลดล็อก VIP Pass หรือเหรียญในเกมผ่าน StoreKit / Google Play โดยไม่มีการเก็บข้อมูลบัตรเครดิตหรือข้อมูลการเงินบนเซิร์ฟเวอร์ของบริษัท</li>
+            <li><strong>การสมัครสมาชิก Flow Link VIP (Auto-Renewable Subscription):</strong>
+                <ul>
+                    <li>VIP Pass รายเดือน: 149 บาทต่อเดือน (ต่ออายุอัตโนมัติ ไม่บังคับ)</li>
+                    <li>ระบบจะเรียกเก็บเงินผ่านบัญชี Apple ID เมื่อยืนยันการซื้อ การสมัครจะต่ออายุอัตโนมัติหากไม่ปิดการต่ออายุอย่างน้อย 24 ชั่วโมงก่อนสิ้นรอบปัจจุบัน และจะถูกเรียกเก็บภายใน 24 ชั่วโมงก่อนสิ้นรอบ</li>
+                    <li>คุณจัดการหรือยกเลิกการสมัครได้ในการตั้งค่าบัญชี App Store หลังการซื้อ</li>
+                    <li>ข้อกำหนดการใช้งาน (EULA): <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Apple Standard EULA</a></li>
+                    <li>นโยบายความเป็นส่วนตัว: <a href="https://kaisoftthailand.com/privacy">https://kaisoftthailand.com/privacy</a></li>
+                </ul>
+            </li>
             <li><strong>การขอลบข้อมูลบัญชี:</strong> สามารถส่งคำขอผ่าน <a href="https://kaisoftthailand.com/delete-account.html">https://kaisoftthailand.com/delete-account.html</a></li>
         </ul>
     </div>
