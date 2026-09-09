@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>นโยบายความเป็นส่วนตัว · หน้าต่างที่ยังไม่เสร็จ</title>
+  <style>
+    :root {
+      --bg: #0D1011;
+      --card-bg: #161A1D;
+      --text: #E3E8EC;
+      --text-dim: #9AA6AC;
+      --accent: #ECA84E;
+      --lead: #2A3133;
+      --ruby: #D85869;
+      --sapphire: #4B80C0;
+      --emerald: #44A478;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.65;
+      padding: 24px 16px 48px;
+    }
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--lead);
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+    .last-updated {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+    section {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--lead);
+    }
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2.collect { color: var(--emerald); }
+    h2.nocollect { color: var(--ruby); }
+    h2.storage { color: var(--sapphire); }
+    h2.purpose { color: var(--accent); }
+    p {
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    ul {
+      padding-left: 20px;
+      margin-bottom: 12px;
+    }
+    li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+    code {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--lead);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>นโยบายความเป็นส่วนตัว</h1>
+      <div class="subtitle">เกม «หน้าต่างที่ยังไม่เสร็จ» (Unfinished Window)</div>
+      <div class="last-updated">ปรับปรุงล่าสุด: 2 กันยายน 2026</div>
+    </header>
+
+    <main>
+      <section>
+        <h2 class="purpose">หลักการสำคัญ: เคารพความเป็นส่วนตัวสูงสุด (Zero PII)</h2>
+        <p>
+          เกม «หน้าต่างที่ยังไม่เสร็จ» ถูกออกแบบขึ้นโดยยึดหลัก <strong>Zero PII (ไม่เก็บข้อมูลระบุตัวตนส่วนบุคคล)</strong> ผู้เล่นทุกคนสามารถเล่นเกมได้ทันทีโดยไม่ต้องลงทะเบียน ไม่มีระบบบัญชี และไม่มีการขอสิทธิ์กล้อง ไมโครโฟน หรือตำแหน่งที่ตั้งใดๆ ทั้งสิ้น
+        </p>
+      </section>
+
+      <section>
+        <h2 class="collect">1. ข้อมูลที่เราบันทึก (เพื่อการปรับปรุงความยากง่ายของเกม)</h2>
+        <p>เราส่งข้อมูลทางสถิติขนาดเล็ก (ไม่เกิน 512 ไบต์) เมื่อผู้เล่นเริ่มด่าน เล่นจบด่าน หรือปิดเกม เพื่อวิเคราะห์ความสมดุลของปริศนา:</p>
+        <ul>
+          <li><strong>รหัสสุ่มในเครื่อง (Anonymous Player ID):</strong> ข้อความสุ่ม 32 ตัวอักษรที่สร้างขึ้นเองในเครื่องผู้เล่น (<code>uw.pid</code>) เพื่อใช้นับจำนวนผู้เล่นโดยไม่ผูกกับตัวตนหรือบัญชีใดๆ</li>
+          <li><strong>ข้อมูลการเล่นเกม (Gameplay Telemetry):</strong> เลขด่านที่เล่น, เวลาที่ใช้ในด่าน, จำนวนครั้งที่แตะ/ลงสี, สัดส่วนการเติมชิ้นส่วนก่อนออก</li>
+          <li><strong>ช่องทางที่เข้าใช้งาน (Acquisition Channel):</strong> ช่องทางที่เปิดเกม เช่น <code>web</code>, <code>app</code> (Android), หรือ <code>ios</code> (iOS App) เพื่อดูประสิทธิภาพของแต่ละช่องทาง</li>
+          <li><strong>ประเภทอุปกรณ์โดยคร่าว:</strong> หมวดหมู่หน้าจอ (เช่น มือถือ, แท็บเล็ต, เดสก์ท็อป) เพื่อจัดขนาดกระจกให้เหมาะสม</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="nocollect">2. ข้อมูลที่เรา «ไม่เก็บ» โดยเด็ดขาด</h2>
+        <ul>
+          <li><strong>ไม่เก็บข้อมูลส่วนบุคคล:</strong> ไม่มีชื่อ, นามสกุล, อีเมล, เบอร์โทรศัพท์, หรือวันเกิด</li>
+          <li><strong>ไม่เก็บข้อมูลอุปกรณ์เฉพาะเจาะจง:</strong> ไม่ทำ Device Fingerprinting, ไม่เก็บ Canvas/WebGL/Audio Fingerprint</li>
+          <li><strong>ไม่เก็บตำแหน่งที่ตั้ง:</strong> ไม่ขอและไม่เข้าถึง GPS หรือ Location Service</li>
+          <li><strong>ไม่เก็บหมายเลข IP แบบเต็ม:</strong> ระบบเซิร์ฟเวอร์ปฏิเสธการบันทึก IP เต็มลงฐานข้อมูล</li>
+          <li><strong>ไม่เข้าถึงไฟล์และสื่อ:</strong> ไม่เข้าถึงรูปภาพ คลังภาพ ไมโครโฟน หรือรายชื่อผู้ติดต่อ</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="storage">3. แหล่งจัดเก็บและความปลอดภัยของข้อมูล</h2>
+        <p>
+          ข้อมูลทางสถิติถูกส่งผ่านการเชื่อมต่อแบบเข้ารหัสมาตรฐานความปลอดภัยสูง (HTTPS) ไปยังฐานข้อมูล <strong>Cloudflare D1</strong> (ภูมิภาคเอเชีย) และถูกเก็บไว้อย่างปลอดภัย ข้อมูลนี้ถูกนำไปใช้เพื่อการพัฒนาและปรับปรุงเกมเท่านั้น:
+        </p>
+        <ul>
+          <li>ไม่มีการขาย แลกเปลี่ยน หรือส่งต่อข้อมูลให้แก่บุคคลที่สาม</li>
+          <li>ไม่มีการนำข้อมูลสถิติเกมไปใช้ร่วมกับข้อมูลระบุตัวตน</li>
+          <li>ไม่มีการติดตามข้ามเว็บไซต์หรือข้ามแอปพลิเคชัน (No Cross-App Tracking)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="purpose">4. การแสดงโฆษณา (Google AdMob)</h2>
+        <p>
+          แอปพลิเคชันนี้มีการแสดงโฆษณาแบนเนอร์และโฆษณาคั่นแบบสั้น โดยใช้บริการของ <strong>Google AdMob</strong> เพื่อสนับสนุนค่าใช้จ่ายในการพัฒนาและดูแลระบบ:
+        </p>
+        <ul>
+          <li>Google AdMob อาจมีการประมวลผลข้อมูลทางเทคนิคของอุปกรณ์ (เช่น รหัสระบุตัวตนสำหรับการโฆษณา Advertising ID / IDFA) ตามนโยบายความเป็นส่วนตัวของ Google</li>
+          <li>ตัวเกมหลักไม่มีการส่งข้อมูล Telemetry สถิติการเล่น หรือข้อมูลใดๆ ไปยังเครือข่ายโฆษณา</li>
+          <li>ท่านสามารถศึกษารายละเอียดและวิธีการตั้งค่าความเป็นส่วนตัวได้ที่ <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">นโยบายความเป็นส่วนตัวและข้อกำหนดของ Google</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="purpose">5. การล้างข้อมูลและสิทธิ์ของผู้เล่น</h2>
+        <p>
+          ผู้เล่นสามารถล้างรหัสสุ่ม ประวัติการเล่น และข้อมูลทั้งหมดที่บันทึกไว้ในเครื่องได้ตลอดเวลาด้วยตนเอง โดยทำได้ 2 วิธี:
+        </p>
+        <ul>
+          <li>เปิดเกมผ่านลิงก์ที่มีพารามิเตอร์ <code>?fresh=1</code> เช่น <code>https://unfinished-window.pages.dev/?fresh=1</code></li>
+          <li>ล้างข้อมูลประวัติเว็บไซต์ (Clear Site Data / Storage) ในการตั้งค่าของเบราว์เซอร์หรือการตั้งค่าของแอปพลิเคชัน</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>6. ช่องทางการติดต่อ</h2>
+        <p>
+          หากท่านมีข้อสงสัย ข้อเสนอแนะ หรือคำถามเกี่ยวกับนโยบายความเป็นส่วนตัวนี้ สามารถติดต่อทีมพัฒนาได้ทางอีเมล:
+        </p>
+        <p>
+          📧 <strong>contact@kaisoft.net</strong>
+        </p>
+      </section>
+
+      <div style="text-align: center;">
+        <a href="https://kaisoftthailand.com" class="back-btn">← กลับสู่หน้าเกม</a>
+      </div>
+    </main>
+
+    <footer>
+      © 2026 Kai Soft. สงวนลิขสิทธิ์ทั้งหมด
+    </footer>
+  </div>
+</body>
+</html>
