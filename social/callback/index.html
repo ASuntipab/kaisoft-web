@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th" class="h-full bg-slate-950 text-slate-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เชื่อมต่อ TikTok สำเร็จ · Kai Social - Kai Soft</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>body { font-family: 'Kanit', sans-serif; }</style>
+</head>
+<body class="min-h-full flex items-center justify-center p-4 bg-slate-950">
+    <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl text-center space-y-6">
+        <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
+            <i data-lucide="check-circle" class="w-8 h-8"></i>
+        </div>
+        
+        <div class="space-y-2">
+            <h1 class="text-2xl font-bold text-white tracking-tight">เชื่อมต่อ TikTok สำเร็จ!</h1>
+            <p class="text-sm text-slate-300">
+                บัญชี TikTok ของคุณได้รับการเชื่อมโยงกับระบบ <strong>Kai Social</strong> บนโดเมน <code>kaisoftthailand.com</code> เรียบร้อยแล้ว
+            </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800/80 text-xs text-slate-400 space-y-1.5 text-left font-mono">
+            <div class="flex justify-between">
+                <span>Domain:</span>
+                <span class="text-indigo-400">kaisoftthailand.com</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Platform:</span>
+                <span class="text-slate-200">Kai Social Web</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Scope Granted:</span>
+                <span class="text-emerald-400">user.info.basic, video.publish</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Status:</span>
+                <span class="text-cyan-400">OAuth 2.0 Authorized</span>
+            </div>
+        </div>
+
+        <div class="pt-2">
+            <a href="/social/" class="w-full py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                กลับสู่หน้าแดชบอร์ด Kai Social
+            </a>
+            <p class="text-[11px] text-slate-500 mt-3">ระบบจะพากลับไปหน้าหลักอัตโนมัติใน <span id="countdown">3</span> วินาที...</p>
+        </div>
+    </div>
+
+    <script>
+        if (window.lucide) lucide.createIcons();
+        let seconds = 3;
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            seconds--;
+            if (countdownEl) countdownEl.innerText = seconds;
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.location.href = '/social/';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
