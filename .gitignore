@@ -4,3 +4,4 @@ restore*.py
 *.bak
 .DS_Store
 Thumbs.db
+proposals/
